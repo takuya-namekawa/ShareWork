@@ -1,0 +1,13 @@
+<h1>Home#top</h1>
+
+<%=  link_to "ショップログイン", new_shop_session_path %><br>
+<%=  link_to "ショップサインアップ", new_shop_registration_path %><br>
+<%=  link_to "ショップログアウト", destroy_shop_session_path, method: :delete %><br>
+<%=  link_to "ショップマイページ", my_page_shops_path %><br>
+<%=  link_to "投稿一覧", posts_path %><br>
+<br>
+<br>
+<%=  link_to "管理職ログイン", new_management_session_path %><br>
+<%=  link_to "管理職サインアップ", new_management_registration_path %><br>
+<%=  link_to "管理者ログアウト", destroy_management_session_path, method: :delete %><br>
+

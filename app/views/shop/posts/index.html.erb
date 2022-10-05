@@ -1,0 +1,90 @@
+<main class="h-100">
+        <header class="w-100 d-flex justify-content-between align-items-center bg-light px-3">
+            <!— ヘッダーの内容 -->
+            <h1 class="mx-2 fs-4 text-primary fw-bold">OFFICE54</h1>
+            <ul class="navbar-nav d-flex flex-row">
+                <li class="nav-item mx-3 text-muted active"><a href="#" class="nav-link text-secondary">New</a></li>
+                <li class="nav-item mx-3 text-muted"><a href="#" class="nav-link text-secondary">Login</a></li>
+            </ul>
+        </header>
+        <div class="d-flex flex-row w-100 pr-5" style="height: calc(100% - 30px)">
+            <!— サイドメニュー -->
+            <nav class="bg-dark pr-5 pl-5">
+                <ul class="nav flex-column m-0 p-3">
+                    <li class="nav-item mb-2"><a href="#" class="nav-link">Pythoo</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link">Django</a></li>
+                </ul>
+            </nav>
+            <!— メインコンテンツ -->
+           <div class="container mt-5">
+  <div class="row">
+    <div class="col-6">
+       <button type="button" class="btn btn-primary w-100" data-toggle="modal" data-target="#exampleModal">
+        投稿
+      </button>
+      <% @posts.each do |post| %>
+        <div class="card mb-1">
+          <div class="card-body">
+            <p class="card-text"><%= post.created_at.strftime("%Y年%-m月%-d日%H時%M分")  %></small></p>
+            <div><%= image_tag post.get_profile_image(100,100)%></div>
+            <p class="card-text"><%=  post.job %></small></p>
+            <p class="card-text"><%=  post.name %></small></p>
+            <p class="card-text"><%= post.title %></p>
+            <p class="card-text"><%= simple_format post.appeal %></small></p>
+            <p class="card-text"><%=  post.tag.name %></small></p>
+            <div><%= image_tag post.shop.get_profile_image(100,100)%></div>
+            <p class="card-text"><%=  post.shop.name %></small></p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">新規投稿</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <%= form_for @post, url:  posts_path do |f| %>
+        <div class="modal-body">
+          <div class="form-group">
+            <%= f.label :title, "タイトル" %>
+            <%= f.text_field :title, class:"form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :appeal, "アピールポイント" %>
+            <%= f.text_area :appeal, class:"form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :job, "役職" %>
+            <%= f.text_field :job, class:"form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :name, "担当者" %>
+            <%= f.text_field :name, class:"form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :ジャンル,class: "col-sm-3 col-form-label" %>
+            <%= f.collection_select :tag_id, Tag.all, :id, :name, class: 'form-control'%>
+          </div>
+          <div class="form-group">
+            <%= f.label :画像 ,class: "col-sm-3 col-form-label " %>
+            <%= f.file_field :profile_image, accept: "image/" ,class:"col-sm-8 pl-4" %>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+          <%= f.submit "投稿する", class:"btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+        </div>
+</main>

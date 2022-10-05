@@ -1,0 +1,10 @@
+<h1>Shop::Shops#edit</h1>
+<%= form_with model: @shop, url: shop_path(@shop) do |f| %>
+<%= f.label :店舗名 %>
+<%= f.text_field :name, autofocus: true %>
+<%= f.label :メールアドレス %>
+<%= f.email_field :email, autofocus: true %>
+<%= f.label :商品画像  %>
+<%= f.file_field :profile_image, accept: "image/"  %>
+<%= f.submit  %>
+<% end %>

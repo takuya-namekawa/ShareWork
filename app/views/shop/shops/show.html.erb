@@ -1,0 +1,5 @@
+<h1>Shop::Shops#show</h1>
+<%= image_tag @shop.get_profile_image(100,100)%>
+<%= @shop.name %>
+<%= @shop.email %>
+<%= link_to "編集", edit_shop_path(@shop) %>
