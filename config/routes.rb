@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   root 'home#top'
 
   devise_for :shops,skip: [:passwords], controllers: {
@@ -18,7 +17,8 @@ Rails.application.routes.draw do
         get "my_page" => "shops#show"
       end
     end
-    resources :posts, only: [:index, :create]
+    resources :posts
+    resources :mother_father_gifts
   end
 
 

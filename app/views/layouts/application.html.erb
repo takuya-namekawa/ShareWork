@@ -10,7 +10,8 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class="h-100" style="background-color: #f1f5f7;">
+    <%= render "layouts/header" %>
     <% if flash[:notice] %>
       <div class="alert alert-dark text-center">
         <p class="notice"><%= notice %></p>
@@ -21,7 +22,7 @@
         <p class="alert"><%= alert %></p>
       </div>
     <% end %>
-   
+
     <%= yield %>
   </body>
 </html>

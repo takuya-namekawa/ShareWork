@@ -1,0 +1,2 @@
+class MotherFatherGift < ApplicationRecord
+end
