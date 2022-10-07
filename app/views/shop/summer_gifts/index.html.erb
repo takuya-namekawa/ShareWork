@@ -7,9 +7,9 @@
        <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#exampleModal">
         Report!!
       </button>
-      母の日父の日ギフト
+      お中元ギフト
       <table class="table ">
-      <% @mother_father_gifts.each do |gift| %>
+      <%  @summer_gifts.each do |gift| %>
 <tr>
 
 
@@ -29,9 +29,9 @@
 
   <td>達成金額:<%=  gift.total_amount %>円</td>
 
-<td><%= link_to "Edit", edit_mother_father_gift_path(gift) %></td>
+<td><%= link_to "Edit", edit_summer_gift_path(gift) %></td>
   <td><% if gift.shop_id == current_shop.id %>
-                    <%= link_to "Delete", mother_father_gift_path(gift), method: :delete,"data-confirm" => "本当に消しますか？" %>
+                    <%= link_to "Delete", summer_gift_path(gift), method: :delete,"data-confirm" => "本当に消しますか？" %>
                     <% end %></td>
 
 </tr>
@@ -52,7 +52,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <%= form_for @mother_father_gift, url: mother_father_gifts_path do |f| %>
+      <%= form_for @summer_gift, url: summer_gifts_path do |f| %>
         <div class="modal-body">
           <div class="form-group">
             <%= f.label :year, "年度" %>

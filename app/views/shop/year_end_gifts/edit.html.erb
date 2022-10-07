@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <%= form_with model: @mother_father_gift, url: mother_father_gift_path(@mother_father_gift) do |f| %>
+      <%= form_with model: @year_end_gift, url: year_end_gift_path(@year_end_gift) do |f| %>
 <%= f.label :year, "年度" %>
             <%= f.text_field :year %>
 <%= f.label :taget_number, "目標件数" %>
@@ -12,11 +12,11 @@
             <%= f.text_field :number %>
              <%= f.label :total_amount, "達成金額" %>
             <%= f.text_field :total_amount %>
-            
-            
-            
+
+
+
 <%= f.submit  %>
-<% end %>  
+<% end %>
     </div>
   </div>
 </div>

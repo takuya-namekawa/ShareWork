@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+ 
   root 'home#top'
 
   devise_for :shops,skip: [:passwords], controllers: {
@@ -19,6 +20,9 @@ Rails.application.routes.draw do
     end
     resources :posts
     resources :mother_father_gifts
+    resources :summer_gifts
+    resources :year_end_gifts
+    resources :day_of_the_oxes
   end
 
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_05_121556) do
+ActiveRecord::Schema.define(version: 2022_10_07_043352) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -40,6 +40,18 @@ ActiveRecord::Schema.define(version: 2022_10_05_121556) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "day_of_the_oxes", force: :cascade do |t|
+    t.integer "shop_id", null: false
+    t.integer "year", null: false
+    t.integer "booking_target"
+    t.integer "target_amount", null: false
+    t.integer "booking_amount", null: false
+    t.integer "store_sales_amount", null: false
+    t.integer "total_amount", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "managements", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -57,7 +69,6 @@ ActiveRecord::Schema.define(version: 2022_10_05_121556) do
   create_table "mother_father_gifts", force: :cascade do |t|
     t.integer "shop_id", null: false
     t.integer "year", null: false
-    t.integer "period", null: false
     t.integer "target_number", null: false
     t.integer "target_amount", null: false
     t.integer "total_amount", null: false
@@ -90,8 +101,30 @@ ActiveRecord::Schema.define(version: 2022_10_05_121556) do
     t.index ["reset_password_token"], name: "index_shops_on_reset_password_token", unique: true
   end
 
+  create_table "summer_gifts", force: :cascade do |t|
+    t.integer "shop_id", null: false
+    t.integer "year", null: false
+    t.integer "target_number", null: false
+    t.integer "target_amount", null: false
+    t.integer "total_amount", null: false
+    t.integer "number", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "tags", force: :cascade do |t|
     t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "year_end_gifts", force: :cascade do |t|
+    t.integer "shop_id", null: false
+    t.integer "year", null: false
+    t.integer "target_number", null: false
+    t.integer "target_amount", null: false
+    t.integer "total_amount", null: false
+    t.integer "number", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

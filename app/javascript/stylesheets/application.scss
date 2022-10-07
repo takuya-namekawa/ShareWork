@@ -1,2 +1,10 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
+
+@media (max-width:999px){
+  table td,table th{ display:block; }
+
+}
+@media (min-width:998px){
+  table td,table th{ display:table-cell; }
+}

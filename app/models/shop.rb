@@ -5,6 +5,10 @@ class Shop < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_one_attached :profile_image
   has_many :posts, dependent: :destroy
+  has_many :mother_father_gifts, dependent: :destroy
+  has_many :summer_gifts, dependent: :destroy
+  has_many :year_end_gifts, dependent: :destroy
+  has_many :day_of_the_oxes, dependent: :destroy
   def get_profile_image(width, height)
     unless profile_image.attached?
       file_path = Rails.root.join("app/assets/images/no-image.png")
