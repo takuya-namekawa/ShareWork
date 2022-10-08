@@ -7,25 +7,29 @@
           <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#exampleModal">
             Report!!
           </button>
-            母の日父の日ギフト
+          恵方巻
           <table class="table ">
-            <% @mother_father_gifts.each do |gift| %>
+            <%  @ehomakis.each do |ehomaki| %>
               <tr>
-                <td>店舗名:<%= gift.shop.name %></td>
-                <td><%=  gift.year %>年度</td>
-                <td>目標件数:<%=  gift.target_number %>件</td>
-                <td>目標金額:<%=  gift.target_amount.to_s(:delimited) %>円</td>
-                <td>件数:<%=  gift.number %>件</td>
-                <td>達成金額:<%=  gift.total_amount.to_s(:delimited) %>円</td>
-                <td><%= link_to "Edit", edit_mother_father_gift_path(gift) %></td>
                 <td>
-                  <% if gift.shop_id == current_shop.id %>
-                    <%= link_to "Delete", mother_father_gift_path(gift), method: :delete,"data-confirm" => "本当に消しますか？" %>
+                  <%= ehomaki.shop.name %><br>
+                  <%= ehomaki.year %>年度
+                </td>
+                <td>
+                  予約目標:<%=  ehomaki.booking_target %>円<br>
+                  目標金額:<%=  ehomaki.target_amount %>円
+                </td>
+                <td>予約金額:<%=  ehomaki.booking_amount.to_s(:delimited) %>円</td>
+                <td>店売金額:<%=  ehomaki.store_sales_amount %>円</td>
+                <td>達成金額:<%=  ehomaki.total_amount.to_s(:delimited) %>円</td>
+                <td><%= link_to "Edit", edit_ehomaki_path(ehomaki) %>
+                  <% if ehomaki.shop_id == current_shop.id %>
+                    <%= link_to "Delete", ehomaki_path(ehomaki), method: :delete,"data-confirm" => "本当に消しますか？" %>
                   <% end %>
                 </td>
               </tr>
             <% end %>
-          </table>
+        </table>
         </div>
       </div>
     </div>
@@ -39,23 +43,27 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <%= form_for @mother_father_gift, url: mother_father_gifts_path do |f| %>
+          <%= form_for @ehomaki, url: ehomakis_path do |f| %>
             <div class="modal-body">
               <div class="form-group">
                 <%= f.label :year, "年度" %>
                 <%= f.text_field :year, class:"form-control" %>
               </div>
               <div class="form-group">
-                <%= f.label :taget_number, "目標件数" %>
-                <%= f.text_field :target_number, class:"form-control" %>
+                <%= f.label :booking_target, "予約目標" %>
+                <%= f.text_field :booking_target, class:"form-control" %>
               </div>
               <div class="form-group">
                 <%= f.label :target_amount, "目標金額" %>
                 <%= f.text_field :target_amount, class:"form-control" %>
               </div>
               <div class="form-group">
-                <%= f.label :number, "件数" %>
-                <%= f.text_field :number, class:"form-control" %>
+                <%= f.label :booking_amount, "予約金額" %>
+                <%= f.text_field :booking_amount, class:"form-control" %>
+              </div>
+              <div class="form-group">
+                <%= f.label :store_sales_amount, "店売金額" %>
+                <%= f.text_field :store_sales_amount, class:"form-control" %>
               </div>
               <div class="form-group">
                 <%= f.label :total_amount, "達成金額" %>

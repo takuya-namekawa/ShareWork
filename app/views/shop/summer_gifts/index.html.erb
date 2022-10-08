@@ -1,87 +1,73 @@
 <div class="d-flex flex-row w-100 pr-5 " style="height: calc(100% - 50px)">
-   <!--サイドバーコンテンツ-->
-   <%= render "layouts/sidenav" %>
- <div class="container mt-5">
-  <div class="row">
-    <div class="col">
-       <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#exampleModal">
-        Report!!
-      </button>
-      お中元ギフト
-      <table class="table ">
-      <%  @summer_gifts.each do |gift| %>
-<tr>
-
-
-
-
-  <td>店舗名:<%= gift.shop.name %></td>
-
-  <td><%=  gift.year %>年度</td>
-
-
-
-  <td>目標件数:<%=  gift.target_number %>件</td>
-
-  <td>目標金額:<%=  gift.target_amount %>円</td>
-
-  <td>件数:<%=  gift.number %>件</td>
-
-  <td>達成金額:<%=  gift.total_amount %>円</td>
-
-<td><%= link_to "Edit", edit_summer_gift_path(gift) %></td>
-  <td><% if gift.shop_id == current_shop.id %>
+  <!--サイドバーコンテンツ-->
+  <%= render "layouts/sidenav" %>
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col">
+          <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#exampleModal">
+            Report!!
+          </button>
+          お中元ギフト
+          <table class="table ">
+            <%  @summer_gifts.each do |gift| %>
+              <tr>
+                <td>店舗名:<%= gift.shop.name %></td>
+                <td><%=  gift.year %>年度</td>
+                <td>目標件数:<%=  gift.target_number %>件</td>
+                <td>目標金額:<%=  gift.target_amount.to_s(:delimited) %>円</td>
+                <td>件数:<%=  gift.number %>件</td>
+                <td>達成金額:<%=  gift.total_amount.to_s(:delimited) %>円</td>
+                <td><%= link_to "Edit", edit_summer_gift_path(gift) %></td>
+                <td>
+                  <% if gift.shop_id == current_shop.id %>
                     <%= link_to "Delete", summer_gift_path(gift), method: :delete,"data-confirm" => "本当に消しますか？" %>
-                    <% end %></td>
-
-</tr>
-      <% end %>
-      </table>
-    </div>
-  </div>
-</div>
-
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">新規投稿</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </table>
+        </div>
       </div>
-      <%= form_for @summer_gift, url: summer_gifts_path do |f| %>
-        <div class="modal-body">
-          <div class="form-group">
-            <%= f.label :year, "年度" %>
-            <%= f.text_field :year, class:"form-control" %>
-          </div>
-
-          <div class="form-group">
-            <%= f.label :taget_number, "目標件数" %>
-            <%= f.text_field :target_number, class:"form-control" %>
-          </div>
-          <div class="form-group">
-            <%= f.label :target_amount, "目標金額" %>
-            <%= f.text_field :target_amount, class:"form-control" %>
-          </div>
-          <div class="form-group">
-            <%= f.label :number, "件数" %>
-            <%= f.text_field :number, class:"form-control" %>
-          </div>
-          <div class="form-group">
-            <%= f.label :total_amount, "達成金額" %>
-            <%= f.text_field :total_amount, class:"form-control" %>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
-          <%= f.submit "投稿する", class:"btn btn-primary" %>
-        </div>
-      <% end %>
     </div>
-  </div>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">新規投稿</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <%= form_for @summer_gift, url: summer_gifts_path do |f| %>
+            <div class="modal-body">
+              <div class="form-group">
+                <%= f.label :year, "年度" %>
+                <%= f.text_field :year, class:"form-control" %>
+              </div>
+              <div class="form-group">
+                <%= f.label :taget_number, "目標件数" %>
+                <%= f.text_field :target_number, class:"form-control" %>
+              </div>
+              <div class="form-group">
+                <%= f.label :target_amount, "目標金額" %>
+                <%= f.text_field :target_amount, class:"form-control" %>
+              </div>
+              <div class="form-group">
+                <%= f.label :number, "件数" %>
+                <%= f.text_field :number, class:"form-control" %>
+              </div>
+              <div class="form-group">
+                <%= f.label :total_amount, "達成金額" %>
+                <%= f.text_field :total_amount, class:"form-control" %>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+              <%= f.submit "投稿する", class:"btn btn-primary" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
 </div>
- </div>

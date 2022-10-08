@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_07_043352) do
+ActiveRecord::Schema.define(version: 2022_10_07_060057) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -40,7 +40,32 @@ ActiveRecord::Schema.define(version: 2022_10_07_043352) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "christmas", force: :cascade do |t|
+    t.integer "shop_id", null: false
+    t.integer "year", null: false
+    t.integer "booking_target"
+    t.integer "target_amount", null: false
+    t.integer "booking_amount", null: false
+    t.integer "ff_amount", null: false
+    t.integer "store_sales_amount", null: false
+    t.integer "total_amount", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "day_of_the_oxes", force: :cascade do |t|
+    t.integer "shop_id", null: false
+    t.integer "year", null: false
+    t.integer "booking_target"
+    t.integer "target_amount", null: false
+    t.integer "booking_amount", null: false
+    t.integer "store_sales_amount", null: false
+    t.integer "total_amount", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "ehomakis", force: :cascade do |t|
     t.integer "shop_id", null: false
     t.integer "year", null: false
     t.integer "booking_target"

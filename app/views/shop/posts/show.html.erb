@@ -1,2 +1,18 @@
-<h1>Shop::Posts#show</h1>
-<p>Find me in app/views/shop/posts/show.html.erb</p>
+<div class="d-flex flex-row w-100 pr-5 " style="height: calc(100% - 50px)">
+  <!--サイドバーコンテンツ-->
+  <%= render "layouts/sidenav" %>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <%= image_tag @post.get_profile_image(150,150)%>
+          <%= image_tag @post.shop.get_profile_image(30,30)%><br>
+          <%=  @post.shop.name %>
+          役職:<%=  @post.job %>
+          スタッフ名:<%=  @post.name %>
+          タイトル:<%= @post.title %></p>
+          アピールポイント<%= simple_format @post.appeal %>
+          カテゴリー:<%=  @post.tag.name %>
+        </div>
+    </div>
+  </div>
+</div>

@@ -12,6 +12,18 @@ class Shop::PostsController < ApplicationController
     redirect_to posts_path
   end
 
+  def update
+    @post = Post.find(params[:id])
+    @post.update(post_params)
+    redirect_to posts_path
+  end
+  
+  def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
+    redirect_to posts_path
+  end
+
   def show
     @post = Post.find(params[:id])
   end
