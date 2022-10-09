@@ -2,6 +2,9 @@ class Shop::DayOfTheOxesController < ApplicationController
   def index
     @day_of_the_oxes = DayOfTheOx.all
     @day_of_the_ox = DayOfTheOx.new
+    @shop_total_amount = 0
+    @shop_tptal_booking_target = 0
+    @shop_store_sales_amount = 0
   end
 
   def create

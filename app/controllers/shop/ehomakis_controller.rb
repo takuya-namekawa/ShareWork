@@ -2,6 +2,9 @@ class Shop::EhomakisController < ApplicationController
   def index
     @ehomakis = Ehomaki.all
     @ehomaki = Ehomaki.new
+    @shop_total_amount = 0
+    @shop_tptal_booking_target = 0
+    @shop_store_sales_amount = 0
   end
 
   def create
