@@ -1,36 +1,48 @@
 <div class="d-flex flex-row w-100 pr-5 " style="height: calc(100% - 50px)">
   <!--サイドバーコンテンツ-->
   <%= render "layouts/sidenav" %>
-    <div class="container mt-5">
+    <div class="container mt-4 ml-3">
+      <h4 class=" font-weight-bold mt-3 mb-3 bold border-bottom " style=" color: #6169d0; ">Shere!!Work</h4>
       <div class="row">
-        <div class="col-6">
-          <%= image_tag @post.get_profile_image(150,150)%>
-          <%= image_tag @post.shop.get_profile_image(30,30)%><br>
-          <%=  @post.shop.name %>
-          役職:<%=  @post.job %>
-          スタッフ名:<%=  @post.name %>
-          タイトル:<%= @post.title %></p>
-          アピールポイント<%= simple_format @post.appeal %>
-          カテゴリー:<%=  @post.tag.name %>
+        <div class="card mb-1 shadow-sm">
+          <div class="card-body  text-secondary font-weight-bold">
+            <div class="col-12">
+              <div class="row">
+                <div class="col-8 ">
+                  <%= image_tag @post.get_profile_image(500,500),class: "img-fluid"%>
+                </div>
+                <div class="col-4 ">
+                  <p class="card-text"><%=  @post.shop.name %></p>
+                  <p class="card-text">役職:<%=  @post.job %></p>
+                  <p class="card-text">スタッフ名:<%=  @post.name %></p>
+                  <p class="card-text">タイトル:<%= @post.title %></p>
+                  <p class="card-text">カテゴリー:<%=  @post.tag.name %></p>
+                  <p class="card-text">アピールポイント<%= simple_format @post.appeal %></p>
+                </div>
+              </div>
+           </div>
+         </div>
         </div>
-        <div class="col-6">
+
+        <div class="col-12">
+          <h4 class=" font-weight-bold mt-3 mb-3 bold border-bottom" style=" color: #6169d0; ">Managements-Comment!!</h4>
           <% if management_signed_in? %>
-            <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#exampleModal">
-              Report!!
+            <button type="button" class="btn btn-primary mb-3 font-weight-bold" data-toggle="modal" data-target="#exampleModal">
+              Comment!!
             </button>
           <% end %>
-          <table class="table ">
-            <% @post.comment_reviews.each do |post_comment| %>
-              <tr>
-                <td><%= post_comment.created_at.strftime("%Y年%-m月%-d日%H時%M分")  %></td>
-                <td><%= post_comment.comment %></td>
-                <td><%= post_comment.management.name %></td>
+          <% @post.comment_reviews.each do |post_comment| %>
+            <div class="card mb-1 shadow-sm">
+              <div class="card-body  text-secondary font-weight-bold">
+                <p class="card-text"><%= post_comment.created_at.strftime("%Y年%-m月%-d日%H時%M分")  %></p>
+                <p class="card-text"><%= post_comment.comment %></p>
+                <p class="card-text"><%= post_comment.management.name %></p>
                 <% if management_signed_in? %>
-                  <td><%= link_to "Delete", post_comment_review_path(post_comment.post,post_comment), method: :delete,"data-confirm" => "本当に消しますか？" %></td>
+                <p class="card-text"><%= link_to "Delete", post_comment_review_path(post_comment.post,post_comment), method: :delete,"data-confirm" => "本当に消しますか？" %></p>
                 <% end %>
-              </tr>
-            <% end %>
-          </table>
+              </div>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>
@@ -39,7 +51,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">新規投稿</h5>
+            <h5 class="modal-title" id="exampleModalLabel">コメント投稿</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -53,8 +65,8 @@
 
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
-              <%= f.submit "投稿する", class:"btn btn-primary" %>
+              <button type="button" class="btn btn-secondary  font-weight-bold " data-dismiss="modal">Close</button>
+              <%= f.submit "Comment!!", class:"btn btn-primary  font-weight-bold " %>
             </div>
           <% end %>
         </div>

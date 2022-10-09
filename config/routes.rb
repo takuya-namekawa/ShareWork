@@ -28,13 +28,13 @@ Rails.application.routes.draw do
     resources :ehomakis
     resources :christmases
     end
-    
+
     namespace :management do
       resources :managements, only: [:edit, :update] do
         collection do
           get "my_page" => "managements#show"
         end
       end
-      
-    end  
+
+    end
 end

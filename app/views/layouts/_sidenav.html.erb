@@ -1,5 +1,5 @@
-<nav class=" pr-2 pl-2 d-none d-sm-block" style="background-color: #313a46; min-height: 851px; min-width: 230px;">
-  <ul class="nav flex-column m-0 p-3">
+<nav class=" pr-2 pl-2 d-none d-sm-block" style="background-color: #313a46; min-height: 851px; min-width: 250px;">
+  <ul class="nav flex-column m-0 p-3 font-weight-bold">
     <li class="nav-item mt-4 mb-3">
       <%= link_to root_path, class: "navbar-brand" do %>
         <img src=<%= asset_path 'Shere!!.png' %> width="150" height="40" class="d-inline-block align-top" alt="">
@@ -43,6 +43,11 @@
     <li class="nav-item mb-2">
       <%=  link_to christmases_path , class: "nav-link text-light" do %>
         <i class="fas fa-holly-berry mr-2"></i>Christmas
+      <% end %>
+    </li>
+    <li class="nav-item mb-2">
+      <%=  link_to destroy_shop_session_path, method: :delete, class: "nav-link text-light" do %>
+        <i class="fas fa-sign-out-alt mr-2"></i>LogOut
       <% end %>
     </li>
   </ul>
