@@ -4,15 +4,29 @@
     <div class="container mt-5">
       <div class="row">
         <div class="col">
-          <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#exampleModal">
+          <button type="button" class="btn btn-primary mb-3 mr-4  font-weight-bold" data-toggle="modal" data-target="#exampleModal">
             Report!!
           </button>
-          お歳暮ギフト
-          <table class="table ">
+          <span class=" font-weight-bold " style=" color: #6169d0; ">お歳暮ギフト実績(全店舗合計)</span>
+          <% @year_end_gifts.each do |gift| %>
+            <% @shop_total_target_number += gift.target_number %>
+            <% @shop_tptal_target_amount += gift.target_amount %>
+            <% @shop_total_number += gift.number %>
+            <% @shop_total_amount += gift.total_amount %>
+          <% end %>
+          <div class="mb-2 bg-white p-3 shadow-sm  text-secondary font-weight-bold">
+            目標合計件数:<%= @shop_total_target_number.to_s(:delimited) %>件
+            目標合計金額:<%= @shop_tptal_target_amount.to_s(:delimited) %>円
+            合計件数:<%= @shop_total_number.to_s(:delimited) %>件
+            合計達成金額:<%= @shop_total_amount.to_s(:delimited) %>円
+          </div>
+          <table class="table text-secondary font-weight-bold">
             <%  @year_end_gifts.each do |gift| %>
               <tr>
-                <td>店舗名:<%= gift.shop.name %></td>
-                <td><%=  gift.year %>年度</td>
+                <td>
+                  <%= gift.shop.name %><br>
+                  <%= gift.year %>年度
+                </td>
                 <td>目標件数:<%=  gift.target_number %>件</td>
                 <td>目標金額:<%=  gift.target_amount %>円</td>
                 <td>件数:<%=  gift.number %>件</td>
@@ -20,8 +34,17 @@
                 <td>
                   <% if shop_signed_in? %>
                     <% if gift.shop_id == current_shop.id %>
-                      <%= link_to "Edit", edit_year_end_gift_path(gift) %>
-                      <%= link_to "Delete", year_end_gift_path(gift), method: :delete,"data-confirm" => "本当に消しますか？" %>
+                      <td>
+                        <%= link_to edit_year_end_gift_path(gift) do %>
+                          <span class="bg-white rounded-circle p-2 shadow-sm"><i class="fas fa-edit"  style=" color: #6169d0; "></i></span>
+                        <% end %>
+                      </td>
+                      <br>
+                      <td>
+                        <%= link_to  year_end_gift_path(gift), method: :delete,"data-confirm" => "本当に消しますか？" do %>
+                          <span class="bg-white rounded-circle p-2 shadow-sm"><i class="fas fa-eraser" style=" color: #6169d0; "></i></span>
+                        <% end %>
+                      </td>
                     <% end %>
                   <% end %>
                 </td>
@@ -36,7 +59,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">新規投稿</h5>
+            <h5 class="modal-title" id="exampleModalLabel">お歳暮ギフト実績報告</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -65,8 +88,8 @@
               </div>
             </div>
             <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
-            <%= f.submit "投稿する", class:"btn btn-primary" %>
+            <button type="button" class="btn btn-secondary font-weight-bold" data-dismiss="modal">Close</button>
+            <%= f.submit "Report!!", class:"btn btn-primary font-weight-bold" %>
             </div>
           <% end %>
         </div>
