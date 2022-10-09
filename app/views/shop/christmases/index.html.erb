@@ -4,15 +4,21 @@
     <div class="container mt-5">
       <div class="row">
         <div class="col">
-          <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#exampleModal">
+          <button type="button" class="btn btn-primary mb-3 mr-4" data-toggle="modal" data-target="#exampleModal">
             Report!!
           </button>
-          クリスマス(全店舗合計)
+          <span class=" font-weight-bold " style=" color: #6169d0; ">クリスマス実績(全店舗合計)</span>
           <%  @christmases.each do |christmas| %>
-            金額<%= @shop_total_amount += christmas.total_amount %>
-            予約金額<%= @shop_tptal_booking_target += christmas.booking_amount %>
+            <% @shop_total_amount += christmas.total_amount %>
+            <% @shop_tptal_booking_target += christmas.booking_amount %>
+            <% @shop_store_sales_amount += christmas.store_sales_amount %>
           <% end %>
-          <table class="table ">
+          <div class="mb-2 bg-white p-3 shadow-sm  text-secondary font-weight-bold">
+            店売合計金額:<%= @shop_store_sales_amount.to_s(:delimited) %>円
+            予約合計金額:<%= @shop_tptal_booking_target.to_s(:delimited) %>円
+            合計達成金額:<%= @shop_total_amount.to_s(:delimited) %>円
+          </div>
+          <table class="table text-secondary font-weight-bold">
             <%  @christmases.each do |christmas| %>
               <tr>
                 <td>
@@ -23,18 +29,27 @@
                   予約目標:<%=  christmas.booking_target.to_s(:delimited) %>円<br>
                   目標金額:<%=  christmas.target_amount.to_s(:delimited) %>円
                 </td>
-                <td>FF金額:<%=  christmas.ff_amount.to_s(:delimited) %>円</td>
-                <td>店売金額:<%=  christmas.store_sales_amount.to_s(:delimited) %>円</td>
+                <td>FF金額:<%=  christmas.ff_amount.to_s(:delimited) %>円<br>
+                店売金額:<%=  christmas.store_sales_amount.to_s(:delimited) %>円</td>
                 <td>
                   予約金額:<%=  christmas.booking_amount.to_s(:delimited) %>円
                   達成金額:<%=  christmas.total_amount.to_s(:delimited) %>円
                 </td>
-                <td>
-                  <% if christmas.shop_id == current_shop.id %>
-                    <%= link_to "Edit", edit_christmase_path(christmas) %><br>
-                    <%= link_to "Delete", christmase_path(christmas), method: :delete,"data-confirm" => "本当に消しますか？" %>
+                  <% if shop_signed_in? %>
+                    <% if christmas.shop_id == current_shop.id %>
+                      <td>
+                        <%= link_to edit_christmase_path(christmas) do %>
+                          <span class="bg-white rounded-circle p-2 shadow-sm"><i class="fas fa-edit"  style=" color: #6169d0; "></i></span>
+                        <% end %>
+                      </td>
+                      <br>
+                      <td>
+                        <%= link_to  christmase_path(christmas), method: :delete,"data-confirm" => "本当に消しますか？" do %>
+                          <span class="bg-white rounded-circle p-2 shadow-sm"><i class="fas fa-eraser" style=" color: #6169d0; "></i></span>
+                        <% end %>
+                      </td>
+                    <% end %>
                   <% end %>
-                </td>
               </tr>
             <% end %>
           </table>
@@ -46,7 +61,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">新規投稿</h5>
+        <h5 class="modal-title" id="exampleModalLabel">クリスマス実績報告</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -83,8 +98,8 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
-          <%= f.submit "投稿する", class:"btn btn-primary" %>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <%= f.submit "Report!!", class:"btn btn-primary" %>
         </div>
       <% end %>
       </div>

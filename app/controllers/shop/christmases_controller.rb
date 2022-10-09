@@ -4,6 +4,7 @@ class Shop::ChristmasesController < ApplicationController
     @christmas = Christmas.new
     @shop_total_amount = 0
     @shop_tptal_booking_target = 0
+    @shop_store_sales_amount = 0
   end
 
   def create

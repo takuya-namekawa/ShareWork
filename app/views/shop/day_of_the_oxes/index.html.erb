@@ -21,9 +21,11 @@
                 <td>店売金額:<%=  eel.store_sales_amount %>円</td>
                 <td>達成金額:<%=  eel.total_amount.to_s(:delimited) %>円</td>
                 <td>
-                  <%= link_to "Edit", edit_day_of_the_ox_path(eel) %>
-                  <% if eel.shop_id == current_shop.id %>
-                    <%= link_to "Delete", day_of_the_ox_path(eel), method: :delete,"data-confirm" => "本当に消しますか？" %>
+                  <% if shop_signed_in? %>
+                    <% if eel.shop_id == current_shop.id %>
+                      <%= link_to "Edit", edit_day_of_the_ox_path(eel) %>
+                      <%= link_to "Delete", day_of_the_ox_path(eel), method: :delete,"data-confirm" => "本当に消しますか？" %>
+                    <% end %>
                   <% end %>
                 </td>
               </tr>

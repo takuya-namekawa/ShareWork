@@ -20,9 +20,11 @@
                       <div =class="col-6 mt-2">
                         <p class="card-text"><%=  post.shop.name %></p>
                         <%= link_to "詳細",  post_path(post) %>
-                        <% if post.shop_id == current_shop.id %>
-                          <%= link_to "編集",  edit_post_path(post) %>
-                          <%= link_to "削除",  post_path(post), method: :delete,"data-confirm" => "本当に消しますか？" %>
+                        <% if shop_signed_in? %>
+                          <% if post.shop_id == current_shop.id %>
+                            <%= link_to "編集",  edit_post_path(post) %>
+                            <%= link_to "削除",  post_path(post), method: :delete,"data-confirm" => "本当に消しますか？" %>
+                          <% end %>
                         <% end %>
                       </div>
                     </div>

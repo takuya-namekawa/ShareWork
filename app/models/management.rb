@@ -3,4 +3,5 @@ class Management < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+  has_many :comment_reviews, dependent: :destroy
 end

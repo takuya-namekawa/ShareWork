@@ -22,9 +22,12 @@
                 <td>予約金額:<%=  ehomaki.booking_amount.to_s(:delimited) %>円</td>
                 <td>店売金額:<%=  ehomaki.store_sales_amount %>円</td>
                 <td>達成金額:<%=  ehomaki.total_amount.to_s(:delimited) %>円</td>
-                <td><%= link_to "Edit", edit_ehomaki_path(ehomaki) %>
-                  <% if ehomaki.shop_id == current_shop.id %>
-                    <%= link_to "Delete", ehomaki_path(ehomaki), method: :delete,"data-confirm" => "本当に消しますか？" %>
+                <td>
+                  <% if shop_signed_in? %>
+                    <% if ehomaki.shop_id == current_shop.id %>
+                      <%= link_to "Edit", edit_ehomaki_path(ehomaki) %>
+                      <%= link_to "Delete", ehomaki_path(ehomaki), method: :delete,"data-confirm" => "本当に消しますか？" %>
+                    <% end %>
                   <% end %>
                 </td>
               </tr>

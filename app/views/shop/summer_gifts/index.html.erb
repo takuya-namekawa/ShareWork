@@ -17,10 +17,12 @@
                 <td>目標金額:<%=  gift.target_amount.to_s(:delimited) %>円</td>
                 <td>件数:<%=  gift.number %>件</td>
                 <td>達成金額:<%=  gift.total_amount.to_s(:delimited) %>円</td>
-                <td><%= link_to "Edit", edit_summer_gift_path(gift) %></td>
                 <td>
-                  <% if gift.shop_id == current_shop.id %>
-                    <%= link_to "Delete", summer_gift_path(gift), method: :delete,"data-confirm" => "本当に消しますか？" %>
+                  <% if shop_signed_in? %>
+                    <% if gift.shop_id == current_shop.id %>
+                      <%= link_to "Edit", edit_summer_gift_path(gift) %>
+                      <%= link_to "Delete", summer_gift_path(gift), method: :delete,"data-confirm" => "本当に消しますか？" %>
+                    <% end %>
                   <% end %>
                 </td>
               </tr>

@@ -1,9 +1,9 @@
 <div class="d-flex flex-row w-100 pr-5 " style="height: calc(100% - 50px)">
   <!--サイドバーコンテンツ-->
   <%= render "layouts/sidenav" %>
-    <div class="container">
+    <div class="container mt-5">
       <div class="row">
-        <div class="col">
+        <div class="col-6">
           <%= image_tag @post.get_profile_image(150,150)%>
           <%= image_tag @post.shop.get_profile_image(30,30)%><br>
           <%=  @post.shop.name %>
@@ -13,6 +13,53 @@
           アピールポイント<%= simple_format @post.appeal %>
           カテゴリー:<%=  @post.tag.name %>
         </div>
+        <div class="col-6">
+          <% if management_signed_in? %>
+            <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#exampleModal">
+              Report!!
+            </button>
+          <% end %>
+          <table class="table ">
+            <% @post.comment_reviews.each do |post_comment| %>
+              <tr>
+                <td><%= post_comment.created_at.strftime("%Y年%-m月%-d日%H時%M分")  %></td>
+                <td><%= post_comment.comment %></td>
+                <td><%= post_comment.management.name %></td>
+                <% if management_signed_in? %>
+                  <td><%= link_to "Delete", post_comment_review_path(post_comment.post,post_comment), method: :delete,"data-confirm" => "本当に消しますか？" %></td>
+                <% end %>
+              </tr>
+            <% end %>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">新規投稿</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <%= form_with model:[@post, @comment]  do |f| %>
+            <div class="modal-body">
+              <div class="form-group">
+
+                <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに" , class:"form-control"%>
+              </div>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+              <%= f.submit "投稿する", class:"btn btn-primary" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
     </div>
   </div>
 </div>

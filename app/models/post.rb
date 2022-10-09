@@ -1,7 +1,8 @@
 class Post < ApplicationRecord
   belongs_to :tag
   belongs_to :shop
-  
+  has_many :comment_reviews, dependent: :destroy
+
   has_one_attached :profile_image
 
   def get_profile_image(width, height)

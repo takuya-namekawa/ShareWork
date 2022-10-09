@@ -26,6 +26,7 @@ class Shop::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @comment = CommentReview.new
   end
 
   def edit
