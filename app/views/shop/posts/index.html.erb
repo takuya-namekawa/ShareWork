@@ -4,37 +4,43 @@
     <div class="container mt-5">
       <div class="row">
         <div class="col">
-          <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#exampleModal">
+          <button type="button" class="btn btn-primary mb-3 font-weight-bold" data-toggle="modal" data-target="#exampleModal">
             Shere!!
           </button>
           <% @posts.each do |post| %>
-            <div class="card mb-1">
-              <div class="card-body">
+            <div class="card mb-1 shadow-sm">
+              <div class="card-body  text-secondary font-weight-bold">
                 <div class="row">
                   <div class="col-5">
                     <%= image_tag post.get_profile_image(200,200)%>
-                    <div class="row">
-                      <div class="col-2 mt-2">
-                        <%= image_tag post.shop.get_profile_image(50,50)%><br>
-                      </div>
-                      <div =class="col-6 mt-2">
-                        <p class="card-text"><%=  post.shop.name %></p>
-                        <%= link_to "詳細",  post_path(post) %>
-                        <% if shop_signed_in? %>
-                          <% if post.shop_id == current_shop.id %>
-                            <%= link_to "編集",  edit_post_path(post) %>
-                            <%= link_to "削除",  post_path(post), method: :delete,"data-confirm" => "本当に消しますか？" %>
-                          <% end %>
-                        <% end %>
-                      </div>
-                    </div>
+                      <p class="card-text">タイトル　<%= post.title %></p>
+                      <p class="card-text">カテゴリー　<%=  post.tag.name %></p>
                   </div>
                   <div class="col-6">
-                    <p class="card-text"><%= post.created_at.strftime("%Y年%-m月%-d日%H時%M分")  %></p>
-                    <p class="card-text ">役職:<%=  post.job %></p>
-                    <p class="card-text">スタッフ名:<%=  post.name %></p>
-                    <p class="card-text">タイトル:<%= post.title %></p>
-                    <p class="card-text">カテゴリー:<%=  post.tag.name %></p>
+                    <p class="card-text"><%= post.created_at.strftime("%Y年%-m月%-d日%H時%M分") %></p>
+                    <p class="card-text ">役職　<%=  post.job %></p>
+                    <p class="card-text">スタッフ名　<%=  post.name %></p>
+                      <div class="row">
+                        <div class="col-3 mt-2">
+                          <%= image_tag post.shop.get_profile_image(80,80), class: "rounded-circle"%><br>
+                        </div>
+                        <div =class="col-6 mt-2 ">
+                          <p class="card-text"><%=  post.shop.name %></p>
+                          <%= link_to post_path(post),class: "text-decoration-none mr-2" do %>
+                            <span class=" rounded-circle p-2 shadow-sm"style="background-color: #cdebf3;"><i class="fas fa-search"  style=" color: #39afd1; "></i></span>
+                          <% end %>
+                          <% if shop_signed_in? %>
+                            <% if post.shop_id == current_shop.id %>
+                              <%= link_to edit_post_path(post),class: "text-decoration-none mr-2"  do %>
+                                <span class=" rounded-circle p-2 shadow-sm"style="background-color: #dcdefc;"><i class="fas fa-edit"  style=" color: #737df5; "></i></span>
+                              <% end %>
+                              <%= link_to post_path(post), method: :delete,"data-confirm" => "本当に消しますか？",class: "text-decoration-none"  do %>
+                                <span class=" rounded-circle p-2 shadow-sm"style=" background-color: #f0b3bf;"><i class="fas fa-eraser" style=" color: #fa5c7c; "></i></span>
+                              <% end %>
+                            <% end %>
+                          <% end %>
+                        </div>
+                      </div>
                   </div>
                 </div>
               </div>
@@ -48,7 +54,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">新規投稿</h5>
+            <h5 class="modal-title" id="exampleModalLabel">共有事項を投稿する</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -61,7 +67,7 @@
               </div>
               <div class="form-group">
                 <%= f.label :appeal, "アピールポイント" %>
-                <%= f.text_area :appeal, class:"form-control" %>
+                <%= f.text_area :appeal, rows:'10',placeholder: "自分の頑張ったところを紹介しよう" , class:"form-control"%>
               </div>
               <div class="form-group">
                 <%= f.label :job, "役職" %>
@@ -81,8 +87,8 @@
               </div>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
-              <%= f.submit "投稿する", class:"btn btn-primary" %>
+              <button type="button" class="btn btn-secondary font-weight-bold" data-dismiss="modal">Close</button>
+              <%= f.submit "Shere!!", class:"btn btn-primary font-weight-bold" %>
             </div>
           <% end %>
         </div>
