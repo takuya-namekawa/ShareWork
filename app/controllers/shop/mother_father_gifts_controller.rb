@@ -2,6 +2,10 @@ class Shop::MotherFatherGiftsController < ApplicationController
   def index
     @mother_father_gifts = MotherFatherGift.all
     @mother_father_gift = MotherFatherGift.new
+    @shop_total_target_number = 0
+    @shop_tptal_target_amount = 0
+    @shop_total_number = 0
+    @shop_total_amount = 0
   end
 
   def create
