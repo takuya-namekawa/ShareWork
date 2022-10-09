@@ -2,6 +2,10 @@ class Shop::YearEndGiftsController < ApplicationController
   def index
     @year_end_gifts = YearEndGift.all
     @year_end_gift = YearEndGift.new
+    @shop_total_target_number = 0
+    @shop_tptal_target_amount = 0
+    @shop_total_number = 0
+    @shop_total_amount = 0
   end
 
   def create

@@ -8,7 +8,7 @@
             Report!!
           </button>
           <span class=" font-weight-bold " style=" color: #6169d0; ">母の日父の日ギフト実績(全店舗合計)</span>
-          <%   @mother_father_gifts.each do |gift| %>
+          <% @mother_father_gifts.each do |gift| %>
             <% @shop_total_target_number += gift.target_number %>
             <% @shop_tptal_target_amount += gift.target_amount %>
             <% @shop_total_number += gift.number %>
@@ -20,11 +20,13 @@
             合計件数:<%= @shop_total_number.to_s(:delimited) %>件
             合計達成金額:<%= @shop_total_amount.to_s(:delimited) %>円
           </div>
-          <table class="table ">
+          <table class="table text-secondary font-weight-bold">
             <% @mother_father_gifts.each do |gift| %>
               <tr>
-                <td>店舗名:<%= gift.shop.name %></td>
-                <td><%=  gift.year %>年度</td>
+                <td>
+                  <%= gift.shop.name %><br>
+                  <%=  gift.year %>年度
+                </td>
                 <td>目標件数:<%=  gift.target_number %>件</td>
                 <td>目標金額:<%=  gift.target_amount.to_s(:delimited) %>円</td>
                 <td>件数:<%=  gift.number %>件</td>

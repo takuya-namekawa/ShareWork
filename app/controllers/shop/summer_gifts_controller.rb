@@ -2,6 +2,10 @@ class Shop::SummerGiftsController < ApplicationController
   def index
     @summer_gifts = SummerGift.all
     @summer_gift = SummerGift.new
+    @shop_total_target_number = 0
+    @shop_tptal_target_amount = 0
+    @shop_total_number = 0
+    @shop_total_amount = 0
   end
 
   def create
