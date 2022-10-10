@@ -1,11 +1,11 @@
 <div class="d-flex flex-row w-100 pr-5 " style="height: calc(100% - 50px)">
   <!--サイドバーコンテンツ-->
   <%= render "layouts/sidenav" %>
-    <div class="container">
+    <div class="container mt-5">
       <div class="row">
         <div class="col">
           <button type="button" class="btn btn-primary mb-3 mr-4  font-weight-bold" data-toggle="modal" data-target="#exampleModal">
-            Report!!
+            Chat!!
           </button>
             <div class="card mb-1 shadow-sm">
               <div class="card-body  text-secondary font-weight-bold"style="min-height: 480px;">
@@ -14,13 +14,13 @@
                     <% @chats.each do |chat| %>
                       <% if chat.shop_id == current_shop.id %>
                       <span style="text-align: left;">
-                        <span class="pagination justify-content-start"style="margin-bottom: 7px; margin-top: 25px;">
-                          <%= image_tag chat.shop.get_profile_image(50,50), class: "rounded-circle" %>
+                        <span class="pagination justify-content-start "style="margin-bottom: 7px; margin-top: 25px;">
+                          <%= image_tag chat.shop.get_profile_image(50,50), class: "rounded-circle mr-3" %>
                           <%= chat.shop.name %>
+                          <%= chat.created_at.strftime("%Y年%m月%d日%H時%M分") %>
                         </span>
                           <div class="card mb-1 ">
                             <div class="card-body  font-weight-bold "style="background-color: #edeef0;">
-
                               <p class="card-text"style="color: #5d6c7e;"><%= chat.message %></p>
                             </div>
                           </div>
@@ -28,12 +28,12 @@
                       <% else %>
                       <span style="text-align: right; ">
                         <span class="pagination justify-content-end"style="margin-bottom: 7px; margin-top: 25px;">
-                          <%= image_tag chat.shop.get_profile_image(50,50), class: "rounded-circle" %>
+                          <%= image_tag chat.shop.get_profile_image(50,50), class: "rounded-circle mr-3" %>
                           <%= chat.shop.name %>
+                          <%= chat.created_at.strftime("%Y年%m月%d日%H時%M分") %>
                         </span>
                         <div class="card mb-1 ">
                           <div class="card-body  text-secondary font-weight-bold"style="background-color: #afd9dc;">
-
                             <p class="card-text"style="color: #134f53;"><%= chat.message %></p>
                           </div>
                         </div>
@@ -52,7 +52,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">共有事項を投稿する</h5>
+            <h5 class="modal-title" id="exampleModalLabel">チャットする</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -60,24 +60,16 @@
           <%= form_with model: @chat do |f| %>
             <div class="modal-body">
               <div class="form-group">
-                <%= f.text_field :message, class:"form-control" %>
+                <%= f.text_area :message, rows:'5',placeholder: "チャット本文" , class:"form-control"%>
                 <%= f.hidden_field :room_id %>
               </div>
-
-
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary font-weight-bold" data-dismiss="modal">Close</button>
-              <%= f.submit "Shere!!", class:"btn btn-primary font-weight-bold" %>
+              <%= f.submit "Chat!!", class:"btn btn-primary font-weight-bold" %>
             </div>
           <% end %>
         </div>
       </div>
     </div>
 </div>
-
-
-</div>
-
-
-
