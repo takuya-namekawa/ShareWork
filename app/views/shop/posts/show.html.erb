@@ -38,7 +38,11 @@
                 <p class="card-text"><%= post_comment.comment %></p>
                 <p class="card-text"><%= post_comment.management.name %></p>
                 <% if management_signed_in? %>
-                <p class="card-text"><%= link_to "Delete", post_comment_review_path(post_comment.post,post_comment), method: :delete,"data-confirm" => "本当に消しますか？" %></p>
+                <p class="card-text">
+                  <%= link_to post_comment_review_path(post_comment.post,post_comment), method: :delete,"data-confirm" => "本当に消しますか？" do %>
+                  <span class=" rounded-circle p-2 shadow-sm"style=" background-color: #f0b3bf;"><i class="fas fa-eraser" style=" color: #fa5c7c; "></i></span>
+                  <% end %>
+                </p>
                 <% end %>
               </div>
             </div>
@@ -59,10 +63,8 @@
           <%= form_with model:[@post, @comment]  do |f| %>
             <div class="modal-body">
               <div class="form-group">
-
                 <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに" , class:"form-control"%>
               </div>
-
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary  font-weight-bold " data-dismiss="modal">Close</button>

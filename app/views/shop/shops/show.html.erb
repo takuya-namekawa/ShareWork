@@ -3,11 +3,31 @@
   <%= render "layouts/sidenav" %>
     <div class="container mt-5">
       <div class="row">
-        <div class="col-6">
-          <%= image_tag @shop.get_profile_image(100,100)%>
-          <%= @shop.name %>
-          <%= @shop.email %>
-          <%= link_to "編集", edit_shop_path(@shop) %>
+
+        <div class="col-12">
+          <% @shops.each do |shop| %>
+          <div class="card mb-1 shadow-sm">
+          <div class="card-body  text-secondary font-weight-bold">
+            <div class="row">
+              <div class="col-3">
+                <%= image_tag shop.get_profile_image(100,100), class: "rounded-circle"%>
+              </div>
+              <div class="col-5">
+                <p class="card-text"><%= shop.name %></p>
+                <p class="card-text"><%= shop.email %></p>
+                <% if  shop.id == current_shop.id %>
+                  <p class="card-text"><%= link_to "編集", edit_shop_path(shop) %></p>
+                <% end %>
+                <p class="card-text"><%= link_to "chat", chat_path(shop) %></p>
+              </div>
+            </div>
+
+
+          </div>
+          </div>
+          <% end %>
+
+
         </div>
       </div>
     </div>

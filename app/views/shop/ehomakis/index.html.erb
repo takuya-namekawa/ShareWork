@@ -8,7 +8,7 @@
             Report!!
           </button>
           <span class=" font-weight-bold " style=" color: #6169d0; ">恵方巻実績(全店舗合計)</span>
-          <%   @ehomakis.each do |ehomaki| %>
+          <% @ehomakis.each do |ehomaki| %>
             <% @shop_total_amount += ehomaki.total_amount %>
             <% @shop_tptal_booking_target += ehomaki.booking_amount %>
             <% @shop_store_sales_amount += ehomaki.store_sales_amount %>

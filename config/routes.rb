@@ -27,7 +27,9 @@ Rails.application.routes.draw do
     resources :day_of_the_oxes
     resources :ehomakis
     resources :christmases
-    end
+    get "chat/:id" => "chats#show", as: "chat"
+    resources :chats, only: [:create]
+  end
 
     namespace :management do
       resources :managements, only: [:edit, :update] do

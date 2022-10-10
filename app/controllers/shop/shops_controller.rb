@@ -1,6 +1,7 @@
 class Shop::ShopsController < ApplicationController
   def show
     @shop = current_shop
+    @shops = Shop.all
   end
 
   def edit
