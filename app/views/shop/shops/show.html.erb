@@ -15,10 +15,14 @@
                     <p class="card-text"><%= shop.name %></p>
                     <p class="card-text"><%= shop.email %></p>
                     <% if  shop.id == current_shop.id %>
-                      <p class="card-text"><%= link_to "編集", edit_shop_path(shop) %></p>
+                      <%= link_to  edit_shop_path(shop) do %>
+                        <span class=" rounded-circle p-2 shadow-sm"style="background-color: #dcdefc;"><i class="fas fa-edit"  style=" color: #737df5; "></i></span>
+                      <% end %>
                     <% end %>
                     <% if current_shop != shop %>
-                      <p class="card-text"><%= link_to "chat", chat_path(shop) %></p>
+                      <%= link_to  chat_path(shop) do %>
+                        <span class=" rounded-circle p-2 shadow-sm"style="background-color: #fff177;"><i class="far fa-comments"  style=" color: #f4a228; "></i></span>
+                      <% end %>
                     <% end %>
                   </div>
                 </div>
@@ -27,7 +31,13 @@
           <% end %>
         </div>
         <div class="col-6">
-          
+          <div class="card mb-1 shadow-sm">
+            <div class="card-body  text-secondary font-weight-bold ">
+              <p class="card-text">合計共有数: <%= @shop.posts.count %></p>
+              <p class="card-text">合計コメント件数:</p>
+              <p class="card-text">合計GOOD数:</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
