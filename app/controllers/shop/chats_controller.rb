@@ -2,7 +2,7 @@ class Shop::ChatsController < ApplicationController
   def show
     @shop = Shop.find(params[:id])
     rooms = current_shop.shop_rooms.pluck(:room_id)
-    shop_rooms = ShopRoom.find_by(shop_id: @shop.id,rooo_id: rooms)
+    shop_rooms = ShopRoom.find_by(shop_id: @shop.id,room_id: rooms)
 
     unless shop_rooms.nil?
       @room = shop_rooms.room

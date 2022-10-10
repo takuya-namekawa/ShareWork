@@ -18,7 +18,9 @@
                 <% if  shop.id == current_shop.id %>
                   <p class="card-text"><%= link_to "編集", edit_shop_path(shop) %></p>
                 <% end %>
-                <p class="card-text"><%= link_to "chat", chat_path(shop) %></p>
+                <% if current_shop != shop %>
+                  <p class="card-text"><%= link_to "chat", chat_path(shop) %></p>
+                <% end %>
               </div>
             </div>
 
