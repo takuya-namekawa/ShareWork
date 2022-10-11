@@ -4,7 +4,7 @@ class Post < ApplicationRecord
   has_many :comment_reviews, dependent: :destroy
   has_many :favorites,dependent: :destroy
   def favorited_by?(shop)
-    return false if shop.nil?
+    return false if shop.nil?#この記述をする事により、ログインが出来るようになる
     favorites.exists?(shop_id: shop.id)
   end
 

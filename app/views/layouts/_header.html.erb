@@ -1,23 +1,131 @@
-<nav class="navbar d-block d-sm-none"style="background-color: #313a46;">
+<nav class="navbar navbar-expand-lg d-block d-sm-none pl-3 "style="background-color: #313a46;">
   <%= link_to root_path, class: "navbar-brand" do %>
     <img src=<%= asset_path 'Shere!!.png' %> width="150" height="40" class="d-inline-block align-top" alt="">
   <% end %>
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">ブランド</a>
-    <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarColor" aria-expanded="false" aria-label="ナビゲーションの切替">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarText">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">ホーム</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation"style="background-color: #646d79;">
+     <img src=<%= asset_path 'bars_24.png' %> width="30" height="30" class="d-inline-block align-top" alt="">
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <% if shop_signed_in? %>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <%=  link_to my_page_shops_path , class: "nav-link text-light" do %>
+            <i class="fas fa-user-circle mr-2"></i>MyPege
+          <% end %>
         </li>
-        <li class="nav-item"><a class="nav-link" href="#">リンク1</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">リンク2</a></li>
+        <li class="nav-item active">
+          <%=  link_to  posts_path , class: "nav-link text-light" do %>
+            <i class="fas fa-pen-nib mr-2"></i>Shere
+          <% end %>
+        </li>
+        <li class="nav-item active">
+          <%=  link_to mother_father_gifts_path , class: "nav-link text-light" do %>
+            <i class="fas fa-gift mr-2"></i>MotherFatherGift
+          <% end %>
+        </li>
+        <li class="nav-item active">
+          <%=  link_to  summer_gifts_path, class: "nav-link text-light" do %>
+            <i class="fas fa-umbrella-beach mr-2"></i>SummerGift
+          <% end %>
+        </li>
+        <li class="nav-item active">
+          <%=  link_to  year_end_gifts_path , class: "nav-link text-light" do %>
+            <i class="fas fa-glass-cheers mr-2"></i>YearEndGift
+          <% end%>
+        </li>
+        <li class="nav-item active">
+          <%=  link_to day_of_the_oxes_path , class: "nav-link text-light" do %>
+            <i class="fas fa-wave-square mr-2"></i>DayOfTheOx
+          <% end %>
+        </li>
+        <li class="nav-item active">
+          <%=  link_to ehomakis_path , class: "nav-link text-light" do %>
+            <i class="fas fa-scroll mr-2"></i>Ehomaki
+          <% end %>
+        </li>
+        <li class="nav-item active">
+          <%=  link_to christmases_path , class: "nav-link text-light" do %>
+            <i class="fas fa-holly-berry mr-2"></i>Christmas
+          <% end %>
+        </li>
+        <li class="nav-item active">
+          <%=  link_to destroy_shop_session_path, method: :delete, class: "nav-link text-light" do %>
+            <i class="fas fa-sign-out-alt mr-2"></i>LogOut
+          <% end %>
+        </li>
       </ul>
-      <span class="navbar-text">
-        インライン要素とナビゲーションバーのテキスト
+      <span class="navbar-text pr-3">
+         <p class=" font-weight-bold" style="color: #ffffff; "><%= image_tag current_shop.get_profile_image(40,40), class: "rounded-circle"%>　<%= current_shop.name %></p>
       </span>
-    </div>
+    <% elsif management_signed_in? %>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <%=  link_to my_page_management_managements_path , class: "nav-link text-light" do %>
+            <i class="fas fa-user-circle mr-2"></i>MyPege
+          <% end %>
+        </li>
+        <li class="nav-item active">
+          <%=  link_to  posts_path , class: "nav-link text-light" do %>
+            <i class="fas fa-pen-nib mr-2"></i>Shere
+          <% end %>
+        </li>
+        <li class="nav-item active">
+          <%=  link_to mother_father_gifts_path , class: "nav-link text-light" do %>
+            <i class="fas fa-gift mr-2"></i>MotherFatherGift
+          <% end %>
+        </li>
+        <li class="nav-item active">
+          <%=  link_to  summer_gifts_path, class: "nav-link text-light" do %>
+            <i class="fas fa-umbrella-beach mr-2"></i>SummerGift
+          <% end %>
+        </li>
+        <li class="nav-item active">
+          <%=  link_to  year_end_gifts_path , class: "nav-link text-light" do %>
+            <i class="fas fa-glass-cheers mr-2"></i>YearEndGift
+          <% end%>
+        </li>
+        <li class="nav-item active">
+          <%=  link_to day_of_the_oxes_path , class: "nav-link text-light" do %>
+            <i class="fas fa-wave-square mr-2"></i>DayOfTheOx
+          <% end %>
+        </li>
+        <li class="nav-item active">
+          <%=  link_to ehomakis_path , class: "nav-link text-light" do %>
+            <i class="fas fa-scroll mr-2"></i>Ehomaki
+          <% end %>
+        </li>
+        <li class="nav-item active">
+          <%=  link_to christmases_path , class: "nav-link text-light" do %>
+            <i class="fas fa-holly-berry mr-2"></i>Christmas
+          <% end %>
+        </li>
+        <li class="nav-item active">
+          <%=  link_to destroy_management_session_path, method: :delete, class: "nav-link text-light" do %>
+            <i class="fas fa-sign-out-alt mr-2"></i>LogOut
+          <% end %>
+        </li>
+      </ul>
+      <span class="navbar-text pr-3">
+        <p class=" font-weight-bold  border-bottom  border-dark" style="color: #ad9168; "><%= current_management.name %></p>
+      </span>
+    <% else %>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+
+        </li>
+        <li class="nav-item active">
+
+        </li>
+        <li class="nav-item active">
+
+        </li>
+        <li class="nav-item active">
+
+        </li>
+      </ul>
+    <span class="navbar-text pr-3">
+      <p class=" font-weight-bold  border-bottom  border-dark" style="color: #ad9168; ">Welcome!!　ゲストさん</p>
+    </span>
+    <% end %>
   </div>
 </nav>
