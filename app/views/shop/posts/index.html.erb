@@ -43,14 +43,14 @@
                   <div class="col-4">
                     <p class="card-text">タイトル　<%= post.title %></p>
                     <p class="card-text">カテゴリー　<%=  post.tag.name %></p>
-                    <p class="card-text">コメント件数：<%= post.comment_reviews.count %></p>
+                    <p class="card-text">コメント件数　<%= post.comment_reviews.count %>件</p>
                     <% if post.favorited_by?(current_shop) %>
-                      <%= link_to post_favorites_path(post),method: :delete do %>
-                         <p class="card-text"><%= post.favorites.count %>GOOD</p>
+                      <%= link_to post_favorites_path(post),method: :delete,class: "text-reset text-decoration-none"  do %>
+                        <span class=" rounded-circle p-2 shadow-sm"style="background-color: #dcfcdf;"><i class="fas fa-thumbs-up"></i><%= post.favorites.count %></span> GOOD!!
                       <% end %>
                     <% else %>
-                      <%= link_to post_favorites_path(post),method: :post do %>
-                         <p class="card-text"><%= post.favorites.count %>GOOD</p>
+                      <%= link_to post_favorites_path(post),method: :post ,class: "text-reset text-decoration-none" do %>
+                        <span class=" rounded-circle p-2 shadow-sm"style="background-color: #dcfcdf;"><i class="far fa-thumbs-up"></i><%= post.favorites.count %></span> GOOD!!
                       <% end %>
                     <% end %>
                   </div>
