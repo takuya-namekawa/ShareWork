@@ -43,6 +43,16 @@
                   <div class="col-4">
                     <p class="card-text">タイトル　<%= post.title %></p>
                     <p class="card-text">カテゴリー　<%=  post.tag.name %></p>
+                    <p class="card-text">コメント件数：<%= post.comment_reviews.count %></p>
+                    <% if post.favorited_by?(current_shop) %>
+                      <%= link_to post_favorites_path(post),method: :delete do %>
+                         <p class="card-text"><%= post.favorites.count %>GOOD</p>
+                      <% end %>
+                    <% else %>
+                      <%= link_to post_favorites_path(post),method: :post do %>
+                         <p class="card-text"><%= post.favorites.count %>GOOD</p>
+                      <% end %>
+                    <% end %>
                   </div>
                 </div>
               </div>

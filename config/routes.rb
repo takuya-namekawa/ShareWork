@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     end
     resources :posts do
       resources :comment_reviews, only: [:create, :destroy]
+      resource :favorites, only: [:create, :destroy]
     end
     resources :mother_father_gifts
     resources :summer_gifts
