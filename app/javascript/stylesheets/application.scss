@@ -1,16 +1,7 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 
-.btn-primary {
-    color: #fff;
-    background-color: #4480c0;
-    border-color: #ceddec;
-}
-.btn-success {
-    color: #ffffff;
-    background-color: #7dd680;
-    border-color: #5bb570;
-}
+
 
 @media (max-width:999px){
   table td,table th{ display:block; }

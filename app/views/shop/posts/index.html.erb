@@ -5,7 +5,7 @@
       <div class="row">
         <div class="col">
           <button type="button" class="btn btn-primary mb-3 font-weight-bold" data-toggle="modal" data-target="#exampleModal">
-            Shere!!
+            <i class="fas fa-pen-nib mr-2"></i>Shere!!
           </button>
           <% @posts.each do |post| %>
             <div class="card mb-1 shadow-sm">
@@ -29,9 +29,7 @@
                           <% end %>
                           <% if shop_signed_in? %>
                             <% if post.shop_id == current_shop.id %>
-                              <%= link_to edit_post_path(post),class: "text-decoration-none mr-2"  do %>
-                                <span class=" rounded-circle p-2 shadow-sm"style="background-color: #dcdefc;"><i class="fas fa-edit"  style=" color: #737df5; "></i></span>
-                              <% end %>
+                              <span class=" rounded-circle p-2 shadow-sm"style="background-color: #dcdefc;"data-toggle="modal" data-target="#exampleModal_<%= post.id %>"><i class="fas fa-edit"  style=" color: #737df5; "></i></span>
                               <%= link_to post_path(post), method: :delete,"data-confirm" => "本当に消しますか？",class: "text-decoration-none"  do %>
                                 <span class=" rounded-circle p-2 shadow-sm"style=" background-color: #f0b3bf;"><i class="fas fa-eraser" style=" color: #fa5c7c; "></i></span>
                               <% end %>
@@ -67,6 +65,51 @@
                       <% end %>
                     <% end %>
                   </div>
+                </div>
+              </div>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal_<%= post.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">共有事項を投稿する</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <%= form_with model: post, url: post_path(post) do |f| %>
+                    <div class="modal-body">
+                      <div class="form-group">
+                        <%= f.label :title, "タイトル" %>
+                        <%= f.text_field :title, class:"form-control" %>
+                      </div>
+                      <div class="form-group">
+                        <%= f.label :appeal, "アピールポイント" %>
+                        <%= f.text_area :appeal, rows:'10',placeholder: "自分の頑張ったところを紹介しよう" , class:"form-control"%>
+                      </div>
+                      <div class="form-group">
+                        <%= f.label :job, "役職" %>
+                        <%= f.text_field :job, class:"form-control" %>
+                      </div>
+                      <div class="form-group">
+                        <%= f.label :name, "担当者" %>
+                        <%= f.text_field :name, class:"form-control" %>
+                      </div>
+                      <div class="form-group">
+                        <%= f.label :ジャンル,class: "col-sm-3 col-form-label" %>
+                        <%= f.collection_select :tag_id, Tag.all, :id, :name, class: 'form-control'%>
+                      </div>
+                      <div class="form-group">
+                        <%= f.label :画像 ,class: "col-sm-3 col-form-label " %>
+                        <%= f.file_field :profile_image, accept: "image/" %>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary font-weight-bold" data-dismiss="modal">Close</button>
+                      <%= f.submit "Shere!!", class:"btn btn-primary font-weight-bold" %>
+                    </div>
+                  <% end %>
                 </div>
               </div>
             </div>
@@ -120,4 +163,3 @@
       </div>
     </div>
 </div>
-

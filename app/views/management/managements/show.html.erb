@@ -17,9 +17,7 @@
                     <p class="card-text">氏名: <%= management.name %></p>
                     <p class="card-text">emal: <%= management.email %></p>
                     <% if  management.id == current_management.id %>
-                      <button type="button" class="btn btn-success mb-3 font-weight-bold" data-toggle="modal" data-target="#exampleModal">
-                        <i class="fas fa-user-edit"></i> Edit
-                      </button>
+                      <span class=" rounded-circle p-2 shadow-sm"style="background-color: #dcdefc;"data-toggle="modal" data-target="#exampleModal"><i class="fas fa-edit"  style=" color: #737df5; "></i></span>
                     <% end %>
                   </div>
                 </div>
@@ -84,4 +82,3 @@
       </div>
     </div>
 </div>
-

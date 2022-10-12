@@ -15,9 +15,7 @@
                     <p class="card-text"><%= shop.name %></p>
                     <p class="card-text"><%= shop.email %></p>
                     <% if  shop.id == current_shop.id %>
-                      <%= link_to  edit_shop_path(shop) do %>
-                        <span class=" rounded-circle p-2 shadow-sm"style="background-color: #dcdefc;"><i class="fas fa-edit"  style=" color: #737df5; "></i></span>
-                      <% end %>
+                      <span class=" rounded-circle p-2 shadow-sm"style="background-color: #dcdefc;"data-toggle="modal" data-target="#exampleModal"><i class="fas fa-edit"  style=" color: #737df5; "></i></span>
                     <% end %>
                     <% if current_shop != shop %>
                       <%= link_to  chat_path(shop) do %>
@@ -38,6 +36,39 @@
               <p class="card-text">合計GOOD数:</p>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+     <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">店舗編集</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <%= form_with model: @shop, url: shop_path(@shop) do |f| %>
+            <div class="modal-body">
+              <div class="form-group">
+                <%= f.label :name,"店舗名" %>
+                <%= f.text_field :name, autofocus: true, class:"form-control" %>
+              </div>
+              <div class="form-group">
+                <%= f.label :email, "メールアドレス"  %>
+                <%= f.email_field :email, autofocus: true, class:"form-control" %>
+              </div>
+              <div class="form-group">
+                <%= f.label :画像 ,class: "col-sm-3 col-form-label " %>
+                <%= f.file_field :profile_image, accept: "image/" %>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary font-weight-bold" data-dismiss="modal">Close</button>
+              <%= f.submit "Edit", class:"btn btn-success font-weight-bold" %>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>
