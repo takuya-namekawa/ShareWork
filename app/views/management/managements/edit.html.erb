@@ -1,2 +1,12 @@
 <h1>Management::Managements#edit</h1>
-<p>Find me in app/views/management/managements/edit.html.erb</p>
+<%= form_with model: @management, url:  management_management_path(@management) do |f| %>
+<%= f.label :job, "役職" %>
+<%= f.text_field :job, autofocus: true %>
+<%= f.label :name, "氏名" %>
+<%= f.text_field :name, autofocus: true %>
+<%= f.label :email, "メールアドレス" %>
+<%= f.email_field :email, autofocus: true %>
+<%= f.label :profile_image, "画像"  %>
+<%= f.file_field :profile_image, accept: "image/"  %>
+<%= f.submit  %>
+<% end %>

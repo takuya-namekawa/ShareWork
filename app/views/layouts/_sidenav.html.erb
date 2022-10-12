@@ -5,50 +5,122 @@
         <img src=<%= asset_path 'Shere!!.png' %> width="150" height="40" class="d-inline-block align-top" alt="">
       <% end %>
     </li>
-    <li class="nav-item mb-2">
-      <%=  link_to my_page_shops_path , class: "nav-link text-light" do %>
-        <i class="fas fa-user-circle mr-2"></i>MyPege
-      <% end %>
-    </li>
-    <li class="nav-item mb-2">
-      <%=  link_to  posts_path , class: "nav-link text-light" do %>
-        <i class="fas fa-pen-nib mr-2"></i>Shere
-      <% end %>
-    </li>
-    <li class="nav-item mb-2">
-      <%=  link_to mother_father_gifts_path , class: "nav-link text-light" do %>
-        <i class="fas fa-gift mr-2"></i>MotherFatherGift
-      <% end %>
-    </li>
-    <li class="nav-item mb-2">
-      <%=  link_to  summer_gifts_path, class: "nav-link text-light" do %>
-        <i class="fas fa-umbrella-beach mr-2"></i>SummerGift
-      <% end %>
-    </li>
-    <li class="nav-item mb-2">
-      <%=  link_to  year_end_gifts_path , class: "nav-link text-light" do %>
-      <i class="fas fa-glass-cheers mr-2"></i>YearEndGift
-      <% end%>
-    </li>
-    <li class="nav-item mb-2">
-      <%=  link_to day_of_the_oxes_path , class: "nav-link text-light" do %>
-        <i class="fas fa-wave-square mr-2"></i>DayOfTheOx
-      <% end %>
-    </li>
-    <li class="nav-item mb-2">
-      <%=  link_to ehomakis_path , class: "nav-link text-light" do %>
-        <i class="fas fa-scroll mr-2"></i>Ehomaki
-      <% end %>
-    </li>
-    <li class="nav-item mb-2">
-      <%=  link_to christmases_path , class: "nav-link text-light" do %>
-        <i class="fas fa-holly-berry mr-2"></i>Christmas
-      <% end %>
-    </li>
-    <li class="nav-item mb-2">
-      <%=  link_to destroy_shop_session_path, method: :delete, class: "nav-link text-light" do %>
-        <i class="fas fa-sign-out-alt mr-2"></i>LogOut
-      <% end %>
-    </li>
+    <% if shop_signed_in? %>
+      <li class="navbar-text ">
+        <p class=" font-weight-bold" style="color: #ffffff; "><%= image_tag current_shop.get_profile_image(40,40), class: "rounded-circle"%> <%= current_shop.name %></p>
+      </li>
+      <li class="nav-item mb-2">
+        <%=  link_to my_page_shops_path , class: "nav-link text-light" do %>
+          <i class="fas fa-user-circle mr-2"></i>MyPege
+        <% end %>
+      </li>
+      <li class="nav-item mb-2">
+        <%=  link_to  posts_path , class: "nav-link text-light" do %>
+          <i class="fas fa-pen-nib mr-2"></i>Shere
+        <% end %>
+      </li>
+      <li class="nav-item mb-2">
+        <%=  link_to mother_father_gifts_path , class: "nav-link text-light" do %>
+          <i class="fas fa-gift mr-2"></i>MotherFatherGift
+        <% end %>
+      </li>
+      <li class="nav-item mb-2">
+        <%=  link_to  summer_gifts_path, class: "nav-link text-light" do %>
+          <i class="fas fa-umbrella-beach mr-2"></i>SummerGift
+        <% end %>
+      </li>
+      <li class="nav-item mb-2">
+        <%=  link_to  year_end_gifts_path , class: "nav-link text-light" do %>
+        <i class="fas fa-glass-cheers mr-2"></i>YearEndGift
+        <% end%>
+      </li>
+      <li class="nav-item mb-2">
+        <%=  link_to day_of_the_oxes_path , class: "nav-link text-light" do %>
+          <i class="fas fa-wave-square mr-2"></i>DayOfTheOx
+        <% end %>
+      </li>
+      <li class="nav-item mb-2">
+        <%=  link_to ehomakis_path , class: "nav-link text-light" do %>
+          <i class="fas fa-scroll mr-2"></i>Ehomaki
+        <% end %>
+      </li>
+      <li class="nav-item mb-2">
+        <%=  link_to christmases_path , class: "nav-link text-light" do %>
+          <i class="fas fa-holly-berry mr-2"></i>Christmas
+        <% end %>
+      </li>
+      <li class="nav-item mb-2">
+        <%=  link_to destroy_shop_session_path, method: :delete, class: "nav-link text-light" do %>
+          <i class="fas fa-sign-out-alt mr-2"></i>LogOut
+        <% end %>
+      </li>
+    <% elsif management_signed_in? %>
+      <li class="navbar-text">
+        <p class=" font-weight-bold" style="color: #ffffff; "><%= current_management.name %></p>
+      </li>
+      <li class="nav-item mb-2">
+        <%=  link_to my_page_management_managements_path , class: "nav-link text-light" do %>
+          <i class="fas fa-user-circle mr-2"></i>MyPege
+        <% end %>
+      </li>
+      <li class="nav-item mb-2">
+        <%=  link_to  posts_path , class: "nav-link text-light" do %>
+          <i class="fas fa-pen-nib mr-2"></i>Shere
+        <% end %>
+      </li>
+      <li class="nav-item mb-2">
+        <%=  link_to mother_father_gifts_path , class: "nav-link text-light" do %>
+          <i class="fas fa-gift mr-2"></i>MotherFatherGift
+        <% end %>
+      </li>
+      <li class="nav-item mb-2">
+        <%=  link_to  summer_gifts_path, class: "nav-link text-light" do %>
+          <i class="fas fa-umbrella-beach mr-2"></i>SummerGift
+        <% end %>
+      </li>
+      <li class="nav-item mb-2">
+        <%=  link_to  year_end_gifts_path , class: "nav-link text-light" do %>
+        <i class="fas fa-glass-cheers mr-2"></i>YearEndGift
+        <% end%>
+      </li>
+      <li class="nav-item mb-2">
+        <%=  link_to day_of_the_oxes_path , class: "nav-link text-light" do %>
+          <i class="fas fa-wave-square mr-2"></i>DayOfTheOx
+        <% end %>
+      </li>
+      <li class="nav-item mb-2">
+        <%=  link_to ehomakis_path , class: "nav-link text-light" do %>
+          <i class="fas fa-scroll mr-2"></i>Ehomaki
+        <% end %>
+      </li>
+      <li class="nav-item mb-2">
+        <%=  link_to christmases_path , class: "nav-link text-light" do %>
+          <i class="fas fa-holly-berry mr-2"></i>Christmas
+        <% end %>
+      </li>
+      <li class="nav-item mb-2">
+        <%=  link_to destroy_management_session_path, method: :delete, class: "nav-link text-light" do %>
+          <i class="fas fa-sign-out-alt mr-2"></i>LogOut
+        <% end %>
+      </li>
+     <% else %>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+
+        </li>
+        <li class="nav-item active">
+
+        </li>
+        <li class="nav-item active">
+
+        </li>
+        <li class="nav-item active">
+
+        </li>
+      </ul>
+      <span class="navbar-text pr-3">
+        <p class=" font-weight-bold  border-bottom  border-dark" style="color: #ad9168; ">Welcome!!　ゲストさん</p>
+      </span>
+    <% end %>
   </ul>
 </nav>
