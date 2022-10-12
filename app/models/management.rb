@@ -4,6 +4,7 @@ class Management < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :comment_reviews, dependent: :destroy
+  has_many :management_favorites, dependent: :destroy
 
   has_one_attached :profile_image
 

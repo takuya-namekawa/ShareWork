@@ -38,6 +38,8 @@ Rails.application.routes.draw do
           get "my_page" => "managements#show"
         end
       end
-
+      resources :posts do
+        resource :management_favorites, only: [:create, :destroy]
+      end
     end
 end
