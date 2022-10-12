@@ -1,6 +1,8 @@
 class Management::ManagementsController < ApplicationController
   def show
     @management = current_management
+    @shops = Shop.all
+    @managements = Management.all
   end
 
   def update

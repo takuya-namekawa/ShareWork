@@ -106,7 +106,7 @@
         </li>
       </ul>
       <span class="navbar-text pr-3">
-        <p class=" font-weight-bold  border-bottom  border-dark" style="color: #ad9168; "><%= current_management.name %></p>
+        <p class=" font-weight-bold  border-bottom  border-dark" style="color: #ad9168; "><%= image_tag current_management.get_profile_image(40,40), class: "rounded-circle"%><%= current_management.name %></p>
       </span>
     <% else %>
       <ul class="navbar-nav mr-auto">

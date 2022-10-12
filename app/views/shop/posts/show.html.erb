@@ -33,17 +33,18 @@
           <% @post.comment_reviews.each do |post_comment| %>
             <div class="card mb-1 shadow-sm">
               <div class="card-body  text-secondary font-weight-bold">
-                <p class="card-text"><%= post_comment.created_at.strftime("%Y年%-m月%-d日%H時%M分")  %></p>
-                <p class="card-text"><%= post_comment.comment %></p>
-                <p class="card-text"><%= post_comment.management.job %></p>
-                <p class="card-text"><%= post_comment.management.name %></p>
-                <% if management_signed_in? %>
                 <p class="card-text">
+                  <%= post_comment.created_at.strftime("%Y年%-m月%-d日%H時%M分")  %>
+                <% if management_signed_in? %>
                   <%= link_to post_comment_review_path(post_comment.post,post_comment), method: :delete,"data-confirm" => "本当に消しますか？" do %>
-                  <span class=" rounded-circle p-2 shadow-sm"style=" background-color: #f0b3bf;"><i class="fas fa-eraser" style=" color: #fa5c7c; "></i></span>
+                    <span class=" rounded-circle p-2 shadow-sm"style=" background-color: #f0b3bf;"><i class="fas fa-eraser" style=" color: #fa5c7c; "></i></span>
                   <% end %>
-                </p>
                 <% end %>
+                </p>
+                <p class="card-text"><%= post_comment.comment %></p>
+                <%= image_tag post_comment.management.get_profile_image(50,50), class: "rounded-circle"%>
+                <%= post_comment.management.job %>
+                <%= post_comment.management.name %>
               </div>
             </div>
           <% end %>

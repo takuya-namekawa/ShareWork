@@ -56,7 +56,7 @@
       </li>
     <% elsif management_signed_in? %>
       <li class="navbar-text">
-        <p class=" font-weight-bold" style="color: #ffffff; "><%= current_management.name %></p>
+        <p class=" font-weight-bold" style="color: #ffffff; "><%= image_tag current_management.get_profile_image(40,40), class: "rounded-circle"%>　<%= current_management.name %></p>
       </li>
       <li class="nav-item mb-2">
         <%=  link_to my_page_management_managements_path , class: "nav-link text-light" do %>
