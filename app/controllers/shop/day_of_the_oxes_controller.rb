@@ -26,11 +26,6 @@ class Shop::DayOfTheOxesController < ApplicationController
     redirect_to day_of_the_oxes_path
   end
 
-
-  def edit
-    @day_of_the_ox = DayOfTheOx.find(params[:id])
-  end
-
   private
     def day_of_the_ox_params
       params.require(:day_of_the_ox).permit(:year, :booking_target,:booking_amount, :target_amount,  :store_sales_amount, :total_amount, :shop_id)

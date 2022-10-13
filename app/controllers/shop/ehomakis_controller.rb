@@ -26,11 +26,6 @@ class Shop::EhomakisController < ApplicationController
     redirect_to ehomakis_path
   end
 
-
-  def edit
-    @ehomaki = Ehomaki.find(params[:id])
-  end
-
   private
     def ehomaki_params
       params.require(:ehomaki).permit(:year, :booking_target,:booking_amount, :target_amount,  :store_sales_amount, :total_amount, :shop_id)
