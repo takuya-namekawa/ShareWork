@@ -28,10 +28,6 @@ class Shop::MotherFatherGiftsController < ApplicationController
   end
 
 
-  def edit
-    @mother_father_gift = MotherFatherGift.find(params[:id])
-  end
-
   private
     def mother_father_gift_params
       params.require(:mother_father_gift).permit(:year, :target_number, :target_amount, :total_amount, :number, :shop_id)

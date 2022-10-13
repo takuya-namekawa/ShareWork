@@ -29,10 +29,6 @@ class Shop::PostsController < ApplicationController
     @comment = CommentReview.new
   end
 
-  def edit
-    @post = Post.find(params[:id])
-  end
-
   private
     def post_params
       params.require(:post).permit(:title, :appeal, :job, :name, :tag_id, :profile_image)
