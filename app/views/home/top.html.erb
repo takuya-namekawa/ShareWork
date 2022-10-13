@@ -1,30 +1,39 @@
-<div class="p-3 p-sm-5 mb-4 bg-img">
-    <div class="container">
-      <h1 class="display-4">こんにちは!</h1>
-      <p class="lead">これは単純なヒーローユニット、注目のコンテンツや情報に特別な注意を喚起するためのシンプルなジャンボトロンスタイルのコンポーネントです。</p>
-      <a class="btn btn-outline-primary btn-lg" href="#" role="button">もっと学ぼう</a>
+<div class="container-fluid text-justify  font-weight-bold"style="background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%); min-height: 600px; color: #c8e2ff;">
+  <div class="row ">
+    <div class="col-8 offset-2 mt-5 pt-5">
+      <h1>Let's enjoy work with shere work! !</h1>
     </div>
   </div>
-  <div class="container mt-2">
-    <h1>ブランド</h1>
-    <p>ココにサイトの文章が入ります。</p>
-  </div><!-- /.container -->
-
-<%=  link_to "ショップログイン", new_shop_session_path %><br>
-<%=  link_to "ショップサインアップ", new_shop_registration_path %><br>
-<%=  link_to "ショップログアウト", destroy_shop_session_path, method: :delete %><br>
-<%=  link_to "ショップマイページ", my_page_shops_path %><br>
-<%=  link_to "投稿一覧", posts_path %><br>
-<%=  link_to "母父ギフト一覧", mother_father_gifts_path %><br>
-<%=  link_to "お中元ギフト一覧", summer_gifts_path %><br>
-<%=  link_to "お歳暮ギフト一覧", year_end_gifts_path %><br>
-<%=  link_to "鰻一覧", day_of_the_oxes_path %><br>
-<%=  link_to "恵方巻一覧", ehomakis_path %><br>
-<%=  link_to "クリスマス一覧", christmases_path %><br>
-<br>
-<br>
-<%=  link_to "管理職ログイン", new_management_session_path %><br>
-<%=  link_to "管理職サインアップ", new_management_registration_path %><br>
-<%=  link_to "管理者ログアウト", destroy_management_session_path, method: :delete %><br>
-<%=  link_to "管理職マイページ", my_page_management_managements_path %><br>
-
+  <div class="row">
+    <div class="col-8 offset-2 mt-3">
+      <p>
+       To make work more fun and exciting. I made it with the hope that you can work<br>
+       with interest in your work and have a lot of communication.To make work more<br>
+       fun and exciting. I made it with the hope that you can work with interest in<br>
+       your work and have a lot of communication.
+      </p>
+    </div>
+  </div>
+  <div class="row  mt-5">
+    <div class="col">
+      <%=  link_to  new_shop_registration_path do %>
+        <button type="button" class="btn btn-primary font-weight-bold mb-3"style="color: #c8e2ff; min-height: 100px;min-width: 200px;"><i class="fas fa-plus-circle"></i> Shop SignUp!</button>
+      <% end %>
+    </div>
+    <div class="col">
+      <%=  link_to  new_shop_session_path do %>
+        <button type="button" class="btn btn-primary font-weight-bold mb-3 ml-3"style="color: #c8e2ff; min-height: 100px;min-width: 200px;"><i class="fas fa-sign-in-alt"></i> Shop LogIn!</button>
+      <% end %>
+    </div>
+    <div class="col">
+      <%=  link_to  new_management_registration_path do %>
+        <button type="button" class="btn btn-primary font-weight-bold mb-3"style="color: #c8e2ff; min-height: 100px;"><i class="fas fa-plus-circle"></i> Management SignUp!</button>
+      <% end %>
+    </div>
+    <div class="col">
+      <%=  link_to  new_management_session_path do %>
+        <button type="button" class="btn btn-primary font-weight-bold mb-3 ml-3"style="color: #c8e2ff; min-height: 100px;"><i class="fas fa-sign-in-alt"></i> Management LogIn!</button>
+      <% end %>
+    </div>
+  </div>
+</div>
