@@ -27,11 +27,6 @@ class Shop::SummerGiftsController < ApplicationController
     redirect_to summer_gifts_path
   end
 
-
-  def edit
-    @summer_gift = SummerGift.find(params[:id])
-  end
-
   private
     def summer_gift_params
       params.require(:summer_gift).permit(:year, :target_number, :target_amount, :total_amount, :number, :shop_id)

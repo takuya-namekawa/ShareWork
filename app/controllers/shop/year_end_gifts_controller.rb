@@ -27,11 +27,6 @@ class Shop::YearEndGiftsController < ApplicationController
     redirect_to year_end_gifts_path
   end
 
-
-  def edit
-    @year_end_gift = YearEndGift.find(params[:id])
-  end
-
   private
     def year_end_gift_params
       params.require(:year_end_gift).permit(:year, :target_number, :target_amount, :total_amount, :number, :shop_id)
