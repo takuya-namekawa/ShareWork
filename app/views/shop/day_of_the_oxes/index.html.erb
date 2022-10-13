@@ -8,7 +8,7 @@
             Report!!
           </button>
           <span class=" font-weight-bold " style=" color: #6169d0; ">土用の丑の日実績(全店舗合計)</span>
-          <%   @day_of_the_oxes.each do |eel| %>
+          <% @day_of_the_oxes.each do |eel| %>
             <% @shop_total_amount += eel.total_amount %>
             <% @shop_tptal_booking_target += eel.booking_amount %>
             <% @shop_store_sales_amount += eel.store_sales_amount %>
@@ -34,9 +34,7 @@
                   <% if shop_signed_in? %>
                     <% if eel.shop_id == current_shop.id %>
                       <td>
-                        <%= link_to edit_day_of_the_ox_path(eel)  do %>
-                          <span class="bg-white rounded-circle p-2 shadow-sm"><i class="fas fa-edit"  style=" color: #6169d0; "></i></span>
-                        <% end %>
+                        <span class=" rounded-circle p-2 shadow-sm"style="background-color: #ffffff;"data-toggle="modal" data-target="#exampleModal_<%= eel.id %>"><i class="fas fa-edit"  style=" color: #6169d0; "></i></span>
                       </td>
                       <br>
                       <td>
@@ -48,6 +46,51 @@
                   <% end %>
                 </td>
               </tr>
+              <!-- Modal -->
+              <div class="modal fade" id="exampleModal_<%= eel.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">実績報告を修正する</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <%= form_with model: eel, url: day_of_the_ox_path(eel) do |f| %>
+                      <div class="modal-body">
+                        <div class="form-group">
+                          <%= f.label :year, "年度" %>
+                          <%= f.text_field :year, class:"form-control" %>
+                        </div>
+                        <div class="form-group">
+                          <%= f.label :booking_target, "予約目標" %>
+                          <%= f.text_field :booking_target, class:"form-control" %>
+                        </div>
+                        <div class="form-group">
+                          <%= f.label :target_amount, "目標金額" %>
+                          <%= f.text_field :target_amount, class:"form-control" %>
+                        </div>
+                        <div class="form-group">
+                          <%= f.label :booking_amount, "予約金額" %>
+                          <%= f.text_field :booking_amount, class:"form-control" %>
+                        </div>
+                        <div class="form-group">
+                          <%= f.label :store_sales_amount, "店売金額" %>
+                          <%= f.text_field :store_sales_amount, class:"form-control" %>
+                        </div>
+                        <div class="form-group">
+                          <%= f.label :total_amount, "達成金額" %>
+                          <%= f.text_field :total_amount, class:"form-control" %>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary font-weight-bold" data-dismiss="modal">Close</button>
+                        <%= f.submit "Edit", class:"btn btn-success font-weight-bold" %>
+                      </div>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
             <% end %>
           </table>
         </div>
