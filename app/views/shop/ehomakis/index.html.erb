@@ -18,6 +18,24 @@
             予約合計金額:<%= @shop_tptal_booking_target.to_s(:delimited) %>円
             合計達成金額:<%= @shop_total_amount.to_s(:delimited) %>円
           </div>
+          <%= form_with(url: ehomakis_path, method: :get, local: true) do |f| %>
+              <%= f.select :sort_amount,  { "予約金額▼" => :booking_amount_asc,
+                                            "予約金額▲" => :booking_amount_desc,
+                                            "達成金額▼" => :total_amount_asc,
+                                            "達成金額▲" => :total_amount_desc },
+                                          { include_blank: "登録順", selected: params[:sort_amount] }, {class: "text-secondary font-weight-bold"} %>
+            <%= f.submit "Change",class:"pt-1 pb-1 rounded border-0 font-weight-bold", style:"background-color: #888b8e; color: #ffffff;"%>
+          <% end %>
+          <% if @all_ehomakis.where(year: @current_year.to_i + 1).any? %>
+            <%= link_to ehomakis_path(current_year: (@current_year.to_i + 1)) ,class: "text-secondary font-weight-bold  text-decoration-none" do %>
+              来年 <i class="fas fa-arrow-circle-right"></i>
+            <% end %>
+          <% end %>
+          <% if @all_ehomakis.where(year: @current_year.to_i - 1).any? %>
+            <%= link_to ehomakis_path(current_year: (@current_year.to_i - 1)) ,class: "text-secondary font-weight-bold  text-decoration-none" do%>
+              <i class="fas fa-arrow-circle-left"></i> 前年
+            <% end %>
+          <% end %>
           <table class="table text-secondary font-weight-bold">
             <%  @ehomakis.each do |ehomaki| %>
               <tr>
@@ -49,52 +67,53 @@
                 </td>
               </tr>
               <!-- Modal -->
-    <div class="modal fade" id="exampleModal_<%= ehomaki.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">実績報告を修正する</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <%= form_with model: ehomaki, url: ehomaki_path(ehomaki) do |f| %>
-            <div class="modal-body">
-              <div class="form-group">
-                <%= f.label :year, "年度" %>
-                <%= f.text_field :year, class:"form-control" %>
+              <div class="modal fade" id="exampleModal_<%= ehomaki.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">実績報告を修正する</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <%= form_with model: ehomaki, url: ehomaki_path(ehomaki) do |f| %>
+                      <div class="modal-body">
+                        <div class="form-group">
+                          <%= f.label :year, "年度" %>
+                          <%= f.text_field :year, class:"form-control" %>
+                        </div>
+                        <div class="form-group">
+                          <%= f.label :booking_target, "予約目標" %>
+                          <%= f.text_field :booking_target, class:"form-control" %>
+                        </div>
+                        <div class="form-group">
+                          <%= f.label :target_amount, "目標金額" %>
+                          <%= f.text_field :target_amount, class:"form-control" %>
+                        </div>
+                        <div class="form-group">
+                          <%= f.label :booking_amount, "予約金額" %>
+                          <%= f.text_field :booking_amount, class:"form-control" %>
+                        </div>
+                        <div class="form-group">
+                          <%= f.label :store_sales_amount, "店売金額" %>
+                          <%= f.text_field :store_sales_amount, class:"form-control" %>
+                        </div>
+                        <div class="form-group">
+                          <%= f.label :total_amount, "達成金額" %>
+                          <%= f.text_field :total_amount, class:"form-control" %>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary font-weight-bold" data-dismiss="modal">Close</button>
+                        <%= f.submit "Edit", class:"btn btn-success font-weight-bold" %>
+                      </div>
+                    <% end %>
+                  </div>
+                </div>
               </div>
-              <div class="form-group">
-                <%= f.label :booking_target, "予約目標" %>
-                <%= f.text_field :booking_target, class:"form-control" %>
-              </div>
-              <div class="form-group">
-                <%= f.label :target_amount, "目標金額" %>
-                <%= f.text_field :target_amount, class:"form-control" %>
-              </div>
-              <div class="form-group">
-                <%= f.label :booking_amount, "予約金額" %>
-                <%= f.text_field :booking_amount, class:"form-control" %>
-              </div>
-              <div class="form-group">
-                <%= f.label :store_sales_amount, "店売金額" %>
-                <%= f.text_field :store_sales_amount, class:"form-control" %>
-              </div>
-              <div class="form-group">
-                <%= f.label :total_amount, "達成金額" %>
-                <%= f.text_field :total_amount, class:"form-control" %>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary font-weight-bold" data-dismiss="modal">Close</button>
-              <%= f.submit "Edit", class:"btn btn-success font-weight-bold" %>
-            </div>
-          <% end %>
-        </div>
-      </div>
-    </div>
             <% end %>
         </table>
+        <div style="color: #6169d0;"><%= paginate @ehomakis %></div>
         </div>
       </div>
     </div>
