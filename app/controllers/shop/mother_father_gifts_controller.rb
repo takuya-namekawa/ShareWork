@@ -6,6 +6,8 @@ class Shop::MotherFatherGiftsController < ApplicationController
     @shop_tptal_target_amount = 0
     @shop_total_number = 0
     @shop_total_amount = 0
+    
+    
   end
 
   def create

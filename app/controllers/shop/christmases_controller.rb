@@ -5,7 +5,7 @@ class Shop::ChristmasesController < ApplicationController
     @shop_total_amount = 0
     @shop_tptal_booking_target = 0
     @shop_store_sales_amount = 0
-    # モデル名.order(カラム名: "DESC")
+
     @current_year = params[:current_year].present? ? params[:current_year] : Time.zone.now.year
     @all_christmases = Christmas.all
     @christmases = @all_christmases.where(year: @current_year)
