@@ -13,11 +13,25 @@
             <% @shop_tptal_booking_target += christmas.booking_amount %>
             <% @shop_store_sales_amount += christmas.store_sales_amount %>
           <% end %>
-          <div class="mb-2 bg-white p-3 shadow-sm  text-secondary font-weight-bold">
+          <div class=" bg-white p-3 shadow-sm  text-secondary font-weight-bold">
             店売合計金額:<%= @shop_store_sales_amount.to_s(:delimited) %>円
             予約合計金額:<%= @shop_tptal_booking_target.to_s(:delimited) %>円
             合計達成金額:<%= @shop_total_amount.to_s(:delimited) %>円
           </div>
+          <%= form_with(url: christmases_path, method: :get, local: true) do |f| %>
+              <%= f.select :sort_amount,  { "予約金額▼" => :booking_amount_asc,
+                                            "予約金額▲" => :booking_amount_desc,
+                                            "達成金額▼" => :total_amount_asc,
+                                            "達成金額▲" => :total_amount_desc },
+                                          { include_blank: "登録順", selected: params[:sort_amount] }, {} %>
+            <%= f.submit %>
+          <% end %>
+          <% if @all_christmases.where(year: @current_year.to_i + 1).any? %>
+            <%= link_to "次の年", christmases_path(current_year: (@current_year.to_i + 1)) %>
+          <% end %>
+          <% if @all_christmases.where(year: @current_year.to_i - 1).any? %>
+            <%= link_to "前の年", christmases_path(current_year: (@current_year.to_i - 1)) %>
+          <% end %>
           <table class="table text-secondary font-weight-bold">
             <%  @christmases.each do |christmas| %>
               <tr>
@@ -100,6 +114,7 @@
               </div>
             <% end %>
           </table>
+          <div style="color: #6169d0;"><%= paginate  @christmases %></div>
         </div>
     </div>
   </div>

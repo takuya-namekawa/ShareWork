@@ -15,3 +15,20 @@
   background-color: #3f57a5;
   border-color: #007bff;
 }
+
+.page-item.active .page-link {
+    z-index: 3;
+    color: #fff;
+    background-color: #697c94;
+    border-color: #5c6878;
+}
+.page-link {
+    position: relative;
+    display: block;
+    padding: 0.5rem 0.75rem;
+    margin-left: -1px;
+    line-height: 1.25;
+    color: #313a46;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+}
