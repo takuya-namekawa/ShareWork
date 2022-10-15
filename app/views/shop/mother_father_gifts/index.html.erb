@@ -20,6 +20,24 @@
             合計件数:<%= @shop_total_number.to_s(:delimited) %>件
             合計達成金額:<%= @shop_total_amount.to_s(:delimited) %>円
           </div>
+            <%= form_with(url: mother_father_gifts_path, method: :get, local: true) do |f| %>
+              <%= f.select :sort_amount,  { "件数▼" => :number_asc,
+                                            "件数▲" => :number_desc,
+                                            "達成金額▼" => :total_amount_asc,
+                                            "達成金額▲" => :total_amount_desc },
+                                          { include_blank: "登録順", selected: params[:sort_amount] }, {class: "text-secondary font-weight-bold"} %>
+            <%= f.submit "Change",class:"pt-1 pb-1 rounded border-0 font-weight-bold", style:"background-color: #888b8e; color: #ffffff;"%>
+          <% end %>
+          <% if @all_mother_father_gifts.where(year: @current_year.to_i + 1).any? %>
+            <%= link_to mother_father_gifts_path(current_year: (@current_year.to_i + 1)) ,class: "text-secondary font-weight-bold  text-decoration-none" do %>
+              来年 <i class="fas fa-arrow-circle-right"></i>
+            <% end %>
+          <% end %>
+          <% if @all_mother_father_gifts.where(year: @current_year.to_i - 1).any? %>
+            <%= link_to mother_father_gifts_path(current_year: (@current_year.to_i - 1)) ,class: "text-secondary font-weight-bold  text-decoration-none" do%>
+              <i class="fas fa-arrow-circle-left"></i> 前年
+            <% end %>
+          <% end %>
           <table class="table text-secondary font-weight-bold">
             <% @mother_father_gifts.each do |gift| %>
               <tr>
@@ -91,6 +109,7 @@
               </div>
             <% end %>
           </table>
+          <div style="color: #6169d0;"><%= paginate @mother_father_gifts %></div>
         </div>
       </div>
     </div>
