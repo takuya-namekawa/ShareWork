@@ -1,25 +1,27 @@
 <div class="d-flex flex-row w-100 pr-5 " style="height: calc(100% - 50px)">
   <!--サイドバーコンテンツ-->
   <%= render "layouts/sidenav" %>
-    <div class="container mt-5">
+    <div class="container ">
       <div class="row">
-        <div class="col-6">
+        <div class="col-12">
           <% @shops.each do |shop| %>
             <div class="card mb-1 shadow-sm">
               <div class="card-body  text-secondary font-weight-bold">
                 <div class="row">
                   <div class="col-4">
-                    <%= image_tag shop.get_profile_image(100,100), class: "rounded-circle"%>
+                    <%= image_tag shop.get_profile_image(130,130), class: "rounded"%>
                   </div>
                   <div class="col-5">
-                    <p class="card-text"><%= shop.name %></p>
-                    <p class="card-text"><%= shop.email %></p>
+                    <p class="card-text">店舗名: <%= shop.name %></p>
+                    <p class="card-text">メールアドレス: <%= shop.email %></p>
                     <% if  shop.id == current_shop.id %>
-                      <span class=" rounded-circle p-2 shadow-sm"style="background-color: #dcdefc;"data-toggle="modal" data-target="#exampleModal"><i class="fas fa-edit"  style=" color: #737df5; "></i></span>
+                      <span class=" rounded-circle p-2 shadow-sm"style="background-color: #dcdefc;"data-toggle="modal" data-target="#exampleModal">
+                      <i class="fas fa-edit"  style=" color: #737df5; "></i></span>プロフィール編集
                     <% end %>
                     <% if current_shop != shop %>
-                      <%= link_to  chat_path(shop) do %>
-                        <span class=" rounded-circle p-2 shadow-sm"style="background-color: #fff177;"><i class="far fa-comments"  style=" color: #f4a228; "></i></span>
+                      <%= link_to  chat_path(shop),class: "text-reset" do %>
+                        <span class=" rounded-circle p-2 shadow-sm"style="background-color: #fff177;">
+                        <i class="far fa-comments"  style=" color: #f4a228; "></i></span>多店舗とチャットする
                       <% end %>
                     <% end %>
                   </div>
@@ -27,15 +29,6 @@
               </div>
             </div>
           <% end %>
-        </div>
-        <div class="col-6">
-          <div class="card mb-1 shadow-sm">
-            <div class="card-body  text-secondary font-weight-bold ">
-              <p class="card-text">合計共有数: <%= @shop.posts.count %></p>
-              <p class="card-text">合計コメント件数 <%= @count %>件</p>
-              <p class="card-text">合計GOOD数:</p>
-            </div>
-          </div>
         </div>
       </div>
     </div>

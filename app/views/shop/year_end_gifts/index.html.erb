@@ -20,7 +20,7 @@
             合計件数:<%= @shop_total_number.to_s(:delimited) %>件
             合計達成金額:<%= @shop_total_amount.to_s(:delimited) %>円
           </div>
-         <%= form_with(url: year_end_gifts_path, method: :get, local: true) do |f| %>
+          <%= form_with(url: year_end_gifts_path, method: :get, local: true) do |f| %>
             <%= f.select :sort_amount,  { "件数▼" => :number_asc,
                                           "件数▲" => :number_desc,
                                           "達成金額▼" => :total_amount_asc,
@@ -99,8 +99,8 @@
                         </div>
                       </div>
                       <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary font-weight-bold" data-dismiss="modal">Close</button>
-                      <%= f.submit "Report!!", class:"btn btn-success font-weight-bold" %>
+                        <button type="button" class="btn btn-secondary font-weight-bold" data-dismiss="modal">Close</button>
+                        <%= f.submit "Report!!", class:"btn btn-success font-weight-bold" %>
                       </div>
                     <% end %>
                   </div>
@@ -146,8 +146,8 @@
               </div>
             </div>
             <div class="modal-footer">
-            <button type="button" class="btn btn-secondary font-weight-bold" data-dismiss="modal">Close</button>
-            <%= f.submit "Report!!", class:"btn btn-primary font-weight-bold" %>
+              <button type="button" class="btn btn-secondary font-weight-bold" data-dismiss="modal">Close</button>
+              <%= f.submit "Report!!", class:"btn btn-primary font-weight-bold" %>
             </div>
           <% end %>
         </div>
