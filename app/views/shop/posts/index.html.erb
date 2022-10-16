@@ -43,15 +43,9 @@
                     <p class="card-text">カテゴリー　<%=  post.tag.name %></p>
                     <p class="card-text">コメント件数　<%= post.comment_reviews.count %>件</p>
                     <% if shop_signed_in? %>
-                      <% if post.favorited_by?(current_shop) %>
-                        <%= link_to post_favorites_path(post),method: :delete,class: "text-reset text-decoration-none"  do %>
-                          <span class=" rounded-circle p-2 shadow-sm"style="background-color: #dcfcdf;"><i class="fas fa-thumbs-up"></i><%= post.favorites.count +  post.management_favorites.count%></span> GOOD!!
-                        <% end %>
-                      <% else %>
-                        <%= link_to post_favorites_path(post),method: :post ,class: "text-reset text-decoration-none" do %>
-                          <span class=" rounded-circle p-2 shadow-sm"style="background-color: #dcfcdf;"><i class="far fa-thumbs-up"></i><%= post.favorites.count +  post.management_favorites.count%></span> GOOD!!
-                        <% end %>
-                      <% end %>
+                      <div id="favorite_buttons_<%= post.id %>">
+                        <%= render "shop/posts/favrite", post: post %>
+                      </div>
                     <% end %>
                     <% if management_signed_in? %>
                       <% if post.management_favorited_by?(current_management) %>
