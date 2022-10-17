@@ -1,26 +1,41 @@
-<h2>Log in</h2>
+<div class="container pagination justify-content-center mt-5 pt-5 text-secondary font-weight-bold">
+  <div class="row rounded border border-5 shadow"style="background-color: white;">
+    <div class="col">
+      <div class="form-body p-4">
+      <h2 class="text-center mb-4">Shop LogIn</h2>
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" aria-hidden="true"><i class="fas fa-envelope"></i></span>
+            </div>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email" ,class: "form-control"%>
+          </div>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" aria-hidden="true"><i class="fas fa-unlock-alt"></i></span>
+            </div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+            <%= f.password_field :password, autocomplete: "current-password"  ,class: "form-control"%>
+          </div>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+          <% if devise_mapping.rememberable? %>
+            <div class="field text-center">
+              <%= f.check_box :remember_me%>
+              <%= f.label :remember_me %>
+            </div>
+          <% end %>
+
+          <div class="actions text-center">
+            <%= f.submit "Log in" ,class: "btn btn-primary  btn-block "%>
+          </div>
+        <% end %>
+        <div class="text-center">
+          <%= render "shop/shared/links" %>
+        </div>
+
+      </div>
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
   </div>
-<% end %>
+</div>
 
-<%= render "shop/shared/links" %>

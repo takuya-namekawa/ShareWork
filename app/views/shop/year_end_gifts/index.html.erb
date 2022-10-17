@@ -4,9 +4,11 @@
     <div class="container mt-5">
       <div class="row">
         <div class="col">
-          <button type="button" class="btn btn-primary mb-3 mr-4  font-weight-bold" data-toggle="modal" data-target="#exampleModal">
-            Report!!
-          </button>
+          <% if shop_signed_in? %>
+            <button type="button" class="btn btn-primary mb-3 mr-4  font-weight-bold" data-toggle="modal" data-target="#exampleModal">
+              Report!!
+            </button>
+          <% end %>
           <span class=" font-weight-bold " style=" color: #6169d0; ">お歳暮ギフト実績(全店舗合計)</span>
           <% @year_end_gifts.each do |gift| %>
             <% @shop_total_target_number += gift.target_number %>

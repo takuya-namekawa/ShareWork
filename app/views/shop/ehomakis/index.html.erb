@@ -4,9 +4,11 @@
     <div class="container mt-5">
       <div class="row">
         <div class="col">
-          <button type="button" class="btn btn-primary mb-3 mr-4  font-weight-bold" data-toggle="modal" data-target="#exampleModal">
-            Report!!
-          </button>
+          <% if shop_signed_in? %>
+            <button type="button" class="btn btn-primary mb-3 mr-4  font-weight-bold" data-toggle="modal" data-target="#exampleModal">
+              Report!!
+            </button>
+          <% end %>
           <span class=" font-weight-bold " style=" color: #6169d0; ">恵方巻実績(全店舗合計)</span>
           <% @ehomakis.each do |ehomaki| %>
             <% @shop_total_amount += ehomaki.total_amount %>
