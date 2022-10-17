@@ -1,33 +1,41 @@
-<h2>Sign up</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "management/shared/error_messages", resource: resource %>
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+<div class="container pagination justify-content-center mt-5 pt-5 text-secondary font-weight-bold">
+  <div class="row rounded border border-5 shadow"style="background-color: white;">
+    <div class="col">
+      <div class="form-body p-4">
+        <h2 class="text-center mb-4">Management SignUp</h2>
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" aria-hidden="true"><i class="fas fa-store-alt"></i></span>
+            </div>
+            <%= f.text_field :name, autofocus: true, autocomplete: "name",class: "form-control" %>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" aria-hidden="true"><i class="fas fa-envelope"></i></span>
+            </div>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email" ,class: "form-control"%>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" aria-hidden="true"><i class="fas fa-unlock-alt"></i></span>
+            </div>
+            <%= f.password_field :password, autocomplete: "new-password",class: "form-control" %>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" aria-hidden="true"><i class="fas fa-check-circle"></i></span>
+            </div>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password" ,class: "form-control"%>
+          </div>
+          <div class="actions text-center">
+            <%= f.submit "Sign up" ,class: "btn btn-primary  btn-block "%>
+          </div>
+        <% end %>
+        <div class="text-center">
+          <%= render "shop/shared/links" %>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "management/shared/links" %>
+</div>
