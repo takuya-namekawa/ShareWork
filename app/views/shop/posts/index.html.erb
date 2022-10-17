@@ -48,15 +48,9 @@
                       </div>
                     <% end %>
                     <% if management_signed_in? %>
-                      <% if post.management_favorited_by?(current_management) %>
-                        <%= link_to management_post_management_favorites_path(post),method: :delete,class: "text-reset text-decoration-none"  do %>
-                          <span class=" rounded-circle p-2 shadow-sm"style="background-color: #dcfcdf;"><i class="fas fa-thumbs-up"></i><%= post.management_favorites.count + post.favorites.count  %></span> GOOD!!
-                        <% end %>
-                      <% else %>
-                        <%= link_to management_post_management_favorites_path(post),method: :post ,class: "text-reset text-decoration-none" do %>
-                          <span class=" rounded-circle p-2 shadow-sm"style="background-color: #dcfcdf;"><i class="far fa-thumbs-up"></i><%= post.management_favorites.count + post.favorites.count %></span> GOOD!!
-                        <% end %>
-                      <% end %>
+                      <div id="management_favorite_buttons_<%= post.id %>">
+                        <%= render "shop/posts/management_favorites", post: post %>
+                      </div>
                     <% end %>
                   </div>
                 </div>

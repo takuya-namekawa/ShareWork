@@ -1,0 +1,9 @@
+<% if post.management_favorited_by?(current_management) %>
+  <%= link_to management_post_management_favorites_path(post),method: :delete,remote: true, class: "text-reset text-decoration-none"  do %>
+    <span class=" rounded-circle p-2 shadow-sm"style="background-color: #dcfcdf;"><i class="fas fa-thumbs-up"></i><%= post.management_favorites.count + post.favorites.count  %></span> GOOD!!
+  <% end %>
+<% else %>
+  <%= link_to management_post_management_favorites_path(post),method: :post,remote: true, class: "text-reset text-decoration-none" do %>
+    <span class=" rounded-circle p-2 shadow-sm"style="background-color: #dcfcdf;"><i class="far fa-thumbs-up"></i><%= post.management_favorites.count + post.favorites.count %></span> GOOD!!
+  <% end %>
+<% end %>

@@ -4,7 +4,6 @@ class Shop::FavoritesController < ApplicationController
     @post = Post.find(params[:post_id])
     favorite = current_shop.favorites.new(post_id: @post.id)
     favorite.save
-
   end
 
 
@@ -12,7 +11,6 @@ class Shop::FavoritesController < ApplicationController
     @post = Post.find(params[:post_id])
     favorite = current_shop.favorites.find_by(post_id: @post.id)
     favorite.destroy
-
   end
 
 end
