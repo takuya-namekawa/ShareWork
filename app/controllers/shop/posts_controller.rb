@@ -8,16 +8,24 @@ class Shop::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.shop_id = current_shop.id
-    @post.save
-    redirect_to posts_path
+    if @post.save
+      redirect_to posts_path
+    else
+      @posts = Post.all
+      render :index
+    end
   end
 
   def update
     @post = Post.find(params[:id])
-    @post.update(post_params)
-    redirect_to posts_path
+    if @post.update(post_params)
+      redirect_to posts_path
+    else
+      @posts = Post.all
+      render:index
+    end
   end
-  
+
   def destroy
     @post = Post.find(params[:id])
     @post.destroy

@@ -23,4 +23,11 @@ class Post < ApplicationRecord
     end
     profile_image.variant(resize_to_limit: [width, height]).processed
   end
+
+  with_options presence: true do
+    validates :title
+    validates :appeal
+    validates :job
+    validates :name
+  end
 end
