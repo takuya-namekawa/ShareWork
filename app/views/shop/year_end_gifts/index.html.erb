@@ -4,6 +4,14 @@
     <div class="container mt-5">
       <div class="row">
         <div class="col">
+          <% if  @year_end_gift.errors.any? %>
+           <ul class=" alert alert-danger">
+              <%= @year_end_gift.errors.count %>件のエラーが発生しました
+              <% @year_end_gift.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          <% end %>
           <% if shop_signed_in? %>
             <button type="button" class="btn btn-primary mb-3 mr-4  font-weight-bold" data-toggle="modal" data-target="#exampleModal">
               Report!!
@@ -77,7 +85,7 @@
                         <span aria-hidden="true">&times;</span>
                       </button>
                     </div>
-                    <%= form_for gift, url: year_end_gifts_path(gift) do |f| %>
+                    <%= form_with model: gift, url: year_end_gift_path(gift) do |f| %>
                       <div class="modal-body">
                         <div class="form-group">
                           <%= f.label :year, "年度" %>
@@ -115,7 +123,7 @@
       </div>
     </div>
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal_<%= gift.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
