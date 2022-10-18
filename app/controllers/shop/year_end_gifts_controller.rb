@@ -21,7 +21,7 @@ class Shop::YearEndGiftsController < ApplicationController
     @year_end_gift = YearEndGift.new(year_end_gift_params)
     @year_end_gift.shop_id = current_shop.id
     if @year_end_gift.save
-      redirect_to year_end_gifts_path
+      redirect_to year_end_gifts_path, notice: "投稿に成功しました"
     else
       @year_end_gift = YearEndGift.new
       @shop_total_target_number = 0
@@ -44,13 +44,13 @@ class Shop::YearEndGiftsController < ApplicationController
   def update
     @year_end_gift = YearEndGift.find(params[:id])
     @year_end_gift.update(year_end_gift_params)
-    redirect_to year_end_gifts_path
+    redirect_to year_end_gifts_path, notice: "投稿を更新しました"
   end
 
   def destroy
     @year_end_gift = YearEndGift.find(params[:id])
     @year_end_gift.destroy
-    redirect_to year_end_gifts_path
+    redirect_to year_end_gifts_path, notice: "投稿を削除しました"
   end
 
   private

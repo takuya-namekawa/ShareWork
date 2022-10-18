@@ -21,7 +21,7 @@ class Shop::SummerGiftsController < ApplicationController
     @summer_gift = SummerGift.new(summer_gift_params)
     @summer_gift.shop_id = current_shop.id
     if @summer_gift.save
-      redirect_to summer_gifts_path
+      redirect_to summer_gifts_path, notice: "投稿に成功しました"
     else
       @shop_total_target_number = 0
       @shop_tptal_target_amount = 0
@@ -43,7 +43,7 @@ class Shop::SummerGiftsController < ApplicationController
   def update
     @summer_gift = SummerGift.find(params[:id])
     if @summer_gift.update(summer_gift_params)
-      redirect_to summer_gifts_path
+      redirect_to summer_gifts_path, notice: "投稿を更新しました"
     else
       @shop_total_target_number = 0
       @shop_tptal_target_amount = 0
@@ -65,7 +65,7 @@ class Shop::SummerGiftsController < ApplicationController
   def destroy
     @summer_gift = SummerGift.find(params[:id])
     @summer_gift.destroy
-    redirect_to summer_gifts_path
+    redirect_to summer_gifts_path, notice: "投稿を削除しました"
   end
 
   private

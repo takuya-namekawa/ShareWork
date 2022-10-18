@@ -9,7 +9,7 @@ class Shop::PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.shop_id = current_shop.id
     if @post.save
-      redirect_to posts_path
+      redirect_to posts_path, notice: "投稿に成功しました"
     else
       @posts = Post.all
       render :index
@@ -19,7 +19,7 @@ class Shop::PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
-      redirect_to posts_path
+      redirect_to posts_path, notice: "投稿を更新しました"
     else
       @posts = Post.all
       render:index
@@ -29,7 +29,7 @@ class Shop::PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-    redirect_to posts_path
+    redirect_to posts_path, notice: "投稿を削除しました"
   end
 
   def show

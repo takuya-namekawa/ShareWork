@@ -20,7 +20,7 @@ class Shop::EhomakisController < ApplicationController
     @ehomaki = Ehomaki.new(ehomaki_params)
     @ehomaki.shop_id = current_shop.id
     if @ehomaki.save
-      redirect_to ehomakis_path
+      redirect_to ehomakis_path, notice: "投稿に成功しました"
     else
       @ehomaki = Ehomaki.new
       @shop_total_amount = 0
@@ -42,7 +42,7 @@ class Shop::EhomakisController < ApplicationController
   def update
     @ehomaki = Ehomaki.find(params[:id])
     if @ehomaki.update(ehomaki_params)
-      redirect_to ehomakis_path
+      redirect_to ehomakis_path, notice: "投稿を更新しました"
     else
       @ehomaki = Ehomaki.new
       @shop_total_amount = 0
@@ -64,7 +64,7 @@ class Shop::EhomakisController < ApplicationController
   def destroy
     @ehomaki = Ehomaki.find(params[:id])
     @ehomaki.destroy
-    redirect_to ehomakis_path
+    redirect_to ehomakis_path, notice: "投稿を削除しました"
   end
 
   private

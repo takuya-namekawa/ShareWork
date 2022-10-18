@@ -21,7 +21,7 @@ class Shop::ChristmasesController < ApplicationController
     @christmas = Christmas.new(christmas_params)
     @christmas.shop_id = current_shop.id
     if @christmas.save
-      redirect_to christmases_path
+      redirect_to christmases_path, notice: "投稿に成功しました"
     else
       @christmas = Christmas.new
       @shop_total_amount = 0
@@ -43,7 +43,7 @@ class Shop::ChristmasesController < ApplicationController
   def update
     @christmas = Christmas.find(params[:id])
     if @christmas.update(christmas_params)
-      redirect_to christmases_path
+      redirect_to christmases_path, notice: "投稿を更新しました"
     else
       @christmas = Christmas.new
       @shop_total_amount = 0
@@ -65,7 +65,7 @@ class Shop::ChristmasesController < ApplicationController
   def destroy
     @christmas = Christmas.find(params[:id])
     @christmas.destroy
-    redirect_to christmases_path
+    redirect_to christmases_path, notice: "投稿を削除しました"
   end
 
 

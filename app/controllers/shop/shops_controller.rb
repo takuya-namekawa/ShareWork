@@ -12,7 +12,7 @@ class Shop::ShopsController < ApplicationController
   def update
     @shop = current_shop
     @shop.update(shop_params)
-    redirect_to my_page_shops_path
+    redirect_to my_page_shops_path, notice: "情報を更新しました"
   end
 
   private

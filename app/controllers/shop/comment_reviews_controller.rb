@@ -4,12 +4,12 @@ class Shop::CommentReviewsController < ApplicationController
     comment = current_management.comment_reviews.new(comment_review_params)
     comment.post_id = post.id
     comment.save
-    redirect_to post_path(post)
+    redirect_to post_path(post), notice: "コメントの投稿に成功しました"
   end
 
   def destroy
     CommentReview.find(params[:id]).destroy
-    redirect_to post_path(params[:post_id])
+    redirect_to post_path(params[:post_id]), notice: "コメントを削除しました"
   end
 
   private

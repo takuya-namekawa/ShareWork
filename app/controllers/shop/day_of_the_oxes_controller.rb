@@ -20,7 +20,7 @@ class Shop::DayOfTheOxesController < ApplicationController
     @day_of_the_ox = DayOfTheOx.new(day_of_the_ox_params)
     @day_of_the_ox.shop_id = current_shop.id
     if @day_of_the_ox.save
-      redirect_to day_of_the_oxes_path
+      redirect_to day_of_the_oxes_path, notice: "投稿に成功しました"
     else
       @day_of_the_ox = DayOfTheOx.new
       @shop_total_amount = 0
@@ -42,7 +42,7 @@ class Shop::DayOfTheOxesController < ApplicationController
   def update
     @day_of_the_ox = DayOfTheOx.find(params[:id])
     if @day_of_the_ox.update(day_of_the_ox_params)
-      redirect_to day_of_the_oxes_path
+      redirect_to day_of_the_oxes_path, notice: "投稿を更新しました"
     else
       @day_of_the_ox = DayOfTheOx.new
       @shop_total_amount = 0
@@ -64,7 +64,7 @@ class Shop::DayOfTheOxesController < ApplicationController
   def destroy
     @day_of_the_ox = DayOfTheOx.find(params[:id])
     @day_of_the_ox.destroy
-    redirect_to day_of_the_oxes_path
+    redirect_to day_of_the_oxes_path, notice: "投稿を削除しました"
   end
 
   private
