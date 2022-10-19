@@ -23,7 +23,6 @@ class Shop::ChristmasesController < ApplicationController
     if @christmas.save
       redirect_to christmases_path, notice: "投稿に成功しました"
     else
-      @christmas = Christmas.new
       @shop_total_amount = 0
       @shop_tptal_booking_target = 0
       @shop_store_sales_amount = 0
@@ -45,7 +44,6 @@ class Shop::ChristmasesController < ApplicationController
     if @christmas.update(christmas_params)
       redirect_to christmases_path, notice: "投稿を更新しました"
     else
-      @christmas = Christmas.new
       @shop_total_amount = 0
       @shop_tptal_booking_target = 0
       @shop_store_sales_amount = 0

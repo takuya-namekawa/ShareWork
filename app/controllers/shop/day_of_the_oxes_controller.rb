@@ -22,7 +22,6 @@ class Shop::DayOfTheOxesController < ApplicationController
     if @day_of_the_ox.save
       redirect_to day_of_the_oxes_path, notice: "投稿に成功しました"
     else
-      @day_of_the_ox = DayOfTheOx.new
       @shop_total_amount = 0
       @shop_tptal_booking_target = 0
       @shop_store_sales_amount = 0
@@ -44,7 +43,6 @@ class Shop::DayOfTheOxesController < ApplicationController
     if @day_of_the_ox.update(day_of_the_ox_params)
       redirect_to day_of_the_oxes_path, notice: "投稿を更新しました"
     else
-      @day_of_the_ox = DayOfTheOx.new
       @shop_total_amount = 0
       @shop_tptal_booking_target = 0
       @shop_store_sales_amount = 0
