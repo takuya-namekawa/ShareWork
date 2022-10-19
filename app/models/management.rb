@@ -15,4 +15,12 @@ class Management < ApplicationRecord
     end
     profile_image.variant(resize_to_limit: [width, height]).processed
   end
+
+  def self.guest
+    find_or_initialize_by(email: "guest@guest.com") do |management|
+      management.attributes = { password: SecureRandom.urlsafe_base64,
+                           name: "guestmanagement" }
+      management.save
+    end
+  end
 end

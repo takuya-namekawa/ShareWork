@@ -16,8 +16,10 @@
                     <p class="card-text">役職: <%= management.job %></p>
                     <p class="card-text">氏名: <%= management.name %></p>
                     <p class="card-text">emal: <%= management.email %></p>
-                    <% if  management.id == current_management.id %>
-                      <span class=" rounded-circle p-2 shadow-sm"style="background-color: #dcdefc;"data-toggle="modal" data-target="#exampleModal"><i class="fas fa-edit"  style=" color: #737df5; "></i></span>
+                    <% if management.name != "guestmanagement" %>
+                      <% if  management.id == current_management.id %>
+                        <span class=" rounded-circle p-2 shadow-sm"style="background-color: #dcdefc;"data-toggle="modal" data-target="#exampleModal"><i class="fas fa-edit"  style=" color: #737df5; "></i></span>
+                      <% end %>
                     <% end %>
                   </div>
                 </div>

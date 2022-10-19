@@ -16,6 +16,10 @@ Rails.application.routes.draw do
     post 'shops/guest_sign_in', to: 'shops/sessions#guest_sign_in'
   end
 
+  devise_scope :management do
+    post 'managements/guest_sign_in', to: 'managements/sessions#guest_sign_in'
+  end
+
   scope module: :shop do
     resources :shops, only: [:edit, :update] do
       collection do
