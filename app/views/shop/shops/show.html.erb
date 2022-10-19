@@ -14,9 +14,11 @@
                   <div class="col-5">
                     <p class="card-text">店舗名: <%= shop.name %></p>
                     <p class="card-text">メールアドレス: <%= shop.email %></p>
-                    <% if  shop.id == current_shop.id %>
-                      <span class=" rounded-circle p-2 shadow-sm"style="background-color: #dcdefc;"data-toggle="modal" data-target="#exampleModal">
-                      <i class="fas fa-edit"  style=" color: #737df5; "></i></span>プロフィール編集
+                    <% if shop.name != "guestshop" %>
+                      <% if  shop.id == current_shop.id %>
+                        <span class=" rounded-circle p-2 shadow-sm"style="background-color: #dcdefc;"data-toggle="modal" data-target="#exampleModal">
+                        <i class="fas fa-edit"  style=" color: #737df5; "></i></span>プロフィール編集
+                      <% end %>
                     <% end %>
                     <% if current_shop != shop %>
                       <%= link_to  chat_path(shop),class: "text-reset" do %>

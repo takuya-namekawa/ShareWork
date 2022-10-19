@@ -23,6 +23,10 @@
         <%=  link_to  new_management_session_path do %>
           <button type="button" class="btn btn-primary font-weight-bold mb-3"style=" min-height: 60px;"><i class="fas fa-sign-in-alt"></i> Management LogIn!</button>
         <% end %>
+         <%= link_to 'ゲストログイン（閲覧用）', shops_guest_sign_in_path, method: :post %>
+        <%=  link_to destroy_shop_session_path, method: :delete, class: "nav-link text-light" do %>
+            <i class="fas fa-sign-out-alt mr-2"></i>LogOut
+          <% end %>
       </div>
     </div>
   </div>
