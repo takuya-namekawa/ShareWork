@@ -59,3 +59,7 @@ gem 'devise'
 gem 'mini_magick'
 gem 'image_processing'
 gem 'kaminari','~> 1.2.1'
+gem 'ransack'
+gem "net-smtp"
+gem "net-pop"
+gem "net-imap"

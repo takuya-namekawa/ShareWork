@@ -1,4 +1,6 @@
 class Shop::PostsController < ApplicationController
+  before_action :set_search, only: [:index, :search]
+
   def index
     @posts = Post.all
     @post = Post.new
@@ -37,8 +39,18 @@ class Shop::PostsController < ApplicationController
     @comment = CommentReview.new
   end
 
+  def search
+    @results = @search.result
+  end
+
   private
-    def post_params
-      params.require(:post).permit(:title, :appeal, :job, :name, :tag_id, :profile_image)
-    end
+
+  def set_search
+    @search = Post.ransack(params[:q])
+  end
+
+
+  def post_params
+    params.require(:post).permit(:title, :appeal, :job, :name, :tag_id, :profile_image)
+  end
 end
