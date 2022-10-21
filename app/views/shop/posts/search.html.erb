@@ -1,4 +1,97 @@
-<% @results.each do |search_post| %>
-<%= search_post.shop.name %>
-<%= search_post.tag.name %>
-<% end %>
+<div class="d-flex flex-row w-100" style="height: calc(100% - 50px)">
+  <!--サイドバーコンテンツ-->
+  <%= render "layouts/sidenav" %>
+    <div class="container mt-2">
+      <h4 class=" font-weight-bold mt-3 mb-4 bold border-bottom " style=" color: #6169d0; ">Search Result</h4>
+      <div class="row">
+        <div class="col">
+          <% @results.each do |search_post| %>
+           <div class="card mb-1 shadow-sm">
+              <div class="card-body  text-secondary font-weight-bold">
+                <div class="row">
+                  <div class="col-4">
+                    <%= image_tag search_post.get_profile_image(300,300),class: "img-fluid"%>
+                  </div>
+                  <div class="col-4">
+                    <p class="card-text"><%= search_post.created_at.strftime("%Y年%-m月%-d日%H時%M分") %></p>
+                    <p class="card-text ">役職　<%= search_post.job %></p>
+                    <p class="card-text">スタッフ名　<%= search_post.name %></p>
+                    <div class="row">
+                      <div class="col-5 mt-2">
+                        <%= image_tag search_post.shop.get_profile_image(80,80), class: "rounded"%><br>
+                      </div>
+                      <div =class="col-6 mt-2 ">
+                        <p class="card-text"><%=  search_post.shop.name %></p>
+                        <%= link_to post_path(search_post),class: "text-decoration-none mr-2" do %>
+                          <span class=" rounded-circle p-2 shadow-sm"style="background-color: #cdebf3;"><i class="fas fa-search"  style=" color: #39afd1; "></i></span>
+                        <% end %>
+                        <% if shop_signed_in? %>
+                          <% if search_post.shop_id == current_shop.id %>
+                            <span class=" rounded-circle p-2 shadow-sm"style="background-color: #dcdefc;"data-toggle="modal" data-target="#exampleModal_<%= search_post.id %>"><i class="fas fa-edit"  style=" color: #737df5; "></i></span>
+                            <%= link_to post_path(search_post), method: :delete,"data-confirm" => "本当に消しますか？",class: "text-decoration-none"  do %>
+                              <span class=" rounded-circle p-2 shadow-sm"style=" background-color: #f0b3bf;"><i class="fas fa-eraser" style=" color: #fa5c7c; "></i></span>
+                            <% end %>
+                          <% end %>
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <p class="card-text">タイトル　<%= search_post.title %></p>
+                    <p class="card-text">カテゴリー　<%=  search_post.tag.name %></p>
+                    <p class="card-text">コメント件数　<%= search_post.comment_reviews.count %>件</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+             <!-- Modal -->
+            <div class="modal fade" id="exampleModal_<%= search_post.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">投稿情報を編集する</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <%= form_with model: search_post, url: post_path(search_post) do |f| %>
+                    <div class="modal-body">
+                      <div class="form-group">
+                        <%= f.label :title, "タイトル" %>
+                        <%= f.text_field :title, class:"form-control" %>
+                      </div>
+                      <div class="form-group">
+                        <%= f.label :appeal, "アピールポイント" %>
+                        <%= f.text_area :appeal, rows:'10',placeholder: "自分の頑張ったところを紹介しよう" , class:"form-control"%>
+                      </div>
+                      <div class="form-group">
+                        <%= f.label :job, "役職" %>
+                        <%= f.text_field :job, class:"form-control" %>
+                      </div>
+                      <div class="form-group">
+                        <%= f.label :name, "担当者" %>
+                        <%= f.text_field :name, class:"form-control" %>
+                      </div>
+                      <div class="form-group">
+                        <%= f.label :ジャンル,class: "col-sm-3 col-form-label" %>
+                        <%= f.collection_select :tag_id, Tag.all, :id, :name, class: 'form-control'%>
+                      </div>
+                      <div class="form-group">
+                        <%= f.label :画像 ,class: "col-sm-3 col-form-label " %>
+                        <%= f.file_field :profile_image, accept: "image/" %>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary font-weight-bold" data-dismiss="modal">Close</button>
+                      <%= f.submit "Edit", class:"btn btn-success font-weight-bold" %>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div style="color: #6169d0;"><%= paginate @posts %></div>
+</div>

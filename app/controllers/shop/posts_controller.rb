@@ -41,6 +41,7 @@ class Shop::PostsController < ApplicationController
 
   def search
     @results = @search.result
+    @posts = Post.page(params[:page])
   end
 
   private
