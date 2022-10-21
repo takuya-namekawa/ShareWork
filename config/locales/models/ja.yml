@@ -1,0 +1,64 @@
+ja:
+  activerecord:
+    models:
+      mother_father_gift:
+    attributes:
+      mother_father_gift:
+        year: 年度
+        target_number: 目標件数
+        target_amount: 目標金額
+        total_amount: 達成金額
+        number: 件数
+      summer_gift:
+        year: 年度
+        target_number: 目標件数
+        target_amount: 目標金額
+        total_amount: 達成金額
+        number: 件数
+      year_end_gift:
+        year: 年度
+        target_number: 目標件数
+        target_amount: 目標金額
+        total_amount: 達成金額
+        number: 件数
+      day_of_the_ox:
+        year: 年度
+        booking_target: 予約目標
+        target_amount: 目標金額
+        booking_amount: 予約金額
+        store_sales_amount: 店売金額
+        total_amount: 達成金額
+      ehomaki:
+        year: 年度
+        booking_target: 予約目標
+        target_amount: 目標金額
+        booking_amount: 予約金額
+        store_sales_amount: 店売金額
+        total_amount: 達成金額
+      christmas:
+        year: 年度
+        booking_target: 予約目標
+        target_amount: 目標金額
+        booking_amount: 予約金額
+        store_sales_amount: 店売金額
+        total_amount: 達成金額
+        ff_amount: FF金額
+      post:
+        title: タイトル
+        appeal: アピール
+        job: 役職
+        name: 担当者
+      item:
+        name: 商品名
+        explanation: 商品説明
+        half_price: 提供価格
+        price: 正規価格
+        inventory: 在庫数
+      genre:
+        name: ジャンル名
+
+
+
+
+
+
