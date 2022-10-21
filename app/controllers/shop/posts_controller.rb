@@ -5,6 +5,15 @@ class Shop::PostsController < ApplicationController
     @posts = Post.page(params[:page])
     @post = Post.new
     @tags = Tag.all
+    @post_count = Post.count
+
+    if params[:top]
+      @posts = Post.top.page(params[:page])
+    elsif params[:old]
+      @posts = Post.old.page(params[:page])
+    else
+      @posts = Post.page(params[:page])
+    end
   end
 
   def create
