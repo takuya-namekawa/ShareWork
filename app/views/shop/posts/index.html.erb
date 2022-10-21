@@ -1,4 +1,4 @@
-<div class="d-flex flex-row w-100 " style="height: calc(100% - 50px)">
+<div class="d-flex flex-row w-100" style="height: calc(100% - 50px)">
   <!--サイドバーコンテンツ-->
   <%= render "layouts/sidenav" %>
     <div class="container mt-5">
@@ -12,20 +12,25 @@
               <% end %>
             </ul>
           <% end %>
-          <% if shop_signed_in? %>
-            <button type="button" class="btn btn-primary mb-3 font-weight-bold" data-toggle="modal" data-target="#exampleModal">
+          <div class="row">
+            <div class="col-4">
+               <% if shop_signed_in? %>
+            <button type="button" class="btn btn-primary  btn-block mb-3 font-weight-bold" data-toggle="modal" data-target="#exampleModal">
               <i class="fas fa-pen-nib mr-2"></i>Share!!
             </button>
           <% end %>
+            </div>
+            <div class="col-7">
+
             <%= search_form_for @search , url: search_posts_path do |f| %>
 
             <%= f.search_field :name_or_shop_name_or_tag_name_cont , class:"form-control shadow-sm border.border-5", placeholder:"店舗名、カテゴリから検索"%>
-            <%= button_tag :type => "submit", :class =>"btn btn-light shadow-sm border border-secondary " do %>
-              <i class="fa fa-search"></i>
+        
 
-
-        <% end %>
           <% end %>
+            </div>
+          </div>
+
           <% @posts.each do |post| %>
             <div class="card mb-1 shadow-sm">
               <div class="card-body  text-secondary font-weight-bold">

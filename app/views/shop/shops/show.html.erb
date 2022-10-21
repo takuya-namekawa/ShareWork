@@ -1,33 +1,42 @@
-<div class="d-flex flex-row w-100 pr-5 " style="height: calc(100% - 50px)">
+<div class="d-flex flex-row w-100" style="height: calc(100% - 50px)">
   <!--サイドバーコンテンツ-->
   <%= render "layouts/sidenav" %>
     <div class="container ">
+      <h4 class=" font-weight-bold mt-3 mb-4 bold border-bottom " style=" color: #6169d0; ">Share!!Result</h4>
       <div class="row">
-        <div class="col">
-          本日の投稿<%= @today_post.count %>件
-          昨日の投稿<%= @yesterday_post.count %>件
-          <% if @yesterday_post == 0 %>
-            前日の投稿は無し
-          <% else %>
-            <% @the_day_before = @today_post.count / @yesterday_post.count.to_f %>
-            前日比<%= (@the_day_before * 100).round %>%
-          <% end %>
-
-          今週の投稿<%= @this_week_post.count %>件
-          先週の投稿<%= @last_week_post.count %>件
-          <% if @last_week_post.count == 0 %>
-            先週の投稿は無し
-          <% else %>
-            <% @the_week_before = @this_week_post.count / @last_week_post.count.to_f %>
-            先週比<%= (@the_week_before * 100).round %>%
-          <% end %>
-          
-          
-          
+        <div class="col-6">
+          <div class="card mb-1 shadow-sm">
+            <div class="card-body  text-secondary font-weight-bold">
+              本日の投稿数 <%= @today_post.count %>件
+              昨日の投稿数 <%= @yesterday_post.count %>件
+              <% if @yesterday_post == 0 %>
+                前日の投稿は無し
+              <% else %>
+                <% @the_day_before = @today_post.count / @yesterday_post.count.to_f %>
+                前日比 <%= (@the_day_before * 100).round %>%
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="card mb-1 shadow-sm">
+            <div class="card-body  text-secondary font-weight-bold">
+              今週の投稿数 <%= @this_week_post.count %>件
+              先週の投稿数 <%= @last_week_post.count %>件
+              <% if @last_week_post.count == 0 %>
+                先週の投稿は無し
+              <% else %>
+                <% @the_week_before = @this_week_post.count / @last_week_post.count.to_f %>
+                先週比 <%= (@the_week_before * 100).round %>%
+              <% end %>
+            </div>
+          </div>
         </div>
       </div>
+
       <div class="row">
         <div class="col-12">
+          <h4 class=" font-weight-bold mt-3 mb-4 bold border-bottom " style=" color: #6169d0; ">ShopEdit & Chat</h4>
           <% @shops.each do |shop| %>
             <div class="card mb-1 shadow-sm">
               <div class="card-body  text-secondary font-weight-bold">
