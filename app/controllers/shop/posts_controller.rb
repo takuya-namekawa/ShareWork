@@ -2,7 +2,7 @@ class Shop::PostsController < ApplicationController
   before_action :set_search, only: [:index, :search]
 
   def index
-    @posts = Post.all
+    @posts = Post.page(params[:page])
     @post = Post.new
     @tags = Tag.all
   end
@@ -48,7 +48,6 @@ class Shop::PostsController < ApplicationController
   def set_search
     @search = Post.ransack(params[:q])
   end
-
 
   def post_params
     params.require(:post).permit(:title, :appeal, :job, :name, :tag_id, :profile_image)

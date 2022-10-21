@@ -23,13 +23,6 @@ class Shop < ApplicationRecord
     profile_image.variant(resize_to_limit: [width, height]).processed
   end
 
-  # def self.guest
-  #   find_or_create_by!(name: 'guestshop' ,email: 'guest@example.com') do |shop|
-  #     shop.password = SecureRandom.urlsafe_base64
-  #     shop.name = "guestshop"
-  #   end
-  # end
-
   def self.guest
     find_or_initialize_by(email: "guest@guest.com") do |shop|
       shop.attributes = { password: SecureRandom.urlsafe_base64,
@@ -37,5 +30,6 @@ class Shop < ApplicationRecord
       shop.save
     end
   end
+
 
 end

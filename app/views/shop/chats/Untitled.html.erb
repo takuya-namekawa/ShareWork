@@ -1,0 +1,57 @@
+  scope :created_today, -> { where(created_at: Time.zone.now.all_day) } 
+  scope :created_yesterday, -> { where(created_at: 1.day.ago.all_day) } 
+  scope :created_this_week, -> { where(created_at: 6.day.ago.beginning_of_day..Time.zone.now.end_of_day) } 
+  scope :created_last_week, -> { where(created_at: 2.week.ago.beginning_of_day..1.week.ago.end_of_day) } 
+  
+    @books = @user.books.page(params[:page]).reverse_order
+    @today_book =  @books.created_today
+    @yesterday_book = @books.created_yesterday
+    @this_week_book = @books.created_this_week
+    @last_week_book = @books.created_last_week
+  
+  <%= current_user.books.where('created_at > ?', Date.today).count %>
+  
+   <table class="table">
+  <thead>
+  <tr>
+   <th>今日の投稿</th>
+   <th>昨日の投稿</th>
+   <th>前日比</th>
+  </tr>
+  </thead>
+   <tbody>
+    <tr>
+     <td><%= @today_book.count %></td>
+     <td><%= @yesterday_book.count %></td>
+     <% if @yesterday_book.count == 0 %>
+     <td>前日の投稿はなし</td>
+     <% else %>
+       　<td><% @the_day_before =   @today_book.count / @yesterday_book.count.to_f  %>
+       　<%= (@the_day_before * 100).round %>%</td>
+     <% end %>
+     </tr>
+   </tbody>
+  </table>
+
+
+  <table class="table">
+  <thead>
+  <tr>
+   <th>今週の投稿</th>
+   <th>先週の投稿</th>
+   <th>比</th>
+  </tr>
+  </thead>
+   <tbody>
+    <tr>
+     <td><%= @this_week_book.count %></td>
+     <td><%= @last_week_book.count %></td>
+     <% if @last_week_book.count == 0 %>
+     <td>先週の投稿はなし</td>
+     <% else %>
+       　<td><% @the_week_before =   @this_week_book.count / @last_week_book.count.to_f  %>
+       　<%= (@the_week_before * 100).round %>%</td>
+     <% end %>
+     </tr>
+   </tbody>
+  </table>

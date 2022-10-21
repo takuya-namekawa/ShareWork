@@ -3,6 +3,30 @@
   <%= render "layouts/sidenav" %>
     <div class="container ">
       <div class="row">
+        <div class="col">
+          本日の投稿<%= @today_post.count %>件
+          昨日の投稿<%= @yesterday_post.count %>件
+          <% if @yesterday_post == 0 %>
+            前日の投稿は無し
+          <% else %>
+            <% @the_day_before = @today_post.count / @yesterday_post.count.to_f %>
+            前日比<%= (@the_day_before * 100).round %>%
+          <% end %>
+
+          今週の投稿<%= @this_week_post.count %>件
+          先週の投稿<%= @last_week_post.count %>件
+          <% if @last_week_post.count == 0 %>
+            先週の投稿は無し
+          <% else %>
+            <% @the_week_before = @this_week_post.count / @last_week_post.count.to_f %>
+            先週比<%= (@the_week_before * 100).round %>%
+          <% end %>
+          
+          
+          
+        </div>
+      </div>
+      <div class="row">
         <div class="col-12">
           <% @shops.each do |shop| %>
             <div class="card mb-1 shadow-sm">
