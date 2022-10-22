@@ -1,18 +1,18 @@
-<div class="d-flex flex-row w-100 pr-5 " style="height: calc(100% - 50px)">
+<div class="d-flex flex-row w-100" style="height: calc(100% - 50px)">
   <!--サイドバーコンテンツ-->
   <%= render "layouts/sidenav" %>
     <div class="container mt-5">
-      <h4 class=" font-weight-bold mt-3 mb-3 bold border-bottom " style=" color: #6169d0; ">All-Management　&　All-Shop</h4>
+      <h4 class=" font-weight-bold mt-3 mb-3 bold border-bottom " style=" color: #6169d0; ">All-Management & All-Shop</h4>
       <div class="row">
-        <div class="col-6">
+        <div class="col-12 col-lg-6 col-md-6 col-sm-12">
           <% @managements.each do |management| %>
             <div class="card mb-1 shadow-sm">
               <div class="card-body  text-secondary font-weight-bold">
                 <div class="row">
-                  <div class="col-4">
+                  <div class="col-4 col-lg-4 col-md-4 col-sm-4">
                     <%= image_tag management.get_profile_image(100,100), class: "rounded-circle"%>
                   </div>
-                  <div class="col-5">
+                  <div class="col-7 col-lg-5 col-md-12 col-sm-7">
                     <p class="card-text">役職: <%= management.job %></p>
                     <p class="card-text">氏名: <%= management.name %></p>
                     <p class="card-text">emal: <%= management.email %></p>
@@ -27,15 +27,15 @@
             </div>
           <% end %>
         </div>
-        <div class="col-6">
+        <div class="col-12 col-lg-6 col-md-6 col-sm-12">
           <% @shops.each do |shop| %>
             <div class="card mb-1 shadow-sm">
               <div class="card-body  text-secondary font-weight-bold">
                 <div class="row">
-                  <div class="col-3">
-                    <%= image_tag shop.get_profile_image(100,100), class: "rounded-circle"%>
+                  <div class="col-4 col-lg-4 col-md-4">
+                    <%= image_tag shop.get_profile_image(100,100), class: "rounded-circle "%>
                   </div>
-                  <div class="col-6">
+                  <div class="col-6 col-lg-6 col-md-12">
                     <p class="card-text">店舗名: <%= shop.name %></p>
                     <p class="card-text">emal: <%= shop.email %></p>
                   </div>
