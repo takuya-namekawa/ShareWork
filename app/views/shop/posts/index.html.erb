@@ -13,45 +13,44 @@
             </ul>
           <% end %>
           <div class="row">
-            <div class="col-4">
+            <div class="col-lg-4 col-md-4 col-sm-12">
               <% if shop_signed_in? %>
                 <button type="button" class="btn btn-primary  btn-block mb-3 font-weight-bold" data-toggle="modal" data-target="#exampleModal">
                   <i class="fas fa-pen-nib mr-2"></i>Share!!
                 </button>
               <% end %>
             </div>
-            <div class="col-7">
+            <div class="col-lg-7 col-md-7 col-sm-12">
               <%= search_form_for @search , url: search_posts_path do |f| %>
                 <%= f.search_field :name_or_shop_name_or_tag_name_cont , class:"form-control shadow-sm border.border-5", placeholder:"店舗名、カテゴリから検索"%>
               <% end %>
             </div>
           </div>
           <div class="row">
-            <div class="col-2">
+            <div class="col-12 col-lg-12 col-md-12 col-sm-12 mt-2">
               <h5 class=" text-secondary font-weight-bold">投稿数合計 <%= @post_count %>件</h5>
             </div>
-            <div class="col-2">
+            <div class="col-12 col-lg-12 col-md-12 col-sm-12 ">
               <button type="button"class="pt-1 pb-1 rounded border-0 font-weight-bold mb-2"style="background-color: #888b8e; color: #ffffff;"><%= link_to "新着順", posts_path(top: "true"), class: "text-reset text-decoration-none" %></button>
               <button type="button"class="pt-1 pb-1 rounded border-0 font-weight-bold mb-2 ml-2"style="background-color: #888b8e; color: #ffffff;"><%= link_to "登録順", posts_path(old: "true"), class: "text-reset text-decoration-none" %></button>
-
             </div>
           </div>
           <% @posts.each do |post| %>
             <div class="card mb-1 shadow-sm">
               <div class="card-body  text-secondary font-weight-bold">
                 <div class="row">
-                  <div class="col-4">
+                  <div class="col-12 col-lg-4 col-md-6 col-sm-12">
                     <%= image_tag post.get_profile_image(300,300),class: "img-fluid"%>
                   </div>
-                  <div class="col-4">
+                  <div class="col-12 col-lg-4 col-md-6 col-sm-12">
                     <p class="card-text"><%= post.created_at.strftime("%Y年%-m月%-d日%H時%M分") %></p>
                     <p class="card-text ">役職　<%= post.job %></p>
                     <p class="card-text">スタッフ名　<%= post.name %></p>
                       <div class="row">
-                        <div class="col-5 mt-2">
-                          <%= image_tag post.shop.get_profile_image(80,80), class: "rounded"%><br>
+                        <div class="col-5 col-lg-5   mt-2">
+                          <%= image_tag post.shop.get_profile_image(80,80), class: "rounded img-fluid"%><br>
                         </div>
-                        <div =class="col-6 mt-2 ">
+                        <div =class="col-6 col-lg-6  mt-2 ">
                           <p class="card-text"><%=  post.shop.name %></p>
                           <%= link_to post_path(post),class: "text-decoration-none mr-2" do %>
                             <span class=" rounded-circle p-2 shadow-sm"style="background-color: #cdebf3;"><i class="fas fa-search"  style=" color: #39afd1; "></i></span>
@@ -60,14 +59,14 @@
                             <% if post.shop_id == current_shop.id %>
                               <span class=" rounded-circle p-2 shadow-sm"style="background-color: #dcdefc;"data-toggle="modal" data-target="#exampleModal_<%= post.id %>"><i class="fas fa-edit"  style=" color: #737df5; "></i></span>
                               <%= link_to post_path(post), method: :delete,"data-confirm" => "本当に消しますか？",class: "text-decoration-none"  do %>
-                                <span class=" rounded-circle p-2 shadow-sm"style=" background-color: #f0b3bf;"><i class="fas fa-eraser" style=" color: #fa5c7c; "></i></span>
+                                <span class=" rounded-circle p-2 shadow-sm ml-1"style=" background-color: #f0b3bf;"><i class="fas fa-eraser" style=" color: #fa5c7c; "></i></span>
                               <% end %>
                             <% end %>
                           <% end %>
                         </div>
                       </div>
                   </div>
-                  <div class="col-4">
+                  <div class="col-12 col-lg-4 col-md-12 col-sm-12">
                     <p class="card-text">タイトル　<%= post.title %></p>
                     <p class="card-text">カテゴリー　<%=  post.tag.name %></p>
                     <p class="card-text">コメント件数　<%= post.comment_reviews.count %>件</p>

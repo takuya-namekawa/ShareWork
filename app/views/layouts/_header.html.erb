@@ -112,20 +112,29 @@
 
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-
+          <%=  link_to  new_shop_registration_path , class: "nav-link text-light" do %>
+            <i class="fas fa-plus-circle"></i> Shop SignUp!
+          <% end %>
+        </li>
         </li>
         <li class="nav-item active">
-
+          <%=  link_to  new_management_registration_path , class: "nav-link text-light" do %>
+            <i class="fas fa-plus-circle"></i> Management SignUp!
+          <% end %>
         </li>
         <li class="nav-item active">
-
+          <%=  link_to  shops_guest_sign_in_path, method: :post , class: "nav-link text-light" do %>
+            <i class="fas fa-plus-circle"></i> GestShop LogIn!
+          <% end %>
         </li>
         <li class="nav-item active">
-
+          <%=  link_to  managements_guest_sign_in_path, method: :post , class: "nav-link text-light" do %>
+            <i class="fas fa-plus-circle"></i> GestManagement LogIn!
+          <% end %>
         </li>
       </ul>
       <span class="navbar-text pr-3">
-        <p class=" font-weight-bold  border-bottom  border-dark" style="color: #ad9168; ">Welcome!!　ゲストさん</p>
+        <p class=" font-weight-bold  border-bottom  border-dark" style="color: #ffffff; ">Welcome!!ゲストさん</p>
       </span>
     <% end %>
   </div>
