@@ -1,4 +1,4 @@
-<div class="d-flex flex-row w-100 pr-5 " style="height: calc(100% - 50px)">
+<div class="d-flex flex-row w-100" style="height: calc(100% - 50px)">
   <!--サイドバーコンテンツ-->
   <%= render "layouts/sidenav" %>
     <div class="container mt-5">
@@ -12,12 +12,18 @@
               <% end %>
             </ul>
           <% end %>
-          <% if shop_signed_in? %>
-            <button type="button" class="btn btn-primary mb-3 mr-4  font-weight-bold" data-toggle="modal" data-target="#exampleModal">
-              Report!!
-            </button>
-          <% end %>
-          <span class=" font-weight-bold " style=" color: #6169d0; ">お中元ギフト実績(全店舗合計)</span>
+         <div class="row">
+            <div class="col-4 col-lg-4 col-md-4 col-sm-4">
+              <% if shop_signed_in? %>
+                <button type="button" class="btn btn-primary  btn-block mb-3 mr-4  font-weight-bold" data-toggle="modal" data-target="#exampleModal">
+                  Report!!
+                </button>
+              <% end %>
+            </div>
+            <div class="col-12 col-lg-4 col-md-12 col-sm-12">
+              <span class=" font-weight-bold " style=" color: #6169d0; ">お中元ギフト実績(全店舗合計)</span>
+            </div>
+          </div>
           <% @summer_gifts.each do |gift| %>
             <% @shop_total_target_number += gift.target_number %>
             <% @shop_tptal_target_amount += gift.target_amount %>
