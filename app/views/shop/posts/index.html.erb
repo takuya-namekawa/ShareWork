@@ -27,10 +27,10 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-12 col-lg-12 col-md-12 col-sm-12 mt-2">
+            <div class="col-12 col-lg-2 col-md-12 col-sm-12 mt-2">
               <h5 class=" text-secondary font-weight-bold">投稿数合計 <%= @post_count %>件</h5>
             </div>
-            <div class="col-12 col-lg-12 col-md-12 col-sm-12 ">
+            <div class="col-12 col-lg-2 col-md-12 col-sm-12 ">
               <button type="button"class="pt-1 pb-1 rounded border-0 font-weight-bold mb-2"style="background-color: #888b8e; color: #ffffff;"><%= link_to "新着順", posts_path(top: "true"), class: "text-reset text-decoration-none" %></button>
               <button type="button"class="pt-1 pb-1 rounded border-0 font-weight-bold mb-2 ml-2"style="background-color: #888b8e; color: #ffffff;"><%= link_to "登録順", posts_path(old: "true"), class: "text-reset text-decoration-none" %></button>
             </div>
