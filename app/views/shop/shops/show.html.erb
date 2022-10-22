@@ -1,3 +1,4 @@
+
 <div class="d-flex flex-row w-100" style="height: calc(100% - 50px)">
   <!--サイドバーコンテンツ-->
   <%= render "layouts/sidenav" %>
@@ -9,7 +10,7 @@
             <div class="card-body  text-secondary font-weight-bold">
               本日の投稿数 <%= @today_post.count %>件
               昨日の投稿数 <%= @yesterday_post.count %>件
-              <% if @yesterday_post == 0 %>
+              <% if @yesterday_post.count == 0 %>
                 前日の投稿は無し
               <% else %>
                 <% @the_day_before = @today_post.count / @yesterday_post.count.to_f %>
@@ -33,7 +34,11 @@
           </div>
         </div>
       </div>
-
+      <div class="row">
+        <div class="col">
+          <canvas id="myChart" width="300" height="100"> </canvas>
+        </div>
+      </div>
       <div class="row">
         <div class="col-12 col-lg-12">
           <h4 class=" font-weight-bold mt-3 mb-4 bold border-bottom " style=" color: #6169d0; ">ShopEdit & Chat</h4>
@@ -101,3 +106,19 @@
       </div>
     </div>
 </div>
+ <script>
+    var ctx = document.getElementById("myChart").getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['6日前', '5日前', '4日前', '3日前', '2日前', '1日前', '今日'],
+            datasets: [{
+                label: "投稿数",
+                data: [<%= @posts.created_6days.count %>, <%= @posts.created_5days.count %>, <%= @posts.created_4days.count %>, <%= @posts.created_3days.count %>, <%= @posts.created_2days.count %>, <%= @yesterday_post.count %>, <%= @today_post.count%>],
+                backgroundColor: 'rgba(255, 80, 120, 1.0)',
+                borderColor: 'rgba(255, 80, 120, 1.0)',
+                fill: false
+            }]
+        },
+    });
+</script>

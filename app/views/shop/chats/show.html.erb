@@ -25,7 +25,7 @@
                     <span style="text-align: left;">
                       <span class="pagination justify-content-start "style="margin-bottom: 7px; margin-top: 25px;">
                         <%= image_tag chat.shop.get_profile_image(50,50), class: "rounded-circle mr-3" %>
-                        <%= chat.shop.name %>
+                        <%= chat.shop.name %><br>
                         <%= chat.created_at.strftime("%Y年%m月%d日%H時%M分") %>
                       </span>
                         <div class="card mb-1 ">
@@ -37,9 +37,9 @@
                     <% else %>
                     <span style="text-align: right; ">
                       <span class="pagination justify-content-end"style="margin-bottom: 7px; margin-top: 25px;">
-                        <%= image_tag chat.shop.get_profile_image(50,50), class: "rounded-circle mr-3" %>
-                        <%= chat.shop.name %>
+                        <%= chat.shop.name %><br>
                         <%= chat.created_at.strftime("%Y年%m月%d日%H時%M分") %>
+                        <%= image_tag chat.shop.get_profile_image(50,50), class: "rounded-circle mr-3 ml-3" %>
                       </span>
                       <div class="card mb-1 ">
                         <div class="card-body  text-secondary font-weight-bold"style="background-color: #afd9dc;">
