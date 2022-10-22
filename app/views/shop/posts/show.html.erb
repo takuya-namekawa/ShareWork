@@ -1,17 +1,17 @@
 <div class="d-flex flex-row w-100" style="height: calc(100% - 50px)">
   <!--サイドバーコンテンツ-->
   <%= render "layouts/sidenav" %>
-    <div class="container mt-4 ml-3">
+    <div class="container mt-4 ">
       <h4 class=" font-weight-bold mt-3 mb-3 bold border-bottom " style=" color: #6169d0; ">Share!!Work</h4>
       <div class="row">
         <div class="card mb-1 shadow-sm">
           <div class="card-body  text-secondary font-weight-bold">
             <div class="col-12">
               <div class="row">
-                <div class="col-8 ">
+                <div class="col-12 col-lg-8 col-md-12 col-sm-12">
                   <%= image_tag @post.get_profile_image(500,500),class: "img-fluid"%>
                 </div>
-                <div class="col-4 ">
+                <div class="col-12 col-lg-4 col-md-12 col-sm-12">
                   <p class="card-text"><%=  @post.shop.name %></p>
                   <p class="card-text">役職:<%=  @post.job %></p>
                   <p class="card-text">スタッフ名:<%=  @post.name %></p>
