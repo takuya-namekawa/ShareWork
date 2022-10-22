@@ -19,5 +19,10 @@
       <p class="alert text-center  font-weight-bold"style="color: #ffffff; background-color: #455468;margin-bottom: -2px;"><%= alert %></p>
     <% end %>
     <%= yield %>
+    <span id="back">
+      <a href="#">
+        <img src=<%= asset_path 'arrow.png' %>  alt="">
+      </a>
+    </span>
   </body>
 </html>

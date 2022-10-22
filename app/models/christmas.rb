@@ -1,13 +1,12 @@
 class Christmas < ApplicationRecord
   belongs_to :shop
 
-  with_options presence: true do
-    validates :year
-    validates :booking_target
-    validates :target_amount
-    validates :booking_amount
-    validates :store_sales_amount
-    validates :total_amount
-    validates :ff_amount
-  end
+  validates :year, presence: true, numericality: {only_integer: true}
+  validates :booking_target, presence: true, numericality: {only_integer: true}
+  validates :target_amount, presence: true, numericality: {only_integer: true}
+  validates :booking_amount, presence: true, numericality: {only_integer: true}
+  validates :store_sales_amount, presence: true, numericality: {only_integer: true}
+  validates :total_amount, presence: true, numericality: {only_integer: true}
+  validates :ff_amount, presence: true, numericality: {only_integer: true}
+
 end

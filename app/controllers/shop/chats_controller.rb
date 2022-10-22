@@ -20,8 +20,11 @@ class Shop::ChatsController < ApplicationController
 
   def create
     @chat = current_shop.chats.new(chat_params)
-    @chat.save
-    redirect_to request.referer
+    if @chat.save
+      redirect_to request.referer
+    else
+      redirect_to request.referer,alert: "メッセージを入力してください"
+    end
   end
 
   private
