@@ -1,0 +1,8 @@
+ before_action :user_authenticate
+ 
+   def user_authenticate
+    if shop_signed_in? || management_signed_in?
+    else
+      redirect_to root_path
+    end
+  end

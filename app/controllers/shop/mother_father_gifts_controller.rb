@@ -1,4 +1,6 @@
 class Shop::MotherFatherGiftsController < ApplicationController
+  before_action :user_authenticate
+
   def index
 
     @mother_father_gift = MotherFatherGift.new
@@ -63,7 +65,7 @@ class Shop::MotherFatherGiftsController < ApplicationController
       @mother_father_gifts = @mother_father_gifts.page(params[:page])
 
       render :index
-    end  
+    end
   end
 
   def destroy
@@ -74,7 +76,15 @@ class Shop::MotherFatherGiftsController < ApplicationController
 
 
   private
-    def mother_father_gift_params
-      params.require(:mother_father_gift).permit(:year, :target_number, :target_amount, :total_amount, :number, :shop_id)
+
+  def user_authenticate
+    if shop_signed_in? || management_signed_in?
+    else
+      redirect_to root_path
     end
+  end
+
+  def mother_father_gift_params
+    params.require(:mother_father_gift).permit(:year, :target_number, :target_amount, :total_amount, :number, :shop_id)
+  end
 end

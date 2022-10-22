@@ -1,4 +1,6 @@
 class Shop::DayOfTheOxesController < ApplicationController
+  before_action :user_authenticate
+  
   def index
 
     @day_of_the_ox = DayOfTheOx.new
@@ -66,7 +68,15 @@ class Shop::DayOfTheOxesController < ApplicationController
   end
 
   private
-    def day_of_the_ox_params
-      params.require(:day_of_the_ox).permit(:year, :booking_target,:booking_amount, :target_amount,  :store_sales_amount, :total_amount, :shop_id)
+  
+  def user_authenticate
+    if shop_signed_in? || management_signed_in?
+    else
+      redirect_to root_path
     end
+  end
+  
+  def day_of_the_ox_params
+    params.require(:day_of_the_ox).permit(:year, :booking_target,:booking_amount, :target_amount,  :store_sales_amount, :total_amount, :shop_id)
+  end
 end

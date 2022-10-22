@@ -1,5 +1,6 @@
 class Shop::PostsController < ApplicationController
   before_action :set_search, only: [:index, :search]
+  before_action :user_authenticate
 
   def index
     @posts = Post.page(params[:page])
@@ -54,6 +55,13 @@ class Shop::PostsController < ApplicationController
   end
 
   private
+
+  def user_authenticate
+    if shop_signed_in? || management_signed_in?
+    else
+      redirect_to root_path
+    end
+  end
 
   def set_search
     @search = Post.ransack(params[:q])

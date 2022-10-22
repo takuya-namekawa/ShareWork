@@ -1,4 +1,6 @@
 class Shop::YearEndGiftsController < ApplicationController
+  before_action :user_authenticate
+  
   def index
 
     @year_end_gift = YearEndGift.new
@@ -70,7 +72,15 @@ class Shop::YearEndGiftsController < ApplicationController
   end
 
   private
-    def year_end_gift_params
-      params.require(:year_end_gift).permit(:year, :target_number, :target_amount, :total_amount, :number, :shop_id)
+  
+  def user_authenticate
+    if shop_signed_in? || management_signed_in?
+    else
+      redirect_to root_path
     end
+  end
+  
+  def year_end_gift_params
+    params.require(:year_end_gift).permit(:year, :target_number, :target_amount, :total_amount, :number, :shop_id)
+  end
 end

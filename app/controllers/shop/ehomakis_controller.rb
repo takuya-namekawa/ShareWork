@@ -1,4 +1,6 @@
 class Shop::EhomakisController < ApplicationController
+  before_action :user_authenticate
+
   def index
 
     @ehomaki = Ehomaki.new
@@ -22,7 +24,7 @@ class Shop::EhomakisController < ApplicationController
     if @ehomaki.save
       redirect_to ehomakis_path, notice: "投稿に成功しました"
     else
-      
+
       @shop_total_amount = 0
       @shop_tptal_booking_target = 0
       @shop_store_sales_amount = 0
@@ -44,7 +46,7 @@ class Shop::EhomakisController < ApplicationController
     if @ehomaki.update(ehomaki_params)
       redirect_to ehomakis_path, notice: "投稿を更新しました"
     else
-     
+
       @shop_total_amount = 0
       @shop_tptal_booking_target = 0
       @shop_store_sales_amount = 0
@@ -68,7 +70,15 @@ class Shop::EhomakisController < ApplicationController
   end
 
   private
-    def ehomaki_params
-      params.require(:ehomaki).permit(:year, :booking_target,:booking_amount, :target_amount,  :store_sales_amount, :total_amount, :shop_id)
+
+  def user_authenticate
+    if shop_signed_in? || management_signed_in?
+    else
+      redirect_to root_path
     end
+  end
+
+  def ehomaki_params
+    params.require(:ehomaki).permit(:year, :booking_target,:booking_amount, :target_amount,  :store_sales_amount, :total_amount, :shop_id)
+  end
 end

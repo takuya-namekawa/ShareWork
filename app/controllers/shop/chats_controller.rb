@@ -1,4 +1,6 @@
 class Shop::ChatsController < ApplicationController
+  before_action :authenticate_shop!
+
   def show
     @shop = Shop.find(params[:id])
     rooms = current_shop.shop_rooms.pluck(:room_id)

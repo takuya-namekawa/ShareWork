@@ -1,4 +1,6 @@
 class Management::ManagementsController < ApplicationController
+  before_action :authenticate_management!
+
   def show
     @management = current_management
     @shops = Shop.all

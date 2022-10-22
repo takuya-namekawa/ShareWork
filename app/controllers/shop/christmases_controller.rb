@@ -1,4 +1,6 @@
 class Shop::ChristmasesController < ApplicationController
+  before_action :user_authenticate
+
   def index
 
     @christmas = Christmas.new
@@ -72,7 +74,16 @@ class Shop::ChristmasesController < ApplicationController
   end
 
   private
-    def christmas_params
-      params.require(:christmas).permit(:year, :booking_target,:booking_amount, :target_amount,  :store_sales_amount, :total_amount, :shop_id, :ff_amount)
+
+  def user_authenticate
+    if shop_signed_in? || management_signed_in?
+    else
+      redirect_to root_path
     end
+  end
+
+
+  def christmas_params
+    params.require(:christmas).permit(:year, :booking_target,:booking_amount, :target_amount,  :store_sales_amount, :total_amount, :shop_id, :ff_amount)
+  end
 end

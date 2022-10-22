@@ -1,4 +1,6 @@
 class Shop::SummerGiftsController < ApplicationController
+  before_action :user_authenticate
+  
   def index
 
     @summer_gift = SummerGift.new
@@ -69,7 +71,15 @@ class Shop::SummerGiftsController < ApplicationController
   end
 
   private
-    def summer_gift_params
-      params.require(:summer_gift).permit(:year, :target_number, :target_amount, :total_amount, :number, :shop_id)
+  
+  def user_authenticate
+    if shop_signed_in? || management_signed_in?
+    else
+      redirect_to root_path
     end
+  end
+  
+  def summer_gift_params
+    params.require(:summer_gift).permit(:year, :target_number, :target_amount, :total_amount, :number, :shop_id)
+  end
 end
