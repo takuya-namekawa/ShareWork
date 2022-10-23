@@ -65,4 +65,4 @@ gem "net-smtp"
 gem "net-pop"
 gem "net-imap"
 gem "chartkick"
-gem "aws-sdk-s3", require: false
+
