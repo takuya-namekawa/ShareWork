@@ -62,9 +62,9 @@
                   <%= gift.year %>年度
                 </td>
                 <td>目標件数:<%=  gift.target_number %>件</td>
-                <td>目標金額:<%=  gift.target_amount %>円</td>
+                <td>目標金額:<%=  gift.target_amount.to_s(:delimited) %>円</td>
                 <td>件数:<%=  gift.number %>件</td>
-                <td>達成金額:<%=  gift.total_amount %>円</td>
+                <td>達成金額:<%=  gift.total_amount.to_s(:delimited) %>円</td>
                 <td>
                   <% if shop_signed_in? %>
                     <% if gift.shop_id == current_shop.id %>

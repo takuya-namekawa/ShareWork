@@ -58,11 +58,11 @@
                 <td><%= eel.shop.name %><br>
                 <%= eel.year %>年度</td>
                 <td>
-                  予約目標:<%=  eel.booking_target %>円<br>
+                  予約目標:<%=  eel.booking_target.to_s(:delimited) %>円<br>
                   目標金額:<%=  eel.target_amount.to_s(:delimited) %>円
                 </td>
-                <td>予約金額:<%=  eel.booking_amount %>円</td>
-                <td>店売金額:<%=  eel.store_sales_amount %>円</td>
+                <td>予約金額:<%=  eel.booking_amount.to_s(:delimited) %>円</td>
+                <td>店売金額:<%=  eel.store_sales_amount.to_s(:delimited) %>円</td>
                 <td>達成金額:<%=  eel.total_amount.to_s(:delimited) %>円</td>
                 <td>
                   <% if shop_signed_in? %>

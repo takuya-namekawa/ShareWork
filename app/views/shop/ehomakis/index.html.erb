@@ -60,11 +60,11 @@
                   <%= ehomaki.year %>年度
                 </td>
                 <td>
-                  予約目標:<%=  ehomaki.booking_target %>円<br>
-                  目標金額:<%=  ehomaki.target_amount %>円
+                  予約目標:<%=  ehomaki.booking_target.to_s(:delimited) %>円<br>
+                  目標金額:<%=  ehomaki.target_amount.to_s(:delimited) %>円
                 </td>
                 <td>予約金額:<%=  ehomaki.booking_amount.to_s(:delimited) %>円</td>
-                <td>店売金額:<%=  ehomaki.store_sales_amount %>円</td>
+                <td>店売金額:<%=  ehomaki.store_sales_amount.to_s(:delimited) %>円</td>
                 <td>達成金額:<%=  ehomaki.total_amount.to_s(:delimited) %>円</td>
                 <td>
                   <% if shop_signed_in? %>
