@@ -69,10 +69,7 @@
                   <% if shop_signed_in? %>
                     <% if gift.shop_id == current_shop.id %>
                       <td>
-                        <span class=" rounded-circle p-2 shadow-sm"style="background-color: #ffffff;"data-toggle="modal" data-target="#exampleModal_<%= gift.id %>"><i class="fas fa-edit"  style=" color: #6169d0; "></i></span>
-                      </td>
-                      <br>
-                      <td>
+                        <span class=" rounded-circle p-2 shadow-sm mr-3"style="background-color: #ffffff;"data-toggle="modal" data-target="#exampleModal_<%= gift.id %>"><i class="fas fa-edit"  style=" color: #6169d0; "></i></span>
                         <%= link_to  summer_gift_path(gift), method: :delete,"data-confirm" => "本当に消しますか？" do %>
                           <span class="bg-white rounded-circle p-2 shadow-sm"><i class="fas fa-eraser" style=" color: #6169d0; "></i></span>
                         <% end %>
