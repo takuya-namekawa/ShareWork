@@ -29,7 +29,7 @@
             <% @shop_tptal_booking_target += christmas.booking_amount %>
             <% @shop_store_sales_amount += christmas.store_sales_amount %>
           <% end %>
-          <div class=" bg-white p-3 shadow-sm  text-secondary font-weight-bold">
+          <div class="mb-2 bg-white p-3 shadow-sm  text-secondary font-weight-bold">
             店売合計金額:<%= @shop_store_sales_amount.to_s(:delimited) %>円
             予約合計金額:<%= @shop_tptal_booking_target.to_s(:delimited) %>円
             合計達成金額:<%= @shop_total_amount.to_s(:delimited) %>円
