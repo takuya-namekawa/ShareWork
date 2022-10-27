@@ -54,16 +54,14 @@
                         </div>
                         <div =class="col-6 col-lg-6  mt-2 ">
                           <p class="card-text"><%=  post.shop.name %></p>
-                          <div data-toggle="tooltip" title="投稿する!!">
                           <%= link_to post_path(post),class: "text-decoration-none mr-2" do %>
-                            <span class=" rounded-circle p-2 shadow-sm"style="background-color: #cdebf3;"><i class="fas fa-search"  style=" color: #39afd1; "></i></span>
+                            <span data-toggle="tooltip" data-placement="bottom" title="詳細を見る" class=" rounded-circle p-2 shadow-sm"style="background-color: #cdebf3;"><i class="fas fa-search"  style=" color: #39afd1; "></i></span>
                           <% end %>
-                          </div>
                           <% if shop_signed_in? %>
                             <% if post.shop_id == current_shop.id %>
-                              <span class=" rounded-circle p-2 shadow-sm"style="background-color: #dcdefc;"data-toggle="modal" data-target="#exampleModal_<%= post.id %>"><i class="fas fa-edit"  style=" color: #737df5; "></i></span>
+                              <span data-toggle="tooltip" data-placement="bottom" title="編集する" ><span class=" rounded-circle p-2 shadow-sm"style="background-color: #dcdefc;"data-toggle="modal" data-target="#exampleModal_<%= post.id %>"><i class="fas fa-edit"  style=" color: #737df5; "></i></span></span>
                               <%= link_to post_path(post), method: :delete,"data-confirm" => "本当に消しますか？",class: "text-decoration-none"  do %>
-                                <span class=" rounded-circle p-2 shadow-sm ml-1"style=" background-color: #f0b3bf;"><i class="fas fa-eraser" style=" color: #fa5c7c; "></i></span>
+                                <span data-toggle="tooltip" data-placement="bottom" title="削除する" ><span class=" rounded-circle p-2 shadow-sm ml-1"style=" background-color: #f0b3bf;"><i class="fas fa-eraser" style=" color: #fa5c7c; "></i></span></span>
                               <% end %>
                             <% end %>
                           <% end %>
