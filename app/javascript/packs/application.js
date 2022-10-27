@@ -8,8 +8,6 @@ import Rails from "@rails/ujs"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import "jquery";
-import "popper.js";
-import "bootstrap";
 import "../stylesheets/application"
 import '@fortawesome/fontawesome-free/js/all'
 import "chartkick"
@@ -17,6 +15,9 @@ import "chart.js"
 Rails.start()
 //Turbolinks.start()
 ActiveStorage.start()
+
+/*global $*/
+
 
 $(function() {
   $('#back a').on('click',function(event){

@@ -15,9 +15,11 @@
           <div class="row">
             <div class="col-lg-4 col-md-4 col-sm-12">
               <% if shop_signed_in? %>
+              <div data-toggle="tooltip" title="投稿する!!">
                 <button type="button" class="btn btn-primary  btn-block mb-3 font-weight-bold" data-toggle="modal" data-target="#exampleModal">
                   <i class="fas fa-pen-nib mr-2"></i>Share!!
                 </button>
+              </div>
               <% end %>
             </div>
             <div class="col-lg-7 col-md-7 col-sm-12">
@@ -52,9 +54,11 @@
                         </div>
                         <div =class="col-6 col-lg-6  mt-2 ">
                           <p class="card-text"><%=  post.shop.name %></p>
+                          <div data-toggle="tooltip" title="投稿する!!">
                           <%= link_to post_path(post),class: "text-decoration-none mr-2" do %>
                             <span class=" rounded-circle p-2 shadow-sm"style="background-color: #cdebf3;"><i class="fas fa-search"  style=" color: #39afd1; "></i></span>
                           <% end %>
+                          </div>
                           <% if shop_signed_in? %>
                             <% if post.shop_id == current_shop.id %>
                               <span class=" rounded-circle p-2 shadow-sm"style="background-color: #dcdefc;"data-toggle="modal" data-target="#exampleModal_<%= post.id %>"><i class="fas fa-edit"  style=" color: #737df5; "></i></span>
@@ -180,3 +184,5 @@
       </div>
     </div>
 </div>
+
+
