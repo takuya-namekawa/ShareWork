@@ -1,0 +1,8 @@
+<div class='m-2'>
+  <%= notification.visitor.name %>さんが
+  <% if notification.action == 'chat' %>
+    <%= link_to 'あなたにメッセージ', chat_path(notification.visitor), style:"font-weight: bold;", class: "border-bottom" %>
+    <%= "を送りました" %>
+  <% end %>
+  <span><%= " (#{time_ago_in_words(notification.created_at)}前)" %></span><br>
+</div>

@@ -21,6 +21,7 @@ class Shop::ChatsController < ApplicationController
   def create
     @chat = current_shop.chats.new(chat_params)
     if @chat.save
+      @chat.create_notification_chat!(current_shop, @chat.id, @chat.room_id, @chat.room.shop_rooms.where.not(shop_id: current_shop.id).first.shop_id)
       redirect_to request.referer
     else
       redirect_to request.referer,alert: "メッセージを入力してください"

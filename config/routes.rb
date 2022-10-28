@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   end
 
   scope module: :shop do
+    resources :notifications, only: :index
     resources :shops, only: [:edit, :update] do
       collection do
         get "my_page" => "shops#show"

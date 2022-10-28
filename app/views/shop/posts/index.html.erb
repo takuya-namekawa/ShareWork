@@ -1,7 +1,7 @@
 <div class="d-flex flex-row w-100" style="height: calc(100% - 50px)">
   <!--サイドバーコンテンツ-->
   <%= render "layouts/sidenav" %>
-    <div class="container mt-5">
+    <div class="container mt-3">
       <div class="row">
         <div class="col">
          <% if  @post.errors.any? %>
@@ -12,6 +12,16 @@
               <% end %>
             </ul>
           <% end %>
+          <div class="row">
+            <div class="col mb-3 ">
+              <% if current_shop && unchecked_notifications.any? %>
+                <i class="fa fa-circle" style="color: #ff1100;"></i>
+              <% end %>
+              <%= link_to notifications_path, class: "text-secondary font-weight-bold text-decoration-none" do %>
+                Chat Info <i class="fas fa-comment-medical"></i>
+              <% end %>
+            </div>
+          </div>
           <div class="row">
             <div class="col-lg-4 col-md-4 col-sm-12">
               <% if shop_signed_in? %>

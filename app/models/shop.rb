@@ -14,7 +14,8 @@ class Shop < ApplicationRecord
   has_many :shop_rooms
   has_many :chats
   has_many :favorites,dependent: :destroy
-
+  has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
+  has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
   def get_profile_image(width, height)
     unless profile_image.attached?
       file_path = Rails.root.join("app/assets/images/no-image.png")
