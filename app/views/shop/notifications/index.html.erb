@@ -7,11 +7,12 @@
         <div class="col">
            <div class="card mb-1 shadow-sm">
               <div class="card-body  text-secondary font-weight-bold">
+                <%= link_to "通知を全て削除", notification_all_destroy_path(@notifications), method: :delete %>
                 <% notifications = @notifications.where.not(visitor_id: current_shop.id) %>
                   <% if notifications.exists? %>
                     <%= render notifications %>
                   <% else %>
-                    <p>通知はありません</p>
+                    <p class="m-4">通知はありません</p>
                 <% end %>
             </div>
           </div>

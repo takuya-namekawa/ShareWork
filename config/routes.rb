@@ -21,7 +21,9 @@ Rails.application.routes.draw do
   end
 
   scope module: :shop do
-    resources :notifications, only: :index
+    resources :notifications, only: :index do
+        delete "all_destroy"
+      end
     resources :shops, only: [:edit, :update] do
       collection do
         get "my_page" => "shops#show"
