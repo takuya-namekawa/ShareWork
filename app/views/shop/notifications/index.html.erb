@@ -1,8 +1,21 @@
-<div class="text-center">
-  <% notifications = @notifications.where.not(visitor_id: current_shop.id) %>
-  <% if notifications.exists? %>
-    <%= render notifications %>
-  <% else %>
-   <p>通知はありません</p>
-  <% end %>
+<div class="d-flex flex-row w-100" style="height: calc(100% - 50px)">
+  <!--サイドバーコンテンツ-->
+  <%= render "layouts/sidenav" %>
+    <div class="container mt-5">
+      <h4 class=" font-weight-bold bold border-bottom mb-3" style=" color: #6169d0; ">Chat Info</h4>
+      <div class="row">
+        <div class="col">
+           <div class="card mb-1 shadow-sm">
+              <div class="card-body  text-secondary font-weight-bold">
+                <% notifications = @notifications.where.not(visitor_id: current_shop.id) %>
+                  <% if notifications.exists? %>
+                    <%= render notifications %>
+                  <% else %>
+                    <p>通知はありません</p>
+                <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 </div>

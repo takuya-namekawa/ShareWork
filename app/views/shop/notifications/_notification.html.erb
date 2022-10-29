@@ -1,8 +1,9 @@
-<div class='m-2'>
-  <%= notification.visitor.name %>さんが
+<div class='m-4'>
+  <%= notification.visitor.name %>さんが あなたにメッセージを送りました
   <% if notification.action == 'chat' %>
-    <%= link_to 'あなたにメッセージ', chat_path(notification.visitor), style:"font-weight: bold;", class: "border-bottom" %>
-    <%= "を送りました" %>
+    <%= link_to chat_path(notification.visitor), class: "text-decoration-none" do %>
+      <span data-toggle="tooltip" data-placement="bottom" title="Chatを確認する" ><span class=" rounded-circle p-2 shadow-sm ml-1"style=" background-color: #aaf9ad;"><i class="far fa-envelope-open" style=" color: #1c6a1f; "></i></span></span>
+    <% end %>
   <% end %>
-  <span><%= " (#{time_ago_in_words(notification.created_at)}前)" %></span><br>
+  <span><%= " (#{time_ago_in_words(notification.created_at)}前)" %></span>
 </div>
