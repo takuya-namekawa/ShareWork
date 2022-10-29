@@ -7,7 +7,9 @@
         <div class="col">
            <div class="card mb-1 shadow-sm">
               <div class="card-body  text-secondary font-weight-bold">
-                <%= link_to "通知を全て削除", notification_all_destroy_path(@notifications), method: :delete %>
+                <%= link_to notification_all_destroy_path(@notifications), method: :delete,"data-confirm" => "全ての通知を消しますが宜しいですか？",class: "text-decoration-none" do %>
+                  <span data-toggle="tooltip"  title="全ての通知を削除する" ><span class=" rounded-circle p-2 shadow-sm ml-1"style=" background-color: #f0b3bf;"><i class="fas fa-eraser" style=" color: #fa5c7c; "></i></span></span>
+                <% end %>
                 <% notifications = @notifications.where.not(visitor_id: current_shop.id) %>
                   <% if notifications.exists? %>
                     <%= render notifications %>
