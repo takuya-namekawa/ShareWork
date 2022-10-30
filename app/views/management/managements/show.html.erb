@@ -18,7 +18,7 @@
                     <p class="card-text">emal: <%= management.email %></p>
                     <% if management.name != "guestmanagement" %>
                       <% if  management.id == current_management.id %>
-                        <span class=" rounded-circle p-2 shadow-sm"style="background-color: #dcdefc;"data-toggle="modal" data-target="#exampleModal"><i class="fas fa-edit"  style=" color: #737df5; "></i></span>
+                        <span data-toggle="tooltip" data-placement="bottom" title="編集する" ><span class=" rounded-circle p-2 shadow-sm"style="background-color: #dcdefc;"data-toggle="modal" data-target="#exampleModal"><i class="fas fa-edit"  style=" color: #737df5; "></i></span></span>
                       <% end %>
                     <% end %>
                   </div>

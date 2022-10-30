@@ -36,6 +36,10 @@ Rails.application.routes.draw do
         get "search"
       end
     end
+    resources :groups do
+      get "join" => "groups#join"
+      delete "all_destroy" => "groups#all_destroy"
+    end
     resources :mother_father_gifts
     resources :summer_gifts
     resources :year_end_gifts
