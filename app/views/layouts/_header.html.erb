@@ -18,6 +18,11 @@
             <span data-toggle="tooltip" data-placement="right" title="投稿する" ><i class="fas fa-pen-nib mr-2"></i>Share</span>
           <% end %>
         </li>
+        <li class="nav-item mb-2">
+          <%=  link_to groups_path, class: "nav-link text-light" do %>
+            <span data-toggle="tooltip" data-placement="right" title="グループ一覧" ><i class="fas fa-users mr-2"></i>Group</span>
+          <% end %>
+        </li>
         <li class="nav-item active">
           <%=  link_to mother_father_gifts_path , class: "nav-link text-light" do %>
             <span data-toggle="tooltip" data-placement="right" title="母の日 父の日" ><i class="fas fa-gift mr-2"></i>MotherFatherGift</span>
