@@ -12,16 +12,18 @@
               <% end %>
             </ul>
           <% end %>
-          <div class="row">
-            <div class="col mb-3 ">
-              <% if current_shop && unchecked_notifications.any? %>
-                <i class="fa fa-circle" style="color: #ff1100;"></i>
-              <% end %>
-              <%= link_to notifications_path, class: "text-secondary font-weight-bold text-decoration-none" do %>
-                Chat Info <i class="fas fa-comment-medical"></i>
-              <% end %>
+          <% if shop_signed_in? %>
+            <div class="row">
+              <div class="col mb-3 ">
+                <% if current_shop && unchecked_notifications.any? %>
+                  <i class="fa fa-circle" style="color: #ff1100;"></i>
+                <% end %>
+                <%= link_to notifications_path, class: "text-secondary font-weight-bold text-decoration-none" do %>
+                  Chat Info <i class="fas fa-comment-medical"></i>
+                <% end %>
+              </div>
             </div>
-          </div>
+          <% end %>
           <div class="row">
             <div class="col-lg-4 col-md-4 col-sm-12">
               <% if shop_signed_in? %>
