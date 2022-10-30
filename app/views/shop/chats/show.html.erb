@@ -30,6 +30,11 @@
                       </span>
                         <div class="card mb-1 ">
                           <div class="card-body  font-weight-bold "style="background-color: #edeef0;">
+                            <% if chat.images.attached? %>
+                              <% chat.images.each do |image| %>
+                                <%= image_tag image, width: 100, height: 100 %>
+                              <% end %>
+                            <% end %>
                             <p class="card-text"style="color: #5d6c7e;"><%= chat.message %></p>
                           </div>
                         </div>
@@ -43,6 +48,11 @@
                       </span>
                       <div class="card mb-1 ">
                         <div class="card-body  text-secondary font-weight-bold"style="background-color: #afd9dc;">
+                          <% if chat.images.attached? %>
+                            <% chat.images.each do |image| %>
+                              <%= image_tag image, width: 100, height: 100 %>
+                            <% end %>
+                          <% end %>
                           <p class="card-text"style="color: #134f53;"><%= chat.message %></p>
                         </div>
                       </div>
@@ -69,6 +79,7 @@
           <%= form_with model: @chat do |f| %>
             <div class="modal-body">
               <div class="form-group">
+                <%= f.file_field :images, multiple: true %>
                 <%= f.text_area :message, rows:'5',placeholder: "チャット本文" , class:"form-control"%>
                 <%= f.hidden_field :room_id %>
               </div>

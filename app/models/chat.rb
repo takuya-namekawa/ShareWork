@@ -1,11 +1,12 @@
 class Chat < ApplicationRecord
+  has_many_attached :images
   belongs_to :shop
   belongs_to :room
   has_many :notifications, dependent: :destroy
   with_options presence: true do
     validates :message
   end
-  
+
   def create_notification_chat!(current_shop, chat_id, room_id, visited_id)
     # チャットしている相手を取得し、通知を送る
     temp_ids = Chat.select(:shop_id).where(room_id: room_id).where.not(shop_id: current_shop.id).distinct
