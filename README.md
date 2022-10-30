@@ -36,6 +36,21 @@ SNSのように気軽に使える仕様をコンセプトとする。<br>
 毎日集計作業をして並び変えたりする手間を省く。<br>
 管理職の方は、社員の投稿に対してコメントをする事が出来る。<br>
 
+### 主な機能
+- ゲストログイン(devise)
+- 会員機能(devise)
+- 投稿機能
+- コメント機能
+- チャット機能
+- いいね機能(Ajax)
+- Cheart.jsによるグラフ機能
+- 絞り込み表示機能(キーワード検索)
+- レスポンシブデザイン
+- 画像アップロード機能(ActiveStorage)
+- 通知機能
+- グループ機能
+- メール機能(ActionMailer)
+
 ## 設計書
 テーブル定義書<br> https://docs.google.com/spreadsheets/d/1HgYw8nkBaa8o2MGUj4GlW6d8kyabtW8gBUovlNxXx40/edit#gid=1971126206
 ER図<br> https://docs.google.com/spreadsheets/d/1UzayehmzMuvgrTZCyROicxkszN91UybqpIr9DOG9KZc/edit#gid=549108681
