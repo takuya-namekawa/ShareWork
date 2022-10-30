@@ -4,17 +4,6 @@ class Shop::GroupsController < ApplicationController
   def index
     @groups = Group.all
     @group = Group.new
-
-    # @groups.each do |group|
-    #   @group = Group.where(params[:id])
-    # end
-
-    # group_shops = @group
-    # @mail_title = params[:mail_title]
-    # @mail_content = params[:mail_content]
-
-    # ContactMailer.send_mail(@mail_title, @mail_content, group_shops).deliver
-
   end
 
   def create
