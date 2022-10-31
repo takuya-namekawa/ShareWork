@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: '管理人だよ<from@gmail.com>'
+  default from: 'ShareWork<from@gmail.com>'
   layout 'mailer'
 end

@@ -1,2 +1,20 @@
-<%= @mail_title %>
-<%= safe_join(@mail_content.split("\n"),tag(:br)) %>
+<div class="d-flex flex-row w-100" style="height: calc(100% - 50px)">
+  <!--サイドバーコンテンツ-->
+  <%= render "layouts/sidenav" %>
+    <div class="container mt-3">
+      <h4 class=" font-weight-bold mt-5 mb-3 bold border-bottom text-center" style=" color: #6169d0; ">Transmission Completed!!</h4>
+        <div class="row">
+          <div class="col-12  col-lg-10 offset-lg-1  col-md-10 offset-md-1 col-sm-12   mt-4">
+            <div class="card mb-1 shadow-sm">
+              <div class="card-body  text-secondary font-weight-bold">
+                以下の内容でメールを送信しました
+                <br>
+                <br>
+                <p class="card-text">メールタイトル<br><%= @mail_title %></p>
+                <p class="card-text">メール本文<br><%= safe_join(@mail_content.split("\n"),tag(:br)) %></p>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>
