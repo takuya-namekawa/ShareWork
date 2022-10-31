@@ -25,15 +25,15 @@
                     <p class="card-text">グループメンバー数 <%= group.shops.count %>店舗</p>
                     <p class="card-text"><%= group.shop ? group.shop.name : "不明" %>が<%= group.created_at.strftime('%Y/%m/%d') %>に作成</p>
                     <% if group.owner_id == current_shop.id %>
-                      <span data-toggle="tooltip" data-placement="bottom" title="編集する" ><span class=" rounded-circle p-2 shadow-sm mr-3"style="background-color: #dcdefc;"data-toggle="modal" data-target="#group_edit_<%= group.id %>"><i class="fas fa-edit"  style=" color: #737df5; "></i></span></span>
-                      <span data-toggle="tooltip" data-placement="bottom" title="メールを送信する" ><span class=" rounded-circle p-2 shadow-sm mr-3"style="background-color: #aaf9ad;"data-toggle="modal" data-target="#mail_new_<%= group.id %>"><i class="far fa-envelope-open"  style=" color: #1c6a1f; "></i></span></span>
+                      <span data-toggle="tooltip" data-placement="bottom" title="グループを編集する" ><span class=" rounded-circle p-2 shadow-sm mr-3"style="background-color: #dcdefc;"data-toggle="modal" data-target="#group_edit_<%= group.id %>"><i class="fas fa-edit"  style=" color: #737df5; "></i></span></span>
+                      <span data-toggle="tooltip" data-placement="bottom" title="グループメンバーにメールを送信する" ><span class=" rounded-circle p-2 shadow-sm mr-3"style="background-color: #aaf9ad;"data-toggle="modal" data-target="#mail_new_<%= group.id %>"><i class="far fa-envelope-open"  style=" color: #1c6a1f; "></i></span></span>
                       <%= link_to group_all_destroy_path(group),method: :delete,data: { confirm: "本当に消しますか？" } do %>
-                        <span data-toggle="tooltip" data-placement="bottom" title="削除する" ><span class=" rounded-circle p-2 shadow-sm ml-1"style=" background-color: #f0b3bf;"><i class="fas fa-eraser" style=" color: #fa5c7c; "></i></span></span>
+                        <span data-toggle="tooltip" data-placement="bottom" title="グループを削除する" ><span class=" rounded-circle p-2 shadow-sm ml-1"style=" background-color: #f0b3bf;"><i class="fas fa-eraser" style=" color: #fa5c7c; "></i></span></span>
                       <% end %>
                     <% elsif group.shops.include?(current_shop) %>
-                      <span data-toggle="tooltip" data-placement="bottom" title="グループを脱退" ><%= link_to 'Leave This Group', group_path(group),class: "btn btn-danger", method: :delete %></span>
+                      <span data-toggle="tooltip" data-placement="bottom" title="グループを脱退" ><%= link_to 'Leave This Group', group_path(group),class: "btn btn-danger font-weight-bold", method: :delete %></span>
                     <% else %>
-                      <span data-toggle="tooltip" data-placement="bottom" title="グループに加入" ><%= link_to 'Join This Group', group_join_path(group),class: "btn btn-success" %></span>
+                      <span data-toggle="tooltip" data-placement="bottom" title="グループに加入" ><%= link_to 'Join This Group', group_join_path(group),class: "btn btn-success font-weight-bold" %></span>
                     <% end %>
                   </div>
                   <div class="col-4">
@@ -46,7 +46,7 @@
                   <div class="modal-dialog" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">共有事項を投稿する</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">グループを編集する</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>
@@ -72,7 +72,7 @@
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary font-weight-bold" data-dismiss="modal">Close</button>
-                          <%= f.submit "Shere!!", class:"btn btn-primary font-weight-bold" %>
+                          <%= f.submit "Edit Group", class:"btn btn-success font-weight-bold" %>
                         </div>
                       <% end %>
                     </div>
@@ -83,7 +83,7 @@
                   <div class="modal-dialog" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h5 class="modal-title" id="mail_new_label">メールなう</h5>
+                        <h5 class="modal-title" id="mail_new_label">グループメンバーへメールを作成する</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>
@@ -101,7 +101,7 @@
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary font-weight-bold" data-dismiss="modal">Close</button>
-                          <%= f.submit "Shere!!", class:"btn btn-primary font-weight-bold" %>
+                          <%= f.submit "Send Mail!!", class:"btn btn-primary font-weight-bold" %>
                         </div>
                       <% end %>
                     </div>
@@ -115,7 +115,7 @@
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">共有事項を投稿する</h5>
+                  <h5 class="modal-title" id="exampleModalLabel">グループを作成する</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
@@ -141,7 +141,7 @@
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary font-weight-bold" data-dismiss="modal">Close</button>
-                    <%= f.submit "Shere!!", class:"btn btn-primary font-weight-bold" %>
+                    <%= f.submit "Group Create!!", class:"btn btn-primary font-weight-bold" %>
                   </div>
                 <% end %>
               </div>
