@@ -56,6 +56,10 @@ ja:
         inventory: 在庫数
       genre:
         name: ジャンル名
+      group:
+        name: グループ名
+        introduction: グループ紹介
+
 
 
 

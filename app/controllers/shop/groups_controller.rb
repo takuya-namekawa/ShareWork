@@ -11,8 +11,9 @@ class Shop::GroupsController < ApplicationController
     @group.owner_id = current_shop.id
     @group.shops << current_shop  # @group.shops << current_shop  @group.shopsに追加しているという記述
     if @group.save
-      redirect_to groups_path(@group)
+      redirect_to groups_path(@group), notice: "グループ作成に成功しました"
     else
+      @groups = Group.all
       render :index
     end
   end
@@ -20,7 +21,7 @@ class Shop::GroupsController < ApplicationController
   def update
     @group = Group.find(params[:id])
     if @group.update(group_params)
-      redirect_to groups_path
+      redirect_to groups_path, notice: "グループ情報を更新しました"
     else
       render :index
     end
@@ -42,7 +43,7 @@ class Shop::GroupsController < ApplicationController
   def all_destroy
     @group = Group.find(params[:group_id])
     if @group.destroy
-      redirect_to groups_path
+      redirect_to groups_path, notice: "グループを削除しました"
     end
   end
 
