@@ -4,146 +4,150 @@
    <div class="container mt-3">
       <div class="row">
         <div class="col">
-
-<div data-toggle="tooltip" title="グループを作成">
-  <button type="button" class="btn btn-primary  btn-block mb-3 font-weight-bold" data-toggle="modal" data-target="#exampleModal">
-    <i class="fas fa-pen-nib mr-2"></i>グループを作成
-  </button>
-</div>
-
-<% @groups.each do |group| %>
-
-<%= image_tag group.get_profile_image(80,80) %><br>
-グループ名<%= group.name %><br>
-グループ紹介<%= group.introduction %><br>
-参加条件<%= group.status %>
-グループメンバー数<%= group.shops.count %>
-<%= group.shop ? group.shop.name : "不明" %>が<%= group.created_at.strftime('%Y/%m/%d') %>に作成
-<% if group.owner_id == current_shop.id %>
-<span data-toggle="tooltip" data-placement="bottom" title="編集する" ><span class=" rounded-circle p-2 shadow-sm mr-3"style="background-color: #ffffff;"data-toggle="modal" data-target="#group_edit_<%= group.id %>"><i class="fas fa-edit"  style=" color: #6169d0; "></i></span></span>
-<span data-toggle="tooltip" data-placement="bottom" title="メールを送信する" ><span class=" rounded-circle p-2 shadow-sm mr-3"style="background-color: #ffffff;"data-toggle="modal" data-target="#mail_new_<%= group.id %>"><i class="fas fa-edit"  style=" color: #6169d0; "></i></span></span>
-<%= link_to "グループ削除", group_all_destroy_path(group),method: :delete,data: { confirm: "本当に消しますか？" } %>
-<br>
-<% elsif group.shops.include?(current_shop) %>
-<%= link_to 'Leave this group', group_path(group), method: :delete %>
-<% else %>
-<%= link_to 'Join this group', group_join_path(group) %>
-<% end %>
-
-    <!-- Modal -->
-    <div class="modal fade" id="group_edit_<%= group.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">共有事項を投稿する</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <%= form_for group, url:  group_path(group) do |f| %>
-            <div class="modal-body">
-              <div class="form-group">
-                <%= f.label :name, "グループ名" %>
-                <%= f.text_field :name, class:"form-control" %>
+          <div class="row">
+            <div class="col-4 col-lg-4 col-md-4 col-sm-4 mt-4">
+              <div data-toggle="tooltip" title="グループを作成">
+                <button type="button" class="btn btn-primary  btn-block mb-3 font-weight-bold" data-toggle="modal" data-target="#exampleModal">
+                  <i class="fas fa-users-cog mr-2"></i> Group Create!!
+                </button>
               </div>
-              <div class="form-group">
-                <%= f.label :status, "参加条件" %>
-                <%= f.text_field :status, class:"form-control" %>
-              </div>
-              <div class="form-group">
-                <%= f.label :introduction, "グループ紹介" %>
-                <%= f.text_area :introduction, rows:'5' , class:"form-control"%>
-              </div>
-              <div class="form-group">
-                <%= f.label :画像 ,class: "col-sm-3 col-form-label " %>
-                <%= f.file_field :profile_image, accept: "image/" %>
-              </div>
-
-
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary font-weight-bold" data-dismiss="modal">Close</button>
-              <%= f.submit "Shere!!", class:"btn btn-primary font-weight-bold" %>
+          </div>
+          <% @groups.each do |group| %>
+            <div class="card mb-1 shadow-sm">
+              <div class="card-body  text-secondary font-weight-bold">
+                <div class="row">
+                  <div class="col-4">
+                    <%= image_tag group.get_profile_image(200,200),class: "img-fluid" %>
+                  </div>
+                  <div class="col-4">
+                    <p class="card-text">グループ名 <%= group.name %></p>
+                    <p class="card-text">グループメンバー数 <%= group.shops.count %>店舗</p>
+                    <p class="card-text"><%= group.shop ? group.shop.name : "不明" %>が<%= group.created_at.strftime('%Y/%m/%d') %>に作成</p>
+                    <% if group.owner_id == current_shop.id %>
+                      <span data-toggle="tooltip" data-placement="bottom" title="編集する" ><span class=" rounded-circle p-2 shadow-sm mr-3"style="background-color: #dcdefc;"data-toggle="modal" data-target="#group_edit_<%= group.id %>"><i class="fas fa-edit"  style=" color: #737df5; "></i></span></span>
+                      <span data-toggle="tooltip" data-placement="bottom" title="メールを送信する" ><span class=" rounded-circle p-2 shadow-sm mr-3"style="background-color: #aaf9ad;"data-toggle="modal" data-target="#mail_new_<%= group.id %>"><i class="far fa-envelope-open"  style=" color: #1c6a1f; "></i></span></span>
+                      <%= link_to group_all_destroy_path(group),method: :delete,data: { confirm: "本当に消しますか？" } do %>
+                        <span data-toggle="tooltip" data-placement="bottom" title="削除する" ><span class=" rounded-circle p-2 shadow-sm ml-1"style=" background-color: #f0b3bf;"><i class="fas fa-eraser" style=" color: #fa5c7c; "></i></span></span>
+                      <% end %>
+                    <% elsif group.shops.include?(current_shop) %>
+                      <span data-toggle="tooltip" data-placement="bottom" title="グループを脱退" ><%= link_to 'Leave This Group', group_path(group),class: "btn btn-danger", method: :delete %></span>
+                    <% else %>
+                      <span data-toggle="tooltip" data-placement="bottom" title="グループに加入" ><%= link_to 'Join This Group', group_join_path(group),class: "btn btn-success" %></span>
+                    <% end %>
+                  </div>
+                  <div class="col-4">
+                    <p class="card-text">参加条件 <%= group.status %></p>
+                    <p class="card-text">グループ紹介<%= simple_format group.introduction %></p>
+                  </div>
+                </div>
+                <!-- Modal -->
+                <div class="modal fade" id="group_edit_<%= group.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">共有事項を投稿する</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <%= form_for group, url:  group_path(group) do |f| %>
+                        <div class="modal-body">
+                          <div class="form-group">
+                            <%= f.label :name, "グループ名" %>
+                            <%= f.text_field :name, class:"form-control" %>
+                          </div>
+                          <div class="form-group">
+                            <%= f.label :status, "参加条件" %>
+                            <%= f.text_field :status, class:"form-control" %>
+                          </div>
+                          <div class="form-group">
+                            <%= f.label :introduction, "グループ紹介" %>
+                            <%= f.text_area :introduction, rows:'5' , class:"form-control"%>
+                          </div>
+                          <div class="form-group">
+                            <%= f.label :画像 ,class: "col-sm-3 col-form-label " %>
+                            <%= f.file_field :profile_image, accept: "image/" %>
+                          </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary font-weight-bold" data-dismiss="modal">Close</button>
+                          <%= f.submit "Shere!!", class:"btn btn-primary font-weight-bold" %>
+                        </div>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+                <!--メール用-->
+                <div class="modal fade" id="mail_new_<%= group.id %>" tabindex="-1" role="dialog" aria-labelledby="mail_new_label" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="mail_new_label">メールなう</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <%= form_with url: group_send_mail_path(group),method: :get, local: true do |f| %>
+                        <div class="modal-body">
+                          <div class="form-group">
+                            <%= f.label :title, "タイトル" %>
+                            <%= f.text_field :title, class:"form-control" %>
+                          </div>
+                          <div class="form-group">
+                            <%= f.label :content, "メール本文" %>
+                            <%= f.text_area :content, rows:'5' , class:"form-control"%>
+                          </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary font-weight-bold" data-dismiss="modal">Close</button>
+                          <%= f.submit "Shere!!", class:"btn btn-primary font-weight-bold" %>
+                        </div>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           <% end %>
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">共有事項を投稿する</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <%= form_for @group, url:  groups_path do |f| %>
+                  <div class="modal-body">
+                    <div class="form-group">
+                      <%= f.label :name, "グループ名" %>
+                      <%= f.text_field :name, class:"form-control" %>
+                    </div>
+                    <div class="form-group">
+                      <%= f.label :status, "参加条件" %>
+                      <%= f.text_field :status, class:"form-control" %>
+                    </div>
+                    <div class="form-group">
+                      <%= f.label :introduction, "グループ紹介" %>
+                      <%= f.text_area :introduction, rows:'5' , class:"form-control"%>
+                    </div>
+                    <div class="form-group">
+                      <%= f.label :画像 ,class: "col-sm-3 col-form-label " %>
+                      <%= f.file_field :profile_image, accept: "image/" %>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary font-weight-bold" data-dismiss="modal">Close</button>
+                    <%= f.submit "Shere!!", class:"btn btn-primary font-weight-bold" %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-
-    <!--メール用-->
-    <div class="modal fade" id="mail_new_<%= group.id %>" tabindex="-1" role="dialog" aria-labelledby="mail_new_label" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="mail_new_label">メールなう</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <%= form_with url: group_send_mail_path(group),method: :get, local: true do |f| %>
-            <div class="modal-body">
-              <div class="form-group">
-                <%= f.label :title, "タイトル" %>
-                <%= f.text_field :title, class:"form-control" %>
-              </div>
-              <div class="form-group">
-                <%= f.label :content, "メール本文" %>
-                <%= f.text_area :content, rows:'5' , class:"form-control"%>
-              </div>
-
-
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary font-weight-bold" data-dismiss="modal">Close</button>
-              <%= f.submit "Shere!!", class:"btn btn-primary font-weight-bold" %>
-            </div>
-          <% end %>
-        </div>
-      </div>
-    </div>
-<% end %>
-
- <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">共有事項を投稿する</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <%= form_for @group, url:  groups_path do |f| %>
-            <div class="modal-body">
-              <div class="form-group">
-                <%= f.label :name, "グループ名" %>
-                <%= f.text_field :name, class:"form-control" %>
-              </div>
-              <div class="form-group">
-                <%= f.label :status, "参加条件" %>
-                <%= f.text_field :status, class:"form-control" %>
-              </div>
-              <div class="form-group">
-                <%= f.label :introduction, "グループ紹介" %>
-                <%= f.text_area :introduction, rows:'5' , class:"form-control"%>
-              </div>
-              <div class="form-group">
-                <%= f.label :画像 ,class: "col-sm-3 col-form-label " %>
-                <%= f.file_field :profile_image, accept: "image/" %>
-              </div>
-
-
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary font-weight-bold" data-dismiss="modal">Close</button>
-              <%= f.submit "Shere!!", class:"btn btn-primary font-weight-bold" %>
-            </div>
-          <% end %>
-        </div>
-        </div>
-    </div>
-</div>
-      </div>
-    </div>
-
 </div>
